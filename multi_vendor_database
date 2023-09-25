@@ -1,0 +1,11 @@
+store (id, name, slug, description, logo status);
+
+categories (id, name, slug, description, image, status, parent_id(FK));
+
+products (id, name, image, quantity, slug, price, description, status, category_id(FK), store_id(FK));
+
+orders (id, number, status, user_id(FK));
+
+order_products (id, order_id(FK), product_id(FK), quantity);
+
+user (id, name, email, phone_number, password, email_verified_at, token)
