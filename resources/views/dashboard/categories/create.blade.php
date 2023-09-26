@@ -11,7 +11,8 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form action="{{ route("dashboard.categories.store") }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route("dashboard.categories.store") }}" method="post" enctype="multipart/form-data"
+                      class="row">
                     @csrf
 
                     @include("dashboard.categories._form", ['category' => new \App\Models\Category(), 'action' => 'Create'])

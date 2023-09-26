@@ -52,7 +52,7 @@
         <!-- Image -->
         <div class="mt-4">
             <x-input-label for="image" :value="__('Image')"/>
-            <x-file-input id="image" class="block mt-1 w-full" accept="image/*"/>
+            <x-form.file-input id="image" class="block mt-1 w-full" accept="image/*"/>
             <x-input-error :messages="$errors->get('image')" class="mt-2"/>
         </div>
 

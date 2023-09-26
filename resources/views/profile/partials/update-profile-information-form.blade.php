@@ -60,8 +60,8 @@
 
         <div>
             <x-input-label for="image" :value="__('Image')"/>
-            <x-image src="{{ $user->image }}" maxWidth="300" maxHeight="200"></x-image>
-            <x-file-input id="image" class="block mt-1 w-full" accept="image/*"/>
+            <x-form.image src="{{ $user->image }}" maxWidth="300" maxHeight="200"></x-form.image>
+            <x-form.file-input id="image" class="block mt-1 w-full" accept="image/*"/>
             <x-input-error :messages="$errors->get('image')" class="mt-2"/>
         </div>
 
