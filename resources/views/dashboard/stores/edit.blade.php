@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <form action="{{ route("dashboard.stores.update", $store) }}" method="post"
-                      enctype="multipart/form-data">
+                      enctype="multipart/form-data" class="form-horizontal">
                     @csrf
                     @method("put")
                     @include("dashboard.stores._form", ['action' => 'Update'])

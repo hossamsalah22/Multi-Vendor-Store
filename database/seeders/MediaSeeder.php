@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,9 +14,13 @@ class MediaSeeder extends Seeder
      */
     public function run(): void
     {
-        $model = User::first();
-
-        $model->addMediaFromUrl(asset("dist/img/user2-160x160.jpg"))
+        $user = User::first();
+        $categories = Category::all();
+        $user->addMediaFromUrl(asset("dist/img/user2-160x160.jpg"))
             ->toMediaCollection('users');
+        foreach ($categories as $category) {
+            $category->addMediaFromUrl(asset("dist/img/photo1.png"))
+                ->toMediaCollection('categories');
+        }
     }
 }
