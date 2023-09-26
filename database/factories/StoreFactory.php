@@ -17,7 +17,9 @@ class StoreFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // name, description
+            'name' => fake()->name(),
+            'description' => fake()->sentence(),
         ];
     }
 }

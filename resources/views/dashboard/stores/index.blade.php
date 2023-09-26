@@ -79,4 +79,5 @@
 
     </table>
 
+    {{ $stores->links() }}
 @endsection

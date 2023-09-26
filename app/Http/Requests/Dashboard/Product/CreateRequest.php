@@ -24,4 +24,15 @@ class CreateRequest extends FormRequest
             'store_id' => ['required', 'exists:stores,id'],
         ];
     }
+
+    /**
+     * attributes
+     */
+    public function attributes(): array
+    {
+        return [
+            'category_id' => 'category',
+            'store_id' => 'store',
+        ];
+    }
 }
