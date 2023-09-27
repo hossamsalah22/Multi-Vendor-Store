@@ -19,7 +19,7 @@
         style="width: 100%;"
         {!! $attributes !!}
     >
-        <option value="" disabled {{ is_null($selected) ? 'selected' : '' }}>
+        <option value="" {{ is_null($selected) ? 'selected' : '' }}>
             {{ $placeholder }}
         </option>
         @foreach($options as $option)

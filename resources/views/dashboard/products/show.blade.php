@@ -27,8 +27,12 @@
 
                     <div class="col-6">
                         <h4>Category</h4>
-                        <a href="{{ route('dashboard.categories.show', $product->category) }}"
-                           class="btn btn-default">{{ $product->category->name }}</a>
+                        @if($product->category)
+                            <a href="{{ route('dashboard.categories.show', $product->category) }}"
+                               class="btn btn-default">{{ $product->category->name }}</a>
+                        @else
+                            <p class="btn btn-default">No Category</p>
+                        @endif
                     </div>
 
                     <div class="col-6">
@@ -42,28 +46,33 @@
                 <div class="row">
                     <div class="col-4">
                         <h4>Created at</h4>
-                        <div class="bg-gray py-2 px-3 mt-4">
+                        <div class="bg-gradient-info py-2 px-3 mt-4">
                             {{ $product->created_at->diffForHumans() }}
                         </div>
                     </div>
 
                     <div class="col-4">
                         <h4>Updated at</h4>
-                        <div class="bg-gray py-2 px-3 mt-4">
+                        <div class="bg-gradient-info py-2 px-3 mt-4">
                             {{ $product->updated_at->diffForHumans() }}
                         </div>
                     </div>
 
                     <div class="col-4">
                         <h4>Deleted at</h4>
-                        <div class="bg-gray py-2 px-3 mt-4">
+                        <div class="bg-gradient-danger py-2 px-3 mt-4">
                             {{ $product->deleted_at ? $product->deleted_at->diffForHumans() : "Null" }}
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray py-2 px-3 mt-4">
+                <div class="bg-gradient-{{ $product->active ? "success" : "danger" }} py-2 px-3 mt-4">
                     <h2 class="mb-0">
-                        {{ $product->price }} EGP
+                        Status: {{ $product->active ? "Active" : "Inactive" }}
+                    </h2>
+                </div>
+                <div class="bg-gradient-gray py-2 px-3 mt-4">
+                    <h2 class="mb-0">
+                        Price: {{ $product->price }} EGP
                     </h2>
                 </div>
             </div>

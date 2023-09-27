@@ -90,6 +90,7 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
+        $category->update(['active' => 0]);
         $category->delete();
         return back()->with('success', 'Category deleted successfully');
     }

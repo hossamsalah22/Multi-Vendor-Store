@@ -20,7 +20,7 @@ class CreateRequest extends FormRequest
             'quantity' => ['required', 'numeric', 'min:0'],
             'price' => ['required', 'numeric', 'min:0'],
             'description' => ['required', 'string', 'max:5000'],
-            'category_id' => ['required', 'exists:categories,id'],
+            'category_id' => ['nullable', 'exists:categories,id'],
             'store_id' => ['required', 'exists:stores,id'],
         ];
     }

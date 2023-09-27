@@ -82,6 +82,7 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
+        $product->update(['active' => 0]);
         $product->delete();
         return back()->with('success', 'Product has been deleted.');
     }

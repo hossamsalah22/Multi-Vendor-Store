@@ -25,26 +25,26 @@
                 <div class="row">
                     <div class="col-4">
                         <h4>Created at</h4>
-                        <div class="bg-info py-2 px-3 mt-4">
+                        <div class="bg-gradient-info py-2 px-3 mt-4">
                             {{ $category->created_at->diffForHumans() }}
                         </div>
                     </div>
 
                     <div class="col-4">
                         <h4>Updated at</h4>
-                        <div class="bg-info py-2 px-3 mt-4">
+                        <div class="bg-gradient-info py-2 px-3 mt-4">
                             {{ $category->updated_at->diffForHumans() }}
                         </div>
                     </div>
 
                     <div class="col-4">
                         <h4>Deleted at</h4>
-                        <div class="bg-danger py-2 px-3 mt-4">
+                        <div class="bg-gradient-danger py-2 px-3 mt-4">
                             {{ $category->deleted_at ? $category->deleted_at->diffForHumans() : "Null" }}
                         </div>
                     </div>
                 </div>
-                <div class="bg-{{ $category->active ? "success" : "danger" }} py-2 px-3 mt-4">
+                <div class="bg-gradient-{{ $category->active ? "success" : "danger" }} py-2 px-3 mt-4">
                     <h2 class="mb-0">
                         Status: {{ $category->active ? "Active" : "Inactive" }}
                     </h2>

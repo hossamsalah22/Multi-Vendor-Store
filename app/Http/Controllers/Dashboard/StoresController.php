@@ -81,6 +81,7 @@ class StoresController extends Controller
      */
     public function destroy(Store $store)
     {
+        $store->update(['active' => 0]);
         $store->delete();
         return back()->with('success', 'Store deleted successfully');
     }
