@@ -20,7 +20,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::with('parent')->paginate(10);
+        $categories = Category::withTrashed()->with('parent')->paginate(10);
         return view('dashboard.categories.index', compact('categories'));
     }
 
@@ -48,8 +48,9 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show($id)
     {
+        $category = Category::withTrashed()->where('slug', $id)->firstOrFail();
         return view('dashboard.categories.show', compact('category'));
     }
 
@@ -89,7 +90,6 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
-        // delete category
         $category->delete();
         return back()->with('success', 'Category deleted successfully');
     }
@@ -102,4 +102,15 @@ class CategoriesController extends Controller
         $category->update(['active' => $category->active ? 0 : 1]);
         return back()->with('success', 'Category Status Updated successfully');
     }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore($slug)
+    {
+        $category = Category::onlyTrashed()->where('slug', $slug)->firstOrFail();
+        $category->restore();
+        return back()->with('success', 'Category Restored successfully');
+    }
+
 }

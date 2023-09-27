@@ -20,7 +20,7 @@ class StoresController extends Controller
      */
     public function index()
     {
-        $stores = Store::paginate(10);
+        $stores = Store::withTrashed()->paginate();
         return view('dashboard.stores.index', compact('stores'));
     }
 
@@ -47,8 +47,9 @@ class StoresController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Store $store)
+    public function show($id)
     {
+        $store = Store::withTrashed()->where('slug', $id)->firstOrFail();
         return view('dashboard.stores.show', compact('store'));
     }
 
@@ -91,5 +92,15 @@ class StoresController extends Controller
     {
         $store->update(['active' => $store->active ? 0 : 1]);
         return back()->with('success', 'Stores Status Updated successfully');
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore($id)
+    {
+        $store = Store::onlyTrashed()->where('slug', $id)->firstOrFail();
+        $store->restore();
+        return back()->with('success', 'Store restored successfully');
     }
 }

@@ -34,40 +34,58 @@
                 <td><img src="{{ $store->image }}" alt="{{ $store->name }}"
                          style="max-width: 100%; max-height: 50px;"></td>
                 <td>
-                    <form action="{{ route("dashboard.stores.activate", $store) }}" method="POST">
-                        @csrf
-                        @method("PUT")
-                        <a href="{{ route("dashboard.stores.activate", $store) }}"
-                           class="btn"
-                           onclick="event.preventDefault(); this.closest('form').submit();"
-                        >
-                            @if($store->active)
-                                <span class="badge badge-success">Active</span>
-                            @else
-                                <span class="badge badge-danger">Inactive</span>
-                            @endif
-                        </a>
-                    </form>
+                    @if($store->deleted_at === null)
+
+                        <form action="{{ route("dashboard.stores.activate", $store) }}" method="POST">
+                            @csrf
+                            @method("PUT")
+                            <a href="{{ route("dashboard.stores.activate", $store) }}"
+                               class="btn"
+                               onclick="event.preventDefault(); this.closest('form').submit();"
+                            >
+                                @if($store->active)
+                                    <span class="badge badge-success">Active</span>
+                                @else
+                                    <span class="badge badge-danger">Inactive</span>
+                                @endif
+                            </a>
+                        </form>
+                    @else
+                        <span class="badge badge-danger">Deleted</span>
+                    @endif
                 </td>
                 <td>
                     <a href="{{ route("dashboard.stores.show", $store) }}"
                        class="btn btn-sm btn-outline-info">
                         <i class="fas fa-eye"></i>
                     </a>
-                    <a href="{{ route("dashboard.stores.edit", $store) }}"
-                       class="btn btn-sm btn-outline-info">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a href="#"
-                       class="btn btn-sm btn-outline-danger"
-                       onclick="event.preventDefault(); document.getElementById('form-delete').submit();"
-                    ><i class="fas fa-trash"></i></a>
-                    {{--    Delete Form     --}}
-                    <form action="{{ route("dashboard.stores.destroy", $store) }}" method="POST" class="hidden"
-                          id="form-delete">
-                        @csrf
-                        @method("DELETE")
-                    </form>
+                    @if($store->deleted_at === null)
+                        <a href="{{ route("dashboard.stores.edit", $store) }}"
+                           class="btn btn-sm btn-outline-info">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="#"
+                           class="btn btn-sm btn-outline-danger"
+                           onclick="event.preventDefault(); document.getElementById('form-delete-{{ $store->id }}').submit();"
+                        ><i class="fas fa-trash"></i></a>
+                        {{--    Delete Form     --}}
+                        <form action="{{ route("dashboard.stores.destroy", $store) }}" method="POST" class="hidden"
+                              id="form-delete-{{ $store->id }}">
+                            @csrf
+                            @method("DELETE")
+                        </form>
+                    @else
+                        <a href="{{ route("dashboard.stores.restore", $store) }}"
+                           class="btn btn-sm btn-outline-success"
+                           onclick="event.preventDefault(); document.getElementById('form-restore-{{ $store->id }}').submit();">
+                            <i class="fas fa-trash-restore"></i>
+                        </a>
+                        <form action="{{ route("dashboard.stores.restore", $store) }}" method="POST" class="hidden"
+                              id="form-restore-{{ $store->id }}">
+                            @csrf
+                            @method("PUT")
+                        </form>
+                    @endif
                 </td>
             </tr>
         @empty

@@ -17,7 +17,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category', 'store')->paginate(10);
+        $products = Product::withTrashed()->with(['category', 'store'])->paginate(10);
         return view('dashboard.products.index', compact('products'));
     }
 
@@ -46,9 +46,9 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        $product->load('category', 'store');
+        $product = Product::withTrashed()->with(['category', 'store'])->where('slug', $id)->firstOrFail();
         return view('dashboard.products.show', compact('product'));
     }
 
@@ -93,5 +93,15 @@ class ProductsController extends Controller
     {
         $product->update(['active' => $product->active ? 0 : 1]);
         return back()->with('success', 'Product status has been updated.');
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore($id)
+    {
+        $product = Product::withTrashed()->where('slug', $id)->firstOrFail();
+        $product->restore();
+        return back()->with('success', 'Product has been restored.');
     }
 }
