@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,15 +19,23 @@ class MediaSeeder extends Seeder
         $user = User::first();
         $categories = Category::all();
         $stores = Store::all();
+        $products = Product::all();
         $user->addMediaFromUrl(asset("dist/img/user2-160x160.jpg"))
             ->toMediaCollection('users');
         foreach ($categories as $category) {
-            $category->addMediaFromUrl(asset("dist/img/photo1.png"))
+            $random = rand(2, 5);
+            $category->addMediaFromUrl(asset("dist/img/avatar{$random}.png"))
                 ->toMediaCollection('categories');
         }
         foreach ($stores as $store) {
-            $store->addMediaFromUrl(asset("dist/img/prod-3.jpg"))
+            $random = rand(1, 4);
+            $store->addMediaFromUrl(asset("dist/img/photo{$random}.jpg"))
                 ->toMediaCollection('stores');
+        }
+        foreach ($products as $product) {
+            $random = rand(1, 5);
+            $product->addMediaFromUrl(asset("dist/img/prod-{$random}.jpg"))
+                ->toMediaCollection('products');
         }
     }
 }
