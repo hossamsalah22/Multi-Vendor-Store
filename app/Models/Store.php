@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\StoreScope;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,10 +19,23 @@ class Store extends Model implements HasMedia
     protected $with = ['media'];
     protected $appends = ['image'];
 
-    public function getImageAttribute()
+    ############################# Start Attributes #############################
+
+    public function getImageAttribute(): string
     {
         return $this->getFirstMediaUrl('stores');
     }
+
+    ############################# End Attributes #############################
+
+
+    ############################# Start Relations #############################
+    public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    ############################# End Relations #############################
 
     public function sluggable(): array
     {
@@ -31,8 +46,10 @@ class Store extends Model implements HasMedia
         ];
     }
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
+
+
 }

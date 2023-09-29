@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             'phone_number' => '01000000000',
             'password' => Hash::make('12345678'),
             'email_verified_at' => now(),
+            'type' => 'super-admin'
         ]);
 
     }

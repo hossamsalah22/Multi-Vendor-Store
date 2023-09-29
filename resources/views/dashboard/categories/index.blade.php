@@ -21,6 +21,7 @@
             <th>Name</th>
             <th>Image</th>
             <th>Parent Category</th>
+            <th>NO. Products</th>
             <th>Status</th>
             <th>Actions</th>
         </tr>
@@ -32,7 +33,8 @@
                 <td>{{ $category->name }}</td>
                 <td><img src="{{ $category->image }}" alt="{{ $category->name }}"
                          style="max-width: 100%; max-height: 50px;"></td>
-                <td>{{ $category->parent->name ?? "No Parent" }}</td>
+                <td>{{ $category->parent->name }}</td>
+                <td>{{ $category->products_count }}</td>
                 <td>
                     @if($category->deleted_at === null)
                         <form action="{{ route("dashboard.categories.activate", $category) }}" method="POST">

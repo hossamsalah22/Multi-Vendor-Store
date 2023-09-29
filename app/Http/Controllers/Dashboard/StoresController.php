@@ -20,7 +20,7 @@ class StoresController extends Controller
      */
     public function index()
     {
-        $stores = Store::withTrashed()->paginate();
+        $stores = Store::withTrashed()->withCount('products')->paginate();
         return view('dashboard.stores.index', compact('stores'));
     }
 

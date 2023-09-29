@@ -14,6 +14,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
 
+    protected $with = ['media'];
+    protected $appends = ['image'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -46,11 +49,12 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'password' => 'hashed',
     ];
 
-    protected $with = ['media'];
-    protected $appends = ['image'];
 
+    ############################# Start Attributes #############################
     public function getImageAttribute()
     {
         return $this->getFirstMediaUrl('users');
     }
+
+    ############################# End Attributes #############################
 }

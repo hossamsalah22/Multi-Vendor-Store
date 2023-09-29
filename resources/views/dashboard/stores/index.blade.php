@@ -21,6 +21,7 @@
             <th>Name</th>
             <th>Description</th>
             <th>Image</th>
+            <th>NO. Products</th>
             <th>Status</th>
             <th>Actions</th>
         </tr>
@@ -30,9 +31,10 @@
             <tr>
                 <th>{{ $loop->iteration }}</th>
                 <td>{{ $store->name }}</td>
-                <td> {{ $store->description }}</td>
+                <td> {{ substr($store->description, 0, 40) }}...</td>
                 <td><img src="{{ $store->image }}" alt="{{ $store->name }}"
                          style="max-width: 100%; max-height: 50px;"></td>
+                <td>{{ $store->products_count }}</td>
                 <td>
                     @if($store->deleted_at === null)
 

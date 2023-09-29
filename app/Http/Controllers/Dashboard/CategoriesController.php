@@ -20,7 +20,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::withTrashed()->with('parent')->paginate(10);
+        $categories = Category::withTrashed()->with('parent')->withCount('products')->paginate(10);
         return view('dashboard.categories.index', compact('categories'));
     }
 

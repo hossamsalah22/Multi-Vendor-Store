@@ -33,8 +33,8 @@ class MediaSeeder extends Seeder
                 ->toMediaCollection('stores');
         }
         foreach ($products as $product) {
-            $random = rand(1, 5);
-            $product->addMediaFromUrl(asset("dist/img/prod-{$random}.jpg"))
+            $random = rand(1, 8);
+            $product->addMediaFromUrl(asset("assets/images/products/product-{$random}.jpg"))
                 ->toMediaCollection('products');
         }
     }

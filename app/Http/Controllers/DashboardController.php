@@ -17,10 +17,10 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $products = Product::all()->count();
-        $users = User::all()->count();
-        $categories = Category::all()->count();
-        $stores = Store::all()->count();
+        $products = Product::count();
+        $users = User::count();
+        $categories = Category::count();
+        $stores = Store::count();
         return view('dashboard.index', compact('products', 'users', 'categories', 'stores'));
     }
 }
