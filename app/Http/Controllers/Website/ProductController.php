@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::with(['category', 'store'])->active()->paginate(9);
+        $categories = Category::active()->get();
+        return view('website.products.index', compact('products', 'categories'));
     }
 
     /**

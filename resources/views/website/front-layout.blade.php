@@ -184,7 +184,7 @@
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
                                         <span>2 Items</span>
-                                        <a href="cart.html">View Cart</a>
+                                        <a href="{{ route('website.cart.index') }}">View Cart</a>
                                     </div>
                                     <ul class="shopping-list">
                                         <li>
