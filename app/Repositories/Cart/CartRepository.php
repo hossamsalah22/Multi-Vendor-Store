@@ -12,7 +12,7 @@ interface CartRepository
     public function add(Product $product, int $quantity = 1);
 
     // update quantity
-    public function update(Product $product, int $quantity);
+    public function update($id, int $quantity);
 
     public function delete($id);
 
