@@ -4,11 +4,8 @@ namespace App\Repositories\Cart;
 
 use App\Models\Cart;
 use App\Models\Product;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Str;
 
 class CartModelRepository implements CartRepository
 {
