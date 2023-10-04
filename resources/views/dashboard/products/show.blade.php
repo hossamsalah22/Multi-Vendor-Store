@@ -72,7 +72,7 @@
                 </div>
                 <div class="bg-gradient-gray py-2 px-3 mt-4">
                     <h2 class="mb-0">
-                        Price: {{ $product->price }} EGP
+                        Price: {{ Currency::format($product->price) }}
                     </h2>
                 </div>
             </div>

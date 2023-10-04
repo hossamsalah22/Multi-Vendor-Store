@@ -39,7 +39,7 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'order_product')
+        return $this->belongsToMany(Product::class, 'order_products')
             ->using(OrderProduct::class)
             ->withPivot('name', 'quantity', 'price');
     }
@@ -67,5 +67,10 @@ class Order extends Model
             return $currentYear . '0001';
         }
         return $number + 1;
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'number';
     }
 }

@@ -32,7 +32,7 @@
             <tr>
                 <th>{{ $loop->iteration }}</th>
                 <td>{{ $product->name }}</td>
-                <td> {{ $product->price }} EGP</td>
+                <td> {{ Currency::format($product->price) }}</td>
                 <td><img src="{{ $product->image }}" alt="{{ $product->name }}"
                          style="max-width: 100%; max-height: 50px;"></td>
                 <td>{{ $product?->category?->name ?? "No Category" }}</td>

@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with(['category', 'store'])->active()->paginate(9);
+        $products = Product::with(['category', 'store'])->active()->available()->paginate(9);
         $categories = Category::active()->get();
         return view('website.products.index', compact('products', 'categories'));
     }

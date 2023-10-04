@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\User;
@@ -21,6 +22,7 @@ class DashboardController extends Controller
         $users = User::count();
         $categories = Category::count();
         $stores = Store::count();
-        return view('dashboard.index', compact('products', 'users', 'categories', 'stores'));
+        $orders = Order::count();
+        return view('dashboard.index', compact('products', 'users', 'categories', 'stores', 'orders'));
     }
 }

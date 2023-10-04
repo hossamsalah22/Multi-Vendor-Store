@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -26,6 +27,9 @@ class CheckoutController extends Controller
      */
     public function create(CartRepository $cart)
     {
+        if (!$cart->get()->count())
+            return redirect()->route('website.home')->with('error', 'Cart is empty.');
+
         return view('website.checkout.create', [
             'cart' => $cart,
             'countries' => Countries::getNames(),
@@ -73,12 +77,14 @@ class CheckoutController extends Controller
                     $order->addresses()->create($address);
                 }
             }
-            $cart->empty();
-            DB::commit();
+//            event('order.created', $order);
+            event(new OrderCreated($order));
         } catch (Throwable $th) {
             DB::rollBack();
             throw $th;
         }
+        DB::commit();
+        return redirect()->route('website.home')->with('success', 'Order created successfully.');
     }
 
     /**

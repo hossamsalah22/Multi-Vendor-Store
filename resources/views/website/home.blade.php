@@ -19,14 +19,14 @@
                                         incididunt ut labore et dolore magna aliqua.</p>
                                     <h3><span>Now Only</span> $320.99</h3>
                                     <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
+                                        <a href="{{ route('website.products.index') }}" class="btn">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
                             <!-- End Single Slider -->
                             <!-- Start Single Slider -->
                             <div class="single-slider"
-                                 style="background-image: url(assets/images/hero/slider-bg2.jpg);">
+                                 style="background-image: url({{ asset('assets/images/hero/slider-bg2.jpg') }});">
                                 <div class="content">
                                     <h2><span>Big Sale Offer</span>
                                         Get the Best Deal on CCTV Camera
@@ -36,7 +36,7 @@
                                         incididunt ut labore et dolore magna aliqua.</p>
                                     <h3><span>Combo Only:</span> $590.00</h3>
                                     <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
+                                        <a href="{{ route('website.products.index') }}" class="btn">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                     <h2>Weekly Sale!</h2>
                                     <p>Saving up to 50% off all online store items this week.</p>
                                     <div class="button">
-                                        <a class="btn" href="product-grids.html">Shop Now</a>
+                                        <a class="btn" href="{{ route('website.products.index') }}">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -104,53 +104,32 @@
     </section>
     <!-- End Trending Product Area -->
 
-    <!-- Start Call Action Area -->
-    <section class="call-action section">
-        <div class="container">
-            <div class="row ">
-                <div class="col-lg-8 offset-lg-2 col-12">
-                    <div class="inner">
-                        <div class="content">
-                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Currently You are using free<br>
-                                Lite version of ShopGrids</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">Please, purchase full version of the
-                                template
-                                to get all pages,<br> features and commercial license.</p>
-                            <div class="button wow fadeInUp" data-wow-delay=".8s">
-                                <a href="javascript:void(0)" class="btn">Purchase Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Call Action Area -->
 
     <!-- Start Banner Area -->
     <section class="banner section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner" style="background-image:url('assets/images/banner/banner-1-bg.jpg')">
+                    <div class="single-banner"
+                         style="background-image:url('{{ asset('assets/images/banner/banner-1-bg.jpg') }}')">
                         <div class="content">
                             <h2>Smart Watch 2.0</h2>
                             <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
                             <div class="button">
-                                <a href="product-grids.html" class="btn">View Details</a>
+                                <a href="{{ route('website.products.index') }}" class="btn">View Details</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="single-banner custom-responsive-margin"
-                         style="background-image:url('assets/images/banner/banner-2-bg.jpg')">
+                         style="background-image:url('{{ asset('assets/images/banner/banner-2-bg.jpg') }}')">
                         <div class="content">
                             <h2>Smart Headphone</h2>
                             <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
                                 incididunt ut labore.</p>
                             <div class="button">
-                                <a href="product-grids.html" class="btn">Shop Now</a>
+                                <a href="{{ route('website.products.index') }}" class="btn">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -171,7 +150,7 @@
                     </div>
                     <div class="media-body">
                         <h5>Free Shipping</h5>
-                        <span>On order over 300 EGP</span>
+                        <span>On order over {{ Currency::format(200) }}</span>
                     </div>
                 </li>
                 <!-- Money Return -->

@@ -42,6 +42,11 @@ class Product extends Model implements HasMedia
     {
         return $builder->where('active', 1);
     }
+
+    public function scopeAvailable(Builder $builder): Builder
+    {
+        return $builder->where('quantity', '>', 0);
+    }
     ############################# End Attributes #############################
 
     ############################# Start Relations #############################

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\CategoriesController;
+use App\Http\Controllers\Dashboard\OrdersController;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\StoresController;
 use App\Http\Controllers\DashboardController;
@@ -22,6 +23,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::put('products/{product}/activate', [ProductsController::class, 'activate'])->name('products.activate');
     Route::put('products/{product}/restore', [ProductsController::class, 'restore'])->name('products.restore');
     Route::resource('products', ProductsController::class);
+    Route::resource('orders', OrdersController::class)->only(['index', 'show', 'destroy']);
 });
 
 Route::group(['prefix' => 'profile'], function () {
