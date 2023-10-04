@@ -23,11 +23,10 @@
     </x-slot>
     <section class="checkout-wrapper section">
         <div class="container">
-
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <form action="{{ route('website.checkout.store') }}" method="post">
-                        @csrf
+            <form action="{{ route('website.checkout.store') }}" method="post">
+                @csrf
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
                         <div class="checkout-steps-form-style-1">
                             <ul id="accordionExample">
                                 <li>
@@ -114,7 +113,8 @@
                                                 <div class="single-checkbox checkbox-style-3">
                                                     <input type="checkbox" id="checkbox-3">
                                                     <label for="checkbox-3"><span></span></label>
-                                                    <p>My delivery and mailing addresses are the same.</p>
+                                                    <p>My delivery and mailing addresses are the
+                                                        same.</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -262,11 +262,10 @@
                                                                 data-bs-target="#collapseThree" aria-expanded="false"
                                                                 aria-controls="collapseThree">previous
                                                         </button>
-                                                        <a href="javascript:void(0)" class="btn btn-alt">Save &amp;
-                                                            Continue</a>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </section>
                                 </li>
                                 <li>
@@ -313,7 +312,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="single-form form-default button">
-                                                        <button class="btn" type="submit">pay now</button>
+                                                        <button class="btn">pay now</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -321,61 +320,64 @@
                                     </section>
                                 </li>
                             </ul>
-                        </div>
 
-                    </form>
-                </div>
-                <div class="col-lg-4">
-                    <div class="checkout-sidebar">
-                        <div class="checkout-sidebar-coupon">
-                            <p>Apply Coupon to get discount!</p>
-                            <form action="#">
-                                <div class="single-form form-default">
-                                    <div class="form-input form">
-                                        <input type="text" placeholder="Coupon Code">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="checkout-sidebar">
+                            <div class="checkout-sidebar-coupon">
+                                <p>Apply Coupon to get discount!</p>
+                                <form action="#">
+                                    <div class="single-form form-default">
+                                        <div class="form-input form">
+                                            <input type="text" placeholder="Coupon Code">
+                                        </div>
+                                        <div class="button">
+                                            <button class="btn">apply</button>
+                                        </div>
                                     </div>
-                                    <div class="button">
-                                        <button class="btn">apply</button>
+                                </form>
+                            </div>
+                            <div class="checkout-sidebar-price-table mt-30">
+                                <h5 class="title">Pricing Table</h5>
+
+                                <div class="sub-total-price">
+                                    <div class="total-price">
+                                        <p class="value">Subtotal Price:</p>
+                                        <p class="price">{{ Currency::format($cart->total()) }}</p>
+                                    </div>
+                                    <div class="total-price shipping">
+                                        <p class="value">Shipping Price:</p>
+                                        <p class="price">{{ Currency::format(0) }}</p>
+                                    </div>
+                                    <div class="total-price discount">
+                                        <p class="value">Discount Price:</p>
+                                        <p class="price">{{ Currency::format(0) }}</p>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="checkout-sidebar-price-table mt-30">
-                            <h5 class="title">Pricing Table</h5>
 
-                            <div class="sub-total-price">
-                                <div class="total-price">
-                                    <p class="value">Subtotal Price:</p>
-                                    <p class="price">{{ Currency::format($cart->total()) }}</p>
+                                <div class="total-payable">
+                                    <div class="payable-price">
+                                        <p class="value">Subtotal Price:</p>
+                                        <p class="price">{{ Currency::format($cart->total()) }}</p>
+                                    </div>
                                 </div>
-                                <div class="total-price shipping">
-                                    <p class="value">Shipping Price:</p>
-                                    <p class="price">{{ Currency::format(0) }}</p>
-                                </div>
-                                <div class="total-price discount">
-                                    <p class="value">Discount Price:</p>
-                                    <p class="price">{{ Currency::format(0) }}</p>
+                                <div class="price-table-btn button">
+                                    <button class="btn btn-alt" type="submit">Checkout</button>
                                 </div>
                             </div>
-
-                            <div class="total-payable">
-                                <div class="payable-price">
-                                    <p class="value">Subtotal Price:</p>
-                                    <p class="price">{{ Currency::format($cart->total()) }}</p>
-                                </div>
+                            <div class="checkout-sidebar-banner mt-30">
+                                <a href="product-grids.html">
+                                    <img src="https://via.placeholder.com/400x330" alt="#">
+                                </a>
                             </div>
-                            <div class="price-table-btn button">
-                                <a href="javascript:void(0)" class="btn btn-alt">Checkout</a>
-                            </div>
-                        </div>
-                        <div class="checkout-sidebar-banner mt-30">
-                            <a href="product-grids.html">
-                                <img src="https://via.placeholder.com/400x330" alt="#">
-                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
+    @push('scripts')
+        {!! JsValidator::formRequest('App\Http\Requests\Website\Order\CreateRequest'); !!}
+    @endpush
 </x-front-layout>

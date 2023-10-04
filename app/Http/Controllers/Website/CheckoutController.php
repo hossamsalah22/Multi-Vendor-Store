@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Website\Order\CreateRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Repositories\Cart\CartRepository;
@@ -40,17 +41,8 @@ class CheckoutController extends Controller
      * Store a newly created resource in storage.
      * @throws Throwable
      */
-    public function store(Request $request, CartRepository $cart)
+    public function store(CreateRequest $request, CartRepository $cart)
     {
-//        // Validate the request...
-//        $request->validate([
-//            'name' => 'required',
-//            'email' => 'required|email',
-//            'address' => 'required',
-//            'city' => 'required',
-//            'country' => 'required',
-//            'postal_code' => 'required',
-//        ]);
         $stores = $cart->get()->groupBy('product.store_id')->all();
         DB::beginTransaction();
         try {

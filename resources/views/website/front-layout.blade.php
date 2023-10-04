@@ -461,6 +461,11 @@
 <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
 <script src="{{ asset('assets/js/glightbox.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Laravel Javascript Validation -->
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 @stack('scripts')
 </body>
 
