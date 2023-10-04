@@ -115,7 +115,7 @@
                                         </li>
                                     </ul>
                                     <div class="button">
-                                        <a href="checkout.html" class="btn">Checkout</a>
+                                        <a href="{{ route('website.checkout.create') }}" class="btn">Checkout</a>
                                         <a href="{{ route('website.products.index') }}" class="btn btn-alt">Continue
                                             shopping</a>
                                     </div>

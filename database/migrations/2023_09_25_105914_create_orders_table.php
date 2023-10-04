@@ -12,10 +12,19 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
-            $table->enum('status', ['pending', 'processing', 'completed', 'declined', 'cancelled'])
+            $table->string('number');
+            $table->enum('status', ['pending', 'processing', 'completed', 'delivering', 'declined', 'cancelled'])
                 ->default('pending');
-            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
+            $table->enum('payment_status', ['pending', 'paid', 'failed'])
+                ->default('pending');
+            $table->enum('payment_method', ['cod', 'paypal', 'stripe', 'razorpay', 'paystack', 'flutterwave'])
+                ->default('cod');
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('store_id')->constrained('stores');
+            $table->float('shipping')->default(0);
+            $table->float('tax')->default(0);
+            $table->float('discount')->default(0);
+            $table->float('total')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

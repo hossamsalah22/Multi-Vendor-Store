@@ -39,7 +39,7 @@
                     <h2>Oops! Page Not Found!</h2>
                     <p>The page you are looking for does not exist. It might have been moved or deleted.</p>
                     <div class="button">
-                        <a href="{{ route('website.home') }}" class="btn">Back to Home</a>
+                        <a href="javascript:history.back()" class="btn">Go Back</a>
                     </div>
                 </div>
             </div>

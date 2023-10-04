@@ -50,7 +50,7 @@
                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
                             <!-- Start Small Banner -->
                             <div class="hero-small-banner"
-                                 style="background-image: url('assets/images/hero/slider-bnr.jpg');">
+                                 style="background-image: url({{ asset('assets/images/hero/slider-bnr.jpg') }});">
                                 <div class="content">
                                     <h2>
                                         <span>New line required</span>
