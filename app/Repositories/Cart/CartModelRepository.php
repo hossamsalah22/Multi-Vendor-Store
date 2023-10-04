@@ -38,7 +38,8 @@ class CartModelRepository implements CartRepository
                 'user_id' => Auth::id(),
                 'quantity' => $quantity,
             ]);
-            return $this->get()->push($cart);
+            $this->get()->push($cart);
+            return $cart;
         }
         return $item->increment('quantity', $quantity);
     }

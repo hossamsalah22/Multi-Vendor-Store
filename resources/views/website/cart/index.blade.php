@@ -107,11 +107,11 @@
                                 <div class="right">
                                     <ul>
                                         <li>Cart
-                                            Subtotal <span>{{ Currency::format($cart->total()) }}</span>
+                                            Subtotal: <span>{{ Currency::format($cart->total()) }}</span>
                                         </li>
-                                        <li>Shipping <span>Free</span></li>
-                                        <li>You Save <span>{{ Currency::format(0) }}</span></li>
-                                        <li class="last">You Pay <span>{{ Currency::format($cart->total()) }}</span>
+                                        <li>Shipping: <span>Free</span></li>
+                                        <li>You Save: <span>{{ Currency::format(0) }}</span></li>
+                                        <li class="last">You Pay: <span>{{ Currency::format($cart->total()) }}</span>
                                         </li>
                                     </ul>
                                     <div class="button">
