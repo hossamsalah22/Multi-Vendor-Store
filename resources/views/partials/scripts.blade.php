@@ -11,4 +11,8 @@
 
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+<script>
+    const userId = {{ auth()->id() }};
+</script>
+@vite('resources/js/notification.js')
 @stack('scripts')

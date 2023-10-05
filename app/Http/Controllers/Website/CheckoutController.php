@@ -41,7 +41,7 @@ class CheckoutController extends Controller
      * Store a newly created resource in storage.
      * @throws Throwable
      */
-    public function store(CreateRequest $request, CartRepository $cart)
+    public function store(Request $request, CartRepository $cart)
     {
         $stores = $cart->get()->groupBy('product.store_id')->all();
         DB::beginTransaction();
@@ -75,6 +75,7 @@ class CheckoutController extends Controller
             DB::rollBack();
             throw $th;
         }
+
         DB::commit();
         return redirect()->route('website.home')->with('success', 'Order created successfully.');
     }

@@ -41,26 +41,26 @@
                     @if($address->type == "billing")
                         <div class="col-6">
                             <h3 class="my-3">{{ "Billing Address" }}</h3>
-                            <p>Full Name: {{ $address->first_name . ' ' . $address->last_name }}</p>
+                            <p>Full Name: {{ $address->name }}</p>
                             <p>Email: {{ $address?->email ?? "No Email" }}</p>
                             <p>Phone: {{ $address->phone_number }}</p>
                             <p>Address: {{ $address->address }}</p>
                             <p>City: {{ $address?->city }}</p>
                             <p>State: {{ $address?->state }}</p>
-                            <p>Country: {{ Countries::getName($address->country) }}</p>
+                            <p>Country: {{ $address->country_name }}</p>
                             <p>Postal Code: {{ $address->postal_code }}</p>
                             <hr>
                         </div>
                     @else
                         <div class="col-6">
                             <h3 class="my-3">{{ "Shipping Address" }}</h3>
-                            <p>Full Name: {{ $address->first_name . ' ' . $address->last_name }}</p>
+                            <p>Full Name: {{ $address->name }}</p>
                             <p>Email: {{ $address?->email ?? "No Email" }}</p>
                             <p>Phone: {{ $address->phone_number }}</p>
                             <p>Address: {{ $address->address }}</p>
                             <p>City: {{ $address?->city }}</p>
                             <p>State: {{ $address?->state }}</p>
-                            <p>Country: {{ Countries::getName($address->country) }}</p>
+                            <p>Country: {{ $address->country_name }}</p>
                             <p>Postal Code: {{ $address->postal_code }}</p>
                             <hr>
                         </div>

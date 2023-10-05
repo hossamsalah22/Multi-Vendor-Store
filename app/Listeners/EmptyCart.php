@@ -22,7 +22,6 @@ class EmptyCart
     public function handle(object $event): void
     {
         // Empty the cart...
-        dd($event->cart);
         Cart::empty();
     }
 }
