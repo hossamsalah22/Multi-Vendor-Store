@@ -10,6 +10,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 
 class OrderCreated
 {
@@ -28,12 +29,13 @@ class OrderCreated
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return array<int, \Illuminate\Broadcasting\Channel>
+     * @return array<int, Channel>
      */
     public function broadcastOn(): array
     {
+        $userId = Auth::id();
         return [
-            new PrivateChannel('channel-name'),
+            new PrivateChannel(`App.Models.User.${userId}`),
         ];
     }
 }

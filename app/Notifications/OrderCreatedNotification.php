@@ -56,7 +56,7 @@ class OrderCreatedNotification extends Notification
         return [
             'body' => "New order #{$this->order->number}.",
             'icon' => 'fas fa-envelope',
-            'action_url' => route('dashboard.orders.index'),
+            'action_url' => route('dashboard.orders.show', $this->order),
         ];
     }
 
