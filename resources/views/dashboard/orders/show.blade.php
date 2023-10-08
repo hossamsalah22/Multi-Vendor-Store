@@ -37,35 +37,30 @@
         <hr>
         <div class="col-12">
             <div class="row">
-                @foreach($order->addresses as $address)
-                    @if($address->type == "billing")
-                        <div class="col-6">
-                            <h3 class="my-3">{{ "Billing Address" }}</h3>
-                            <p>Full Name: {{ $address->name }}</p>
-                            <p>Email: {{ $address?->email ?? "No Email" }}</p>
-                            <p>Phone: {{ $address->phone_number }}</p>
-                            <p>Address: {{ $address->address }}</p>
-                            <p>City: {{ $address?->city }}</p>
-                            <p>State: {{ $address?->state }}</p>
-                            <p>Country: {{ $address->country_name }}</p>
-                            <p>Postal Code: {{ $address->postal_code }}</p>
-                            <hr>
-                        </div>
-                    @else
-                        <div class="col-6">
-                            <h3 class="my-3">{{ "Shipping Address" }}</h3>
-                            <p>Full Name: {{ $address->name }}</p>
-                            <p>Email: {{ $address?->email ?? "No Email" }}</p>
-                            <p>Phone: {{ $address->phone_number }}</p>
-                            <p>Address: {{ $address->address }}</p>
-                            <p>City: {{ $address?->city }}</p>
-                            <p>State: {{ $address?->state }}</p>
-                            <p>Country: {{ $address->country_name }}</p>
-                            <p>Postal Code: {{ $address->postal_code }}</p>
-                            <hr>
-                        </div>
-                    @endif
-                @endforeach
+                <div class="col-6">
+                    <h3 class="my-3">{{ "Billing Address" }}</h3>
+                    <p>Full Name: {{ $order->billingAddress->name }}</p>
+                    <p>Email: {{ $order->billingAddress?->email ?? "No Email" }}</p>
+                    <p>Phone: {{ $order->billingAddress->phone_number }}</p>
+                    <p>Address: {{ $order->billingAddress->address }}</p>
+                    <p>City: {{ $order->billingAddress?->city }}</p>
+                    <p>State: {{ $order->billingAddress?->state }}</p>
+                    <p>Country: {{ $order->billingAddress->country_name }}</p>
+                    <p>Postal Code: {{ $order->billingAddress->postal_code }}</p>
+                    <hr>
+                </div>
+                <div class="col-6">
+                    <h3 class="my-3">{{ "Shipping Address" }}</h3>
+                    <p>Full Name: {{ $order->shippingAddress->name }}</p>
+                    <p>Email: {{ $order->shippingAddress?->email ?? "No Email" }}</p>
+                    <p>Phone: {{ $order->shippingAddress->phone_number }}</p>
+                    <p>Address: {{ $order->shippingAddress->address }}</p>
+                    <p>City: {{ $order->shippingAddress?->city }}</p>
+                    <p>State: {{ $order->shippingAddress?->state }}</p>
+                    <p>Country: {{ $order->shippingAddress->country_name }}</p>
+                    <p>Postal Code: {{ $order->shippingAddress->postal_code }}</p>
+                    <hr>
+                </div>
             </div>
         </div>
         <div class="col-12">

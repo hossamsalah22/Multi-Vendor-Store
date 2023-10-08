@@ -24,4 +24,4 @@ require __DIR__ . '/website.php';
 // Dashboard Routes
 require __DIR__ . '/dashboard.php';
 // Auth Routes
-require __DIR__ . '/auth.php';
+//require __DIR__ . '/auth.php';

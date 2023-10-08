@@ -81,12 +81,12 @@
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="top-end">
 
-                        @auth()
+                        @auth('web')
                             <div class="user">
-                                <ul class="user">
+                                <ul class="user-login">
                                     <li>
                                         <i class="lni lni-user"></i>
-                                        Hello {{ auth()->user()->name }}
+                                        Hello {{ auth()->guard('web')->user()->name }}
                                     </li>
                                     <li>
                                         <a href="javascript:void(0)"
@@ -104,7 +104,7 @@
                             </div>
                         @endauth
 
-                        @guest()
+                        @guest
                             <ul class="user-login">
                                 <li>
                                     <a href="{{ route('login') }}">Sign In</a>

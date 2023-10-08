@@ -7,12 +7,13 @@ use App\Http\Controllers\Dashboard\StoresController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Fortify;
 
-Route::get('/home', function () {
+Route::get('admin/home', function () {
     return view('dashboard');
-})->middleware(['auth', 'user-type:super-admin,admin'])->name('home');
+})->middleware(['auth:admin'])->name('home');
 
-Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'user-type:super-admin,admin']], function () {
+Route::group(['prefix' => 'admin/dashboard', 'as' => 'dashboard.', 'middleware' => ['auth:admin']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::put('categories/{category}/activate', [CategoriesController::class, 'activate'])->name('categories.activate');
     Route::put('categories/{category}/restore', [CategoriesController::class, 'restore'])->name('categories.restore');
@@ -26,7 +27,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::resource('orders', OrdersController::class)->only(['index', 'show', 'destroy']);
 });
 
-Route::group(['prefix' => 'profile'], function () {
+
+Route::group(['prefix' => 'admin/profile', 'middleware' => 'auth:admin'], function () {
     Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');

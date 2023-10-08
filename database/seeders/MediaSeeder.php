@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Store;
@@ -16,12 +17,17 @@ class MediaSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::first();
+        $admin = Admin::first();
+        $users = User::all();
         $categories = Category::all();
         $stores = Store::all();
         $products = Product::all();
-        $user->addMediaFromUrl(asset("dist/img/user2-160x160.jpg"))
-            ->toMediaCollection('users');
+        $admin->addMediaFromUrl(asset("dist/img/user2-160x160.jpg"))
+            ->toMediaCollection('admins');
+        foreach ($users as $user) {
+            $user->addMediaFromUrl(asset("dist/img/user2-160x160.jpg"))
+                ->toMediaCollection('users');
+        }
         foreach ($categories as $category) {
             $random = rand(2, 5);
             $category->addMediaFromUrl(asset("dist/img/avatar{$random}.png"))

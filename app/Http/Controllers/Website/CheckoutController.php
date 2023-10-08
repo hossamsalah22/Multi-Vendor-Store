@@ -49,7 +49,7 @@ class CheckoutController extends Controller
             // Create the order...
             foreach ($stores as $store_id => $products) {
                 $order = Order::create([
-                    'user_id' => auth()->user()->id,
+                    'user_id' => auth()?->user()?->id ?? null,
                     'store_id' => $store_id,
                 ]);
 

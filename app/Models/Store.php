@@ -51,5 +51,9 @@ class Store extends Model implements HasMedia
         return 'slug';
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }
