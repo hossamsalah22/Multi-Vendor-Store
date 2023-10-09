@@ -45,8 +45,6 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
             public function toResponse($request): \Illuminate\Http\RedirectResponse
             {
-                if ($request->user('admin'))
-                    return redirect()->intended(route('home'));
                 return redirect()->intended(route('website.home'));
             }
         });

@@ -89,6 +89,9 @@
                                         Hello {{ auth()->guard('web')->user()->name }}
                                     </li>
                                     <li>
+                                        <a href="{{ route('website.two-factor.index') }}">2FA</a>
+                                    </li>
+                                    <li>
                                         <a href="javascript:void(0)"
                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
                                            style="text-decoration: none; color: white">

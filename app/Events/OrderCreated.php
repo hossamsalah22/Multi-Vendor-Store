@@ -35,7 +35,7 @@ class OrderCreated
     {
         $userId = Auth::id();
         return [
-            new PrivateChannel(`App.Models.User.${userId}`),
+            new PrivateChannel(`App.Models.Admin.${userId}`),
         ];
     }
 }

@@ -32,7 +32,7 @@ class Admin extends User implements HasMedia
 
     protected $appends = ['image'];
 
-    public function getImageAttribute()
+    public function getImageAttribute(): string
     {
         return $this->getFirstMediaUrl('admins');
     }

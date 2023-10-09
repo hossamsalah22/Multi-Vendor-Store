@@ -1,4 +1,4 @@
-<x-front-layout>
+<x-front-layout title="Login">
     <x-slot name="breadcrumb">
         <!-- Start Breadcrumbs -->
         <div class="breadcrumbs">

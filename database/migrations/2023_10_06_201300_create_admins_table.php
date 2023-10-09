@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('phone_number')->unique();
             $table->boolean('is_super_admin')->default(false);
             $table->boolean('active')->default(true);
+            $table->foreignId('store_id')->nullable()->constrained('stores')->nullOnDelete();
             $table->timestamps();
         });
     }

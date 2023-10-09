@@ -1,6 +1,6 @@
 import './bootstrap';
 
-var channel = Echo.private(`App.Models.User.${userId}`);
+var channel = Echo.private(`App.Models.Admin.${userId}`);
 
 function updateNotificationCount(newCount) {
     var notificationCountElement = document.getElementById('notification-count');

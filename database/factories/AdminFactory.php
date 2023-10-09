@@ -18,6 +18,7 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
+
             'name' => 'Super Admin',
             'email' => 'admin@hossam.com',
             'username' => 'hossamsalah22',
@@ -25,6 +26,8 @@ class AdminFactory extends Factory
             'phone_number' => '01012512599',
             'is_super_admin' => true,
             'active' => true,
+            'store_id' => 1,
+
         ];
     }
 }
