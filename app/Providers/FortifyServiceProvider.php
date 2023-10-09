@@ -29,18 +29,16 @@ class FortifyServiceProvider extends ServiceProvider
             Config::set('fortify.guard', 'admin');
             Config::set('fortify.passwords', 'admins');
             Config::set('fortify.prefix', 'admin');
-            Config::set('fortify.registration', false);
         }
 
         $this->app->instance(LoginResponse::class, new class implements LoginResponse {
             public function toResponse($request): \Illuminate\Http\RedirectResponse
             {
                 if ($request->user('admin'))
-                    return redirect()->intended(route('home'));
-                return redirect()->intended(route('website.home'));
+                    return redirect(RouteServiceProvider::DASHBOARD);
+                return redirect(RouteServiceProvider::HOME);
             }
         });
-
 
         $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
             public function toResponse($request): \Illuminate\Http\RedirectResponse
