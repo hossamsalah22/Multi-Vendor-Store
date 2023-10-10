@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.Models.Admin.{id}', function ($user, $id) {
-    return (int)$user->id === (int)$id;
+Broadcast::channel('App.Models.Admin.{adminId}', function ($user, int $adminId) {
+    return (int)Request::user('admin')->id === $adminId;
 });
