@@ -2,78 +2,10 @@
     <!-- Start Hero Area -->
     <section class="hero-area">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-12 custom-padding-right">
+            <div class="row align-items-center">
+                <div class="col-10 offset-1">
                     <div class="slider-head">
-                        <!-- Start Hero Slider -->
-                        <div class="hero-slider">
-                            <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                 style="background-image: url({{ asset("assets/images/hero/slider-bg1.jpg") }});">
-                                <div class="content">
-                                    <h2><span>No restocking fee ($35 savings)</span>
-                                        M75 Sport Watch
-                                    </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                    <h3><span>Now Only</span> $320.99</h3>
-                                    <div class="button">
-                                        <a href="{{ route('website.products.index') }}" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Slider -->
-                            <!-- Start Single Slider -->
-                            <div class="single-slider"
-                                 style="background-image: url({{ asset('assets/images/hero/slider-bg2.jpg') }});">
-                                <div class="content">
-                                    <h2><span>Big Sale Offer</span>
-                                        Get the Best Deal on CCTV Camera
-                                    </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                    <h3><span>Combo Only:</span> $590.00</h3>
-                                    <div class="button">
-                                        <a href="{{ route('website.products.index') }}" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Slider -->
-                        </div>
-                        <!-- End Hero Slider -->
-                    </div>
-                </div>
-                <div class="col-lg-4 col-12">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner"
-                                 style="background-image: url({{ asset('assets/images/hero/slider-bnr.jpg') }});">
-                                <div class="content">
-                                    <h2>
-                                        <span>New line required</span>
-                                        iPhone 12 Pro Max
-                                    </h2>
-                                    <h3>$259.99</h3>
-                                </div>
-                            </div>
-                            <!-- End Small Banner -->
-                        </div>
-                        <div class="col-lg-12 col-md-6 col-12">
-                            <!-- Start Small Banner -->
-                            <div class="hero-small-banner style2">
-                                <div class="content">
-                                    <h2>Weekly Sale!</h2>
-                                    <p>Saving up to 50% off all online store items this week.</p>
-                                    <div class="button">
-                                        <a class="btn" href="{{ route('website.products.index') }}">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Small Banner -->
-                        </div>
+                        <x-website.sliders-panel/>
                     </div>
                 </div>
             </div>
@@ -109,31 +41,7 @@
     <section class="banner section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner"
-                         style="background-image:url('{{ asset('assets/images/banner/banner-1-bg.jpg') }}')">
-                        <div class="content">
-                            <h2>Smart Watch 2.0</h2>
-                            <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
-                            <div class="button">
-                                <a href="{{ route('website.products.index') }}" class="btn">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner custom-responsive-margin"
-                         style="background-image:url('{{ asset('assets/images/banner/banner-2-bg.jpg') }}')">
-                        <div class="content">
-                            <h2>Smart Headphone</h2>
-                            <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
-                                incididunt ut labore.</p>
-                            <div class="button">
-                                <a href="{{ route('website.products.index') }}" class="btn">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <x-website.banners-panel/>
             </div>
         </div>
     </section>

@@ -60,11 +60,4 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     ############################# End Attributes #############################
 
-    ############################# Start Relations #############################
-    public function store()
-    {
-        return $this->hasOne(Store::class);
-    }
-
-    ############################# End Relations #############################
 }

@@ -36,4 +36,13 @@ class Admin extends User implements HasMedia
     {
         return $this->getFirstMediaUrl('admins');
     }
+
+
+    ############################# Start Relations #############################
+    public function store()
+    {
+        return $this->hasOne(Store::class);
+    }
+
+    ############################# End Relations #############################
 }

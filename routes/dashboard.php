@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Dashboard\BannerController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\OrdersController;
 use App\Http\Controllers\Dashboard\ProductsController;
+use App\Http\Controllers\Dashboard\SlidersController;
 use App\Http\Controllers\Dashboard\StoresController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +27,12 @@ Route::group(['prefix' => 'admin/dashboard', 'as' => 'dashboard.', 'middleware' 
     Route::put('products/{product}/restore', [ProductsController::class, 'restore'])->name('products.restore');
     Route::resource('products', ProductsController::class);
     Route::resource('orders', OrdersController::class)->only(['index', 'show', 'destroy']);
+    Route::put('sliders/{slider}/activate', [SlidersController::class, 'activate'])->name('sliders.activate');
+    Route::put('sliders/{slider}/restore', [SlidersController::class, 'restore'])->name('sliders.restore');
+    Route::resource('sliders', SlidersController::class);
+    Route::put('banners/{banner}/activate', [BannerController::class, 'activate'])->name('banners.activate');
+    Route::put('banners/{banner}/restore', [BannerController::class, 'restore'])->name('banners.restore');
+    Route::resource('banners', BannerController::class);
 });
 
 

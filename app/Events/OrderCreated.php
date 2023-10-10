@@ -33,9 +33,9 @@ class OrderCreated
      */
     public function broadcastOn(): array
     {
-        $userId = Auth::id();
+        $adminId = Auth::guard('admin')->id();
         return [
-            new PrivateChannel(`App.Models.Admin.${userId}`),
+            new PrivateChannel(`App.Models.Admin.${adminId}`),
         ];
     }
 }

@@ -10,6 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.svg') }}"/>
 
     <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.3.0.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}"/>
@@ -80,33 +81,35 @@
                 {{-- if user is not logged in --}}
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="top-end">
-
                         @auth('web')
                             <div class="user">
-                                <ul class="user-login">
-                                    <li>
-                                        <i class="lni lni-user"></i>
-                                        Hello {{ auth()->guard('web')->user()->name }}
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('website.two-factor.index') }}">2FA</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)"
-                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
-                                           style="text-decoration: none; color: white">
-                                            <i class="lni lni-power-switch"></i>
-                                            <span>Logout</span>
-                                        </a>
-                                        <form action="{{ route('logout') }}" method="post" id="logout-form">
-                                            @csrf
-                                        </form>
+                                <ul class="nav">
+                                    <li class="nav-item dropdown">
+                                        <a class="dropdown-toggle text-white"
+                                           data-bs-toggle="dropdown" href="#"
+                                           aria-expanded="false">{{ auth()->user('user')->name }}</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                                            <li>
+                                                <a href="{{ route('website.two-factor.index') }}" class="dropdown-item">2FA</a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item" href="javascript:void(0)"
+                                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
+                                                >Logout</a>
+                                                <form action="{{ route('logout') }}" method="post" id="logout-form">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
-
                             </div>
                         @endauth
-
                         @guest
                             <ul class="user-login">
                                 <li>
@@ -466,7 +469,7 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 @stack('scripts')

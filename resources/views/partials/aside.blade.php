@@ -40,9 +40,63 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
 
+                {{--    Sliders  --}}
+                <li class="nav-item {{ request()->is("admin/dashboard/sliders*")? "menu-open" : "" }}">
+                    <a href="#" class="nav-link {{ request()->is("admin/dashboard/sliders*")? "active" : "" }}">
+                        <i class="fas fa-image"></i>
+                        <p>
+                            Sliders
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route("dashboard.sliders.index") }}"
+                               class="nav-link {{ request()->is("admin/dashboard/sliders")? "active" : "" }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Show All</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route("dashboard.sliders.create") }}"
+                               class="nav-link {{ request()->is("admin/dashboard/sliders/create")? "active" : "" }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{--    Banners  --}}
+                <li class="nav-item {{ request()->is("admin/dashboard/banners*")? "menu-open" : "" }}">
+                    <a href="#" class="nav-link {{ request()->is("admin/dashboard/banners*")? "active" : "" }}">
+                        <i class="fas fa-image"></i>
+                        <p>
+                            Banners
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route("dashboard.banners.index") }}"
+                               class="nav-link {{ request()->is("admin/dashboard/banners")? "active" : "" }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Show All</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route("dashboard.banners.create") }}"
+                               class="nav-link {{ request()->is("admin/dashboard/banners/create")? "active" : "" }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 {{--    Stores  --}}
-                <li class="nav-item {{ request()->is("dashboard/stores*")? "menu-open" : "" }}">
-                    <a href="#" class="nav-link {{ request()->is("dashboard/stores*")? "active" : "" }}">
+                <li class="nav-item {{ request()->is("admin/dashboard/stores*")? "menu-open" : "" }}">
+                    <a href="#" class="nav-link {{ request()->is("admin/dashboard/stores*")? "active" : "" }}">
                         <i class="fas fa-store"></i>
                         <p>
                             Stores
@@ -52,14 +106,14 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route("dashboard.stores.index") }}"
-                               class="nav-link {{ request()->is("dashboard/stores")? "active" : "" }}">
+                               class="nav-link {{ request()->is("admin/dashboard/stores")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Show All</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("dashboard.stores.create") }}"
-                               class="nav-link {{ request()->is("dashboard/stores/create")? "active" : "" }}">
+                               class="nav-link {{ request()->is("admin/dashboard/stores/create")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
                             </a>
@@ -69,8 +123,8 @@
 
 
                 {{--    Categories  --}}
-                <li class="nav-item {{ request()->is("dashboard/categories*")? "menu-open" : "" }}">
-                    <a href="#" class="nav-link {{ request()->is("dashboard/categories*")? "active" : "" }}">
+                <li class="nav-item {{ request()->is("admin/dashboard/categories*")? "menu-open" : "" }}">
+                    <a href="#" class="nav-link {{ request()->is("admin/dashboard/categories*")? "active" : "" }}">
                         <i class="fas fa-folder"></i>
                         <p>
                             Categories
@@ -80,14 +134,14 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route("dashboard.categories.index") }}"
-                               class="nav-link {{ request()->is("dashboard/categories")? "active" : "" }}">
+                               class="nav-link {{ request()->is("admin/dashboard/categories")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Show All</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("dashboard.categories.create") }}"
-                               class="nav-link {{ request()->is("dashboard/categories/create")? "active" : "" }}">
+                               class="nav-link {{ request()->is("admin/dashboard/categories/create")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
                             </a>
@@ -96,8 +150,8 @@
                 </li>
 
                 {{--    Products    --}}
-                <li class="nav-item {{ request()->is("dashboard/products*")? "menu-open" : "" }}">
-                    <a href="#" class="nav-link {{ request()->is("dashboard/products*")? "active" : "" }}">
+                <li class="nav-item {{ request()->is("admin/dashboard/products*")? "menu-open" : "" }}">
+                    <a href="#" class="nav-link {{ request()->is("admin/dashboard/products*")? "active" : "" }}">
                         <i class="fas fa-shopping-bag"></i>
                         <p>
                             Products
@@ -107,14 +161,14 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route("dashboard.products.index") }}"
-                               class="nav-link {{ request()->is("dashboard/products")? "active" : "" }}">
+                               class="nav-link {{ request()->is("admin/dashboard/products")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Show All</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("dashboard.products.create") }}"
-                               class="nav-link {{ request()->is("dashboard/products/create")? "active" : "" }}">
+                               class="nav-link {{ request()->is("admin/dashboard/products/create")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
                             </a>
@@ -123,8 +177,8 @@
                 </li>
 
                 {{--    Orders    --}}
-                <li class="nav-item {{ request()->is("dashboard/orders*")? "menu-open" : "" }}">
-                    <a href="#" class="nav-link {{ request()->is("dashboard/orders*")? "active" : "" }}">
+                <li class="nav-item {{ request()->is("admin/dashboard/orders*")? "menu-open" : "" }}">
+                    <a href="#" class="nav-link {{ request()->is("admin/dashboard/orders*")? "active" : "" }}">
                         <i class="fas fa-shopping-cart"></i>
                         <p>
                             Orders
@@ -134,7 +188,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route("dashboard.orders.index") }}"
-                               class="nav-link {{ request()->is("dashboard/orders")? "active" : "" }}">
+                               class="nav-link {{ request()->is("admin/dashboard/orders")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Show All</p>
                             </a>

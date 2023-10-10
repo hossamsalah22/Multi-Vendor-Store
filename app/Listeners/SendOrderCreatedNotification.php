@@ -27,7 +27,7 @@ class SendOrderCreatedNotification
     {
 
         // For Multiple Users
-        $users = Admin::where('store_id', $event->order->store_id)->get();
-        Notification::send($users, new OrderCreatedNotification($event->order));
+        $admins = Admin::where('store_id', $event->order->store_id)->get();
+        Notification::send($admins, new OrderCreatedNotification($event->order));
     }
 }

@@ -12,7 +12,7 @@
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 <script>
-    const userId = {{ auth('admin')->id() }};
+    const adminId = {{ auth()->guard('admin')->id() }};
 </script>
 @vite('resources/js/notification.js')
 @stack('scripts')

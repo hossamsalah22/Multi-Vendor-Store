@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
@@ -23,6 +24,7 @@ class DashboardController extends Controller
         $categories = Category::count();
         $stores = Store::count();
         $orders = Order::count();
-        return view('dashboard.index', compact('products', 'users', 'categories', 'stores', 'orders'));
+        $admins = Admin::count();
+        return view('dashboard.index', compact('products', 'users', 'categories', 'stores', 'orders', 'admins'));
     }
 }
