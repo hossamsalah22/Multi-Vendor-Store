@@ -20,6 +20,7 @@
                 <h3 class="my-3">{{ $admin->name }}</h3>
                 <h3 class="my-3">{{ $admin->username }}</h3>
                 <p>{{ $admin->email }}</p>
+                <p>{{ $admin?->store?->name }}</p>
                 <hr>
                 <div class="row">
                     <div class="col-4">

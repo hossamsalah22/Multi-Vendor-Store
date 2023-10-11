@@ -20,7 +20,7 @@ class StoresController extends Controller
      */
     public function index()
     {
-        $stores = Store::withTrashed()->withCount('products')->with('user')->paginate();
+        $stores = Store::withTrashed()->withCount('products')->with('admins')->paginate();
         return view('dashboard.stores.index', compact('stores'));
     }
 
@@ -49,7 +49,7 @@ class StoresController extends Controller
      */
     public function show($id)
     {
-        $store = Store::withTrashed()->where('slug', $id)->firstOrFail();
+        $store = Store::withTrashed()->where('slug', $id)->with('admins')->firstOrFail();
         return view('dashboard.stores.show', compact('store'));
     }
 

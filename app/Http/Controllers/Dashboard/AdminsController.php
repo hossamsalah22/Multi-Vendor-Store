@@ -52,6 +52,7 @@ class AdminsController extends Controller
      */
     public function show(Admin $admin)
     {
+        $admin->load('store');
         return view('dashboard.admins.show', compact('admin'));
     }
 

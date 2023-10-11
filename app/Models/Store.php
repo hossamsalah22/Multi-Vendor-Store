@@ -49,9 +49,9 @@ class Store extends Model implements HasMedia
         return 'slug';
     }
 
-    public function admin()
+    public function admins()
     {
-        return $this->belongsTo(Admin::class);
+        return $this->hasMany(Admin::class);
     }
 
 }

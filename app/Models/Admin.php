@@ -56,7 +56,7 @@ class Admin extends User implements HasMedia
     ############################# Start Relations #############################
     public function store()
     {
-        return $this->hasOne(Store::class);
+        return $this->belongsTo(Store::class);
     }
 
     ############################# End Relations #############################

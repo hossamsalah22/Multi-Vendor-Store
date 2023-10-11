@@ -16,11 +16,20 @@
                     <img src="{{ $store->image }}" class="product-image" alt="{{ $store->name }}">
                 </div>
             </div>
+
             <div class="col-12 col-sm-6">
                 <h3 class="my-3">{{ $store->name }}</h3>
                 <p>{{ $store->description }}</p>
                 <hr>
-
+                <div class="bg-gradient-primary py-2 px-3 mt-4">
+                    <h2 class="mb-0">
+                        Admins: {{ $store->admins->count() }}
+                    </h2>
+                    @foreach($store->admins as $admin)
+                        <p>Name: {{ $admin->name }}, Username: {{ $admin->username }}</p>
+                    @endforeach
+                </div>
+                <hr>
                 <div class="row">
                     <div class="col-4">
                         <h4>Created at</h4>
