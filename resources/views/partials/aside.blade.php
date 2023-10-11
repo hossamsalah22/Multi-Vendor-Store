@@ -196,6 +196,53 @@
                     </ul>
                 </li>
 
+                {{--    Users    --}}
+                <li class="nav-item {{ request()->is("admin/dashboard/users*")? "menu-open" : "" }}">
+                    <a href="#" class="nav-link {{ request()->is("admin/dashboard/users*")? "active" : "" }}">
+                        <i class="fas fa-user"></i>
+                        <p>
+                            Users
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route("dashboard.users.index") }}"
+                               class="nav-link {{ request()->is("admin/dashboard/users")? "active" : "" }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Show All</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{--    Admins    --}}
+                <li class="nav-item {{ request()->is("admin/dashboard/admins*")? "menu-open" : "" }}">
+                    <a href="#" class="nav-link {{ request()->is("admin/dashboard/admins*")? "active" : "" }}">
+                        <i class="fas fa-users"></i>
+                        <p>
+                            Admins
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route("dashboard.admins.index") }}"
+                               class="nav-link {{ request()->is("admin/dashboard/admins")? "active" : "" }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Show All</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route("dashboard.admins.create") }}"
+                               class="nav-link {{ request()->is("admin/dashboard/admins/create")? "active" : "" }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>

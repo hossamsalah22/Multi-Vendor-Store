@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'phone_number',
         'password',
         'username',
+        'banned',
     ];
 
     /**
@@ -38,6 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
      */
     protected $hidden = [
         'password',
+        'banned',
         'remember_token',
     ];
 
@@ -60,4 +63,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     ############################# End Attributes #############################
 
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 }

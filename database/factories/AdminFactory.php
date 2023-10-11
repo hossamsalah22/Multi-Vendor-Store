@@ -25,7 +25,6 @@ class AdminFactory extends Factory
             'password' => Hash::make('12345678'),
             'phone_number' => '01012512599',
             'is_super_admin' => true,
-            'active' => true,
             'store_id' => 1,
 
         ];

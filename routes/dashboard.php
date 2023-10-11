@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdminsController;
 use App\Http\Controllers\Dashboard\BannerController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\OrdersController;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\SlidersController;
 use App\Http\Controllers\Dashboard\StoresController;
+use App\Http\Controllers\Dashboard\UsersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +35,11 @@ Route::group(['prefix' => 'admin/dashboard', 'as' => 'dashboard.', 'middleware' 
     Route::put('banners/{banner}/activate', [BannerController::class, 'activate'])->name('banners.activate');
     Route::put('banners/{banner}/restore', [BannerController::class, 'restore'])->name('banners.restore');
     Route::resource('banners', BannerController::class);
+    Route::put('users/{user}/ban', [UsersController::class, 'ban'])->name('users.ban');
+    Route::resource('users', UsersController::class)->only(['index', 'show']);
+    Route::put('admins/{admin}/ban', [AdminsController::class, 'ban'])->name('admins.ban');
+    Route::put('admins/{admin}/restore', [AdminsController::class, 'restore'])->name('admins.restore');
+    Route::resource('admins', AdminsController::class);
 });
 
 
