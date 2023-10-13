@@ -12,9 +12,9 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with(['category', 'store'])->active()->available()->paginate(9);
+        $products = Product::filter($request->query())->with(['category', 'store'])->active()->available()->paginate(9);
         $categories = Category::active()->get();
         return view('website.products.index', compact('products', 'categories'));
     }

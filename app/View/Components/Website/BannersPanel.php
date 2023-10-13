@@ -16,7 +16,7 @@ class BannersPanel extends Component
      */
     public function __construct()
     {
-        $this->banners = Banner::latest()->take(2)->get();
+        $this->banners = Banner::active()->latest()->take(2)->get();
     }
 
     /**

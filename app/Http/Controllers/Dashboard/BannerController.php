@@ -99,8 +99,7 @@ class BannerController extends Controller
      */
     public function restore($id)
     {
-        $banner = Banner::onlyTrashed()->where('slug', $id)->firstOrFail();
-        $banner->restore();
+        Banner::onlyTrashed()->where('slug', $id)->restore();
         return back()->with('success', 'Banner restored successfully');
     }
 }

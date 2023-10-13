@@ -21,6 +21,10 @@ class Slider extends Model implements HasMedia
         'active',
     ];
 
+    protected $casts = [
+        'active' => 'boolean'
+    ];
+
     protected $with = ['media'];
 
     protected $appends = ['image'];
