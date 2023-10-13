@@ -78,6 +78,6 @@ class AdminsController extends Controller
     public function ban(Admin $admin)
     {
         $admin->update(['banned' => $admin->banned ? 0 : 1]);
-        return response()->json(['message' => 'Admin has been Changed successfully']);
+        return response()->json(['message' => 'Admin has been Ban\Unbanned successfully']);
     }
 }

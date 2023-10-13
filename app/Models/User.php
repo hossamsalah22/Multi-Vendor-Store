@@ -40,8 +40,10 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
      */
     protected $hidden = [
         'password',
-        'banned',
         'remember_token',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'two_factor_confirmed_at',
     ];
 
     /**
@@ -52,6 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'banned' => 'boolean',
     ];
 
 
@@ -68,4 +71,12 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         return 'username';
     }
+
+    ############################# Start Relations #############################
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+
 }

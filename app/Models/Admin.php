@@ -29,7 +29,6 @@ class Admin extends User implements HasMedia
     protected $hidden = [
         'password',
         'is_super_admin',
-        'banned',
     ];
 
     protected $with = [
