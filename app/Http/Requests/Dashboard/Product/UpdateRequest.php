@@ -15,13 +15,14 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:products,name,' . $this->product->id],
+            'name' => ['sometimes', 'required', 'string', 'max:255', 'unique:products,name,' . $this->product->id],
             'image' => ['nullable', 'image', 'max:1024'],
-            'quantity' => ['required', 'numeric', 'min:0'],
-            'price' => ['required', 'numeric', 'min:0'],
-            'description' => ['required', 'string', 'max:5000'],
+            'quantity' => ['sometimes', 'required', 'numeric', 'min:0'],
+            'price' => ['sometimes', 'required', 'numeric', 'min:0'],
+            'compare_price' => ['nullable', 'numeric', 'gt:price'],
+            'description' => ['sometimes', 'required', 'string', 'max:5000'],
             'category_id' => ['nullable', 'exists:categories,id'],
-            'store_id' => ['required', 'exists:stores,id'],
+            'store_id' => ['sometimes', 'required', 'exists:stores,id'],
         ];
     }
 

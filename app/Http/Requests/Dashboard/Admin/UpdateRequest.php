@@ -16,12 +16,19 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'unique:admins,username,' . $this->admin->id, 'max:255'],
-            'email' => ['required', 'string', 'email', 'unique:admins,email,' . $this->admin->id, 'max:255'],
-            'phone_number' => ['required', 'string', 'unique:admins,phone_number,' . $this->admin->id, 'max:255'],
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'username' => ['sometimes', 'required', 'string', 'unique:admins,username,' . $this->admin->id, 'max:255'],
+            'email' => ['sometimes', 'required', 'string', 'email', 'unique:admins,email,' . $this->admin->id, 'max:255'],
+            'phone_number' => ['sometimes', 'required', 'string', 'unique:admins,phone_number,' . $this->admin->id, 'max:255'],
             'store_id' => ['nullable', 'exists:stores,id'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,svg', 'max:2048'],
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'store_id' => 'store',
         ];
     }
 }

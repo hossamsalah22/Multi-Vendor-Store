@@ -47,6 +47,26 @@ class Product extends Model implements HasMedia
     {
         return $builder->where('quantity', '>', 0);
     }
+
+    public function scopeFilter(Builder $builder, $options)
+    {
+        $options = array_merge([
+            'category' => '',
+            'store' => '',
+        ], $options);
+
+        if ($options['category']) {
+            $builder->whereHas('category', function ($builder) use ($options) {
+                $builder->where('slug', $options['category']);
+            });
+        }
+        if ($options['store']) {
+            $builder->whereHas('store', function ($builder) use ($options) {
+                $builder->where('slug', $options['store']);
+            });
+        }
+
+    }
     ############################# End Attributes #############################
 
     ############################# Start Relations #############################

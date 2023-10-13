@@ -20,9 +20,9 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::withTrashed()->with(['category', 'store'])->paginate(10);
+        $products = Product::withTrashed()->filter($request->query())->with(['category', 'store'])->paginate(10);
         return view('dashboard.products.index', compact('products'));
     }
 

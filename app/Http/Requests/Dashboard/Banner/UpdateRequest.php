@@ -15,8 +15,8 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'unique:banners,title,' . $this->banner->id],
-            'description' => ['required', 'string'],
+            'title' => ['sometimes', 'required', 'string', 'unique:banners,title,' . $this->banner->id],
+            'description' => ['sometimes', 'required', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
         ];
     }

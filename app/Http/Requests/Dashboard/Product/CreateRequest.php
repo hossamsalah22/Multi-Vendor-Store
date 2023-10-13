@@ -19,6 +19,7 @@ class CreateRequest extends FormRequest
             'image' => ['required', 'image', 'max:1024', 'mimes:jpg,jpeg,png'],
             'quantity' => ['required', 'numeric', 'min:0'],
             'price' => ['required', 'numeric', 'min:0'],
+            'compare_price' => ['nullable', 'numeric', 'gt:price'],
             'description' => ['required', 'string', 'max:5000'],
             'category_id' => ['nullable', 'exists:categories,id'],
             'store_id' => ['required', 'exists:stores,id'],

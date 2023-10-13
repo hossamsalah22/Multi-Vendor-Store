@@ -27,7 +27,7 @@
 
                     <div class="col-6">
                         <h4>Category</h4>
-                        @if($product->category)
+                        @if($product->category_id != null)
                             <a href="{{ route('dashboard.categories.show', $product->category) }}"
                                class="btn btn-default">{{ $product->category->name }}</a>
                         @else

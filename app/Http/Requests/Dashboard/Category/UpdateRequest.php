@@ -15,10 +15,17 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:categories,name,' . $this->category->id],
+            'name' => ['sometimes', 'required', 'string', 'max:255', 'unique:categories,name,' . $this->category->id],
             'description' => ['nullable', 'string'],
             'parent_id' => ['nullable', 'exists:categories,id'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'parent_id' => 'parent category',
         ];
     }
 }

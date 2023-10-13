@@ -16,10 +16,10 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'unique:sliders,title,' . $this->slider->id],
-            'description' => ['required', 'string'],
+            'title' => ['sometimes', 'required', 'string', 'unique:sliders,title,' . $this->slider->id],
+            'description' => ['sometimes', 'required', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-            'price' => ['required', 'numeric'],
+            'price' => ['sometimes', 'required', 'numeric'],
         ];
     }
 }
