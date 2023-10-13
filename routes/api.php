@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AdminsController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\StoresController;
@@ -21,6 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::put('admins/{admin}/ban', [AdminsController::class, 'ban']);
+Route::put('admins/{admin}/restore', [AdminsController::class, 'restore']);
+Route::apiResource('admins', AdminsController::class);
 Route::apiResource('products', ProductsController::class);
 Route::apiResource('categories', CategoriesController::class);
 Route::apiResource('stores', StoresController::class);
