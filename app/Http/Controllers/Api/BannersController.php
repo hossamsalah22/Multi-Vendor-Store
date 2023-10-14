@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class BannersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
     /**
      * Display a listing of the resource.
      */

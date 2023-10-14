@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AdminsController;
+use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\BannersController;
 use App\Http\Controllers\Api\SlidersController;
 use App\Http\Controllers\Api\CategoriesController;
@@ -21,9 +22,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', function (Request $request) {
+        return $request->user();
+    });
+    Route::post('logout', [AuthController::class, 'logout']);
 });
+
+Route::group(['middleware' => ['guest:sanctum']], function () {
+    Route::post('login', [AuthController::class, 'userLogin']);
+    Route::post('admin/login', [AuthController::class, 'adminLogin']);
+});
+
 
 Route::put('admins/{admin}/ban', [AdminsController::class, 'ban']);
 Route::put('admins/{admin}/restore', [AdminsController::class, 'restore']);

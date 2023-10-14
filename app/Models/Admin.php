@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Admin extends User implements HasMedia
 {
-    use HasFactory, Notifiable, InteractsWithMedia, SoftDeletes;
+    use HasFactory, Notifiable, InteractsWithMedia, SoftDeletes, HasApiTokens;
 
     protected $fillable = [
         'name',
