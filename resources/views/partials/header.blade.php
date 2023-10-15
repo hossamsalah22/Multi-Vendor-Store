@@ -7,7 +7,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     @section("breadcrumbs")
-                        <li class="breadcrumb-item"><a href="{{ route("dashboard.dashboard") }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a
+                                href="{{ route("dashboard.dashboard") }}">{{ __("Dashboard") }}</a></li>
                     @show
                 </ol>
             </div><!-- /.col -->

@@ -3,9 +3,9 @@
 @section("breadcrumbs")
     @parent
     <li class="breadcrumb-item active">
-        <a href="{{ route("dashboard.admins.index") }}">Admins</a>
+        <a href="{{ route("dashboard.admins.index") }}">{{ __("Admins") }}</a>
     </li>
-    <li class="breadcrumb-item active">Update</li>
+    <li class="breadcrumb-item active">{{ __("Update") }}</li>
 @endsection
 @section("content")
     <div class="container mt-4">
@@ -15,7 +15,7 @@
                       enctype="multipart/form-data" class="row">
                     @csrf
                     @method("put")
-                    @include("dashboard.admins._form", ['action' => 'Update'])
+                    @include("dashboard.admins._form", ['action' => __('Update')])
                 </form>
             </div>
         </div>

@@ -1,9 +1,11 @@
 @extends("layouts.index")
-@section("title", "Banners")
+@section("title")
+    {{ __("Banners") }}
+@endsection
 
 @section("breadcrumbs")
     @parent
-    <li class="breadcrumb-item active">Banners</li>
+    <li class="breadcrumb-item active">{{ __("Banners") }}</li>
 @endsection
 
 @section("content")
@@ -14,15 +16,23 @@
     @endif
 
     <table class="table table-bordered text-center">
-        <caption class="text-center">List of banners</caption>
+        <caption class="text-center">{{ __("List of banners") }}</caption>
         <thead>
         <tr>
             <th>#</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>{{ __("Title") }}</th>
+            <th>
+                {{ __("Description") }}
+            </th>
+            <th>
+                {{ __("Image") }}
+            </th>
+            <th>
+                {{ __("Status") }}
+            </th>
+            <th>
+                {{ __("Actions") }}
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -43,14 +53,14 @@
                                onclick="event.preventDefault(); this.closest('form').submit();"
                             >
                                 @if($banner->active)
-                                    <span class="badge badge-success">Active</span>
+                                    <span class="badge badge-success">{{ __("Active") }}</span>
                                 @else
-                                    <span class="badge badge-danger">Inactive</span>
+                                    <span class="badge badge-danger">{{ __("Inactive") }}</span>
                                 @endif
                             </a>
                         </form>
                     @else
-                        <span class="badge badge-danger">Deleted</span>
+                        <span class="badge badge-danger">{{ __("Deleted") }}</span>
                     @endif
                 </td>
                 <td>
@@ -93,7 +103,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="6" class="text-center font-weight-bold">No banners Found</td>
+                <td colspan="6" class="text-center font-weight-bold">{{ __("No data") }}</td>
             </tr>
         @endforelse
         </tbody>

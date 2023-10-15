@@ -37,6 +37,6 @@ class UsersController extends Controller
     public function ban(User $user)
     {
         $user->update(['banned' => $user->banned ? 0 : 1]);
-        return back()->with('success', 'User has been changed successfully');
+        return back()->with('success', __('messages.updated_successfully'));
     }
 }

@@ -1,11 +1,13 @@
 @extends("layouts.index")
-@section("title", "Create Admin")
+@section("title")
+    {{ __("Create Admin") }}
+@endsection
 @section("breadcrumbs")
     @parent
     <li class="breadcrumb-item active">
-        <a href="{{ route("dashboard.admins.index") }}">Admins</a>
+        <a href="{{ route("dashboard.admins.index") }}">{{ __("Admins") }}</a>
     </li>
-    <li class="breadcrumb-item active">Create</li>
+    <li class="breadcrumb-item active">{{ __("Create") }}</li>
 @endsection
 @section("content")
     <div class="container mt-4">
@@ -15,7 +17,7 @@
                       class="row">
                     @csrf
 
-                    @include("dashboard.admins._form", ['admin' => new \App\Models\Admin(), 'action' => 'Create'])
+                    @include("dashboard.admins._form", ['admin' => new \App\Models\Admin(), 'action' => __('Create')])
                 </form>
             </div>
         </div>

@@ -41,7 +41,7 @@ class BannerController extends Controller
         $image = $request->file('image');
         $banner = Banner::create($validate);
         $banner->addMedia($image)->toMediaCollection('banners');
-        return redirect()->route('dashboard.banners.index')->with('success', 'Banner created successfully');
+        return redirect()->route('dashboard.banners.index')->with('success', __('messages.created_successfully'));
     }
 
     /**
@@ -72,7 +72,7 @@ class BannerController extends Controller
             $banner->clearMediaCollection('banners');
             $banner->addMedia($image)->toMediaCollection('banners');
         }
-        return redirect()->route('dashboard.banners.index')->with('success', 'Banner updated successfully');
+        return redirect()->route('dashboard.banners.index')->with('success', __('messages.updated_successfully'));
     }
 
     /**
@@ -81,7 +81,7 @@ class BannerController extends Controller
     public function destroy(Banner $banner)
     {
         $banner->delete();
-        return back()->with('success', 'Banner deleted successfully');
+        return back()->with('success', __('messages.deleted_successfully'));
     }
 
     /**
@@ -90,7 +90,7 @@ class BannerController extends Controller
     public function activate(Banner $banner)
     {
         $banner->update(['active' => $banner->active ? 0 : 1]);
-        return back()->with('success', 'Banner activated successfully');
+        return back()->with('success', __('messages.updated_successfully'));
     }
 
 
@@ -100,6 +100,6 @@ class BannerController extends Controller
     public function restore($id)
     {
         Banner::onlyTrashed()->where('slug', $id)->restore();
-        return back()->with('success', 'Banner restored successfully');
+        return back()->with('success', __('messages.restored_successfully'));
     }
 }

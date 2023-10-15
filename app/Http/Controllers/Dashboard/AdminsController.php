@@ -44,7 +44,7 @@ class AdminsController extends Controller
         $image = $request->file('image');
         $admin = Admin::create($validate);
         $image && $admin->addMedia($image)->toMediaCollection('admins');
-        return redirect()->route('dashboard.admins.index')->with('success', 'Admin has been created successfully');
+        return redirect()->route('dashboard.admins.index')->with('success', __('messages.created_successfully'));
     }
 
     /**
@@ -77,7 +77,7 @@ class AdminsController extends Controller
             $admin->clearMediaCollection('admins');
             $admin->addMedia($image)->toMediaCollection('admins');
         }
-        return redirect()->route('dashboard.admins.index')->with('success', 'Admin has been updated successfully');
+        return redirect()->route('dashboard.admins.index')->with('success', __('messages.updated_successfully'));
     }
 
     /**
@@ -86,7 +86,7 @@ class AdminsController extends Controller
     public function destroy(Admin $admin)
     {
         $admin->delete();
-        return back()->with('success', 'Admin has been deleted successfully');
+        return back()->with('success', __('messages.deleted_successfully'));
     }
 
     /**
@@ -95,7 +95,7 @@ class AdminsController extends Controller
     public function restore($id)
     {
         Admin::onlyTrashed()->where('username', $id)->restore();
-        return back()->with('success', 'Admin has been restored successfully');
+        return back()->with('success', __('messages.restored_successfully'));
     }
 
     /**
@@ -104,6 +104,6 @@ class AdminsController extends Controller
     public function ban(Admin $admin)
     {
         $admin->update(['banned' => $admin->banned ? 0 : 1]);
-        return back()->with('success', 'Admin has been changed successfully');
+        return back()->with('success', __('messages.updated_successfully'));
     }
 }

@@ -1,9 +1,13 @@
 @extends("layouts.index")
-@section("title", "Orders")
+@section("title")
+    {{__("Orders")}}
+@endsection
 
 @section("breadcrumbs")
     @parent
-    <li class="breadcrumb-item active">Orders</li>
+    <li class="breadcrumb-item active">
+        {{ __("Orders") }}
+    </li>
 @endsection
 
 @section("content")
@@ -14,22 +18,36 @@
     @endif
 
     <table class="table table-bordered text-center">
-        <caption class="text-center">List of Latest Orders</caption>
+        <caption class="text-center">
+            {{ __("List of orders") }}
+        </caption>
         <thead>
         <tr>
-            <th>Number</th>
-            <th>User</th>
-            <th>Store</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>
+                {{ __("Number") }}
+            </th>
+            <th>
+                {{ __("Customer") }}
+            </th>
+            <th>
+                {{ __("Store") }}
+            </th>
+            <th>
+                {{ __("Total") }}
+            </th>
+            <th>
+                {{ __("Status") }}
+            </th>
+            <th>
+                {{ __("Actions") }}
+            </th>
         </tr>
         </thead>
         <tbody>
         @forelse($orders as $order)
             <tr>
                 <td>{{ $order->number }}</td>
-                <td> {{ $order->user?->name ?? "Guest" }}</td>
+                <td> {{ $order->user?->name ?? __("Guest") }}</td>
                 <td> {{ $order->store->name }}</td>
                 <td>{{ $order->total }}</td>
                 <td>@if($order->status != "completed")
@@ -37,27 +55,6 @@
                     @else
                         <span class="badge badge-success">{{ $order->status }}</span>
                     @endif</td>
-                {{--                <td>--}}
-                {{--                    --}}{{--                    @if($order->deleted_at === null)--}}
-                {{--                    --}}{{--                        <form action="{{ route("dashboard.products.activate", $order) }}" method="POST">--}}
-                {{--                    --}}{{--                            @csrf--}}
-                {{--                    --}}{{--                            @method("PUT")--}}
-                {{--                    --}}{{--                            <a href="{{ route("dashboard.products.activate", $order) }}"--}}
-                {{--                    --}}{{--                               class="btn"--}}
-                {{--                    --}}{{--                               onclick="event.preventDefault(); this.closest('form').submit();"--}}
-                {{--                    --}}{{--                            >--}}
-                {{--                    --}}{{--                                @if($order->active)--}}
-                {{--                    --}}{{--                                    <span class="badge badge-success">Active</span>--}}
-                {{--                    --}}{{--                                @else--}}
-                {{--                    --}}{{--                                    <span class="badge badge-danger">Inactive</span>--}}
-                {{--                    --}}{{--                                @endif--}}
-                {{--                    --}}{{--                            </a>--}}
-                {{--                    --}}{{--                        </form>--}}
-                {{--                    --}}{{--                    @else--}}
-                {{--                    --}}{{--                        <span class="badge badge-danger">Deleted</span>--}}
-                {{--                    --}}{{--                    @endif--}}
-                {{--                    Still--}}
-                {{--                </td>--}}
                 <td>
                     <a href="{{ route("dashboard.orders.show", $order) }}"
                        class="btn btn-sm btn-outline-info">
@@ -67,7 +64,9 @@
             </tr>
         @empty
             <tr>
-                <td colspan="8" class="text-center font-weight-bold">No Orders Found</td>
+                <td colspan="8" class="text-center font-weight-bold">
+                    {{ __("No data") }}
+                </td>
             </tr>
         @endforelse
         </tbody>

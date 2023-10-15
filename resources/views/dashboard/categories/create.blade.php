@@ -1,11 +1,13 @@
 @extends("layouts.index")
-@section("title", "Create Category")
+@section("title")
+    {{ __("Create Category") }}
+@endsection
 @section("breadcrumbs")
     @parent
     <li class="breadcrumb-item active">
-        <a href="{{ route("dashboard.categories.index") }}">Categories</a>
+        <a href="{{ route("dashboard.categories.index") }}">{{ __("Categories") }}</a>
     </li>
-    <li class="breadcrumb-item active">Create</li>
+    <li class="breadcrumb-item active">{{ __("Create") }}</li>
 @endsection
 @section("content")
     <div class="container mt-4">
@@ -15,7 +17,7 @@
                       class="row">
                     @csrf
 
-                    @include("dashboard.categories._form", ['category' => new \App\Models\Category(), 'action' => 'Create'])
+                    @include("dashboard.categories._form", ['category' => new \App\Models\Category(), 'action' => __('Create')])
                 </form>
             </div>
         </div>

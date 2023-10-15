@@ -25,7 +25,7 @@
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                <input class="form-control form-control-sidebar" type="search" placeholder="{{ __("Search") }}"
                        aria-label="Search">
                 <div class="input-group-append">
                     <button class="btn btn-sidebar">
@@ -45,7 +45,7 @@
                     <a href="#" class="nav-link {{ request()->is("admin/dashboard/sliders*")? "active" : "" }}">
                         <i class="fas fa-image"></i>
                         <p>
-                            Sliders
+                            {{ __("Sliders") }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -54,14 +54,14 @@
                             <a href="{{ route("dashboard.sliders.index") }}"
                                class="nav-link {{ request()->is("admin/dashboard/sliders")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Show All</p>
+                                <p>{{ __("Show All") }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("dashboard.sliders.create") }}"
                                class="nav-link {{ request()->is("admin/dashboard/sliders/create")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
+                                <p>{{ __("Create") }}</p>
                             </a>
                         </li>
                     </ul>
@@ -72,7 +72,7 @@
                     <a href="#" class="nav-link {{ request()->is("admin/dashboard/banners*")? "active" : "" }}">
                         <i class="fas fa-image"></i>
                         <p>
-                            Banners
+                            {{ __("Banners") }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -81,14 +81,14 @@
                             <a href="{{ route("dashboard.banners.index") }}"
                                class="nav-link {{ request()->is("admin/dashboard/banners")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Show All</p>
+                                <p>{{ __("Show All") }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("dashboard.banners.create") }}"
                                class="nav-link {{ request()->is("admin/dashboard/banners/create")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
+                                <p>{{ __("Create") }}</p>
                             </a>
                         </li>
                     </ul>
@@ -99,7 +99,7 @@
                     <a href="#" class="nav-link {{ request()->is("admin/dashboard/stores*")? "active" : "" }}">
                         <i class="fas fa-store"></i>
                         <p>
-                            Stores
+                            {{ __("Stores") }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -108,14 +108,14 @@
                             <a href="{{ route("dashboard.stores.index") }}"
                                class="nav-link {{ request()->is("admin/dashboard/stores")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Show All</p>
+                                <p>{{ __("Show All") }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("dashboard.stores.create") }}"
                                class="nav-link {{ request()->is("admin/dashboard/stores/create")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
+                                <p>{{ __("Create") }}</p>
                             </a>
                         </li>
                     </ul>
@@ -127,7 +127,7 @@
                     <a href="#" class="nav-link {{ request()->is("admin/dashboard/categories*")? "active" : "" }}">
                         <i class="fas fa-folder"></i>
                         <p>
-                            Categories
+                            {{ __("Categories") }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -136,14 +136,14 @@
                             <a href="{{ route("dashboard.categories.index") }}"
                                class="nav-link {{ request()->is("admin/dashboard/categories")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Show All</p>
+                                <p>{{ __("Show All") }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("dashboard.categories.create") }}"
                                class="nav-link {{ request()->is("admin/dashboard/categories/create")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
+                                <p>{{ __("Create") }}</p>
                             </a>
                         </li>
                     </ul>
@@ -154,7 +154,7 @@
                     <a href="#" class="nav-link {{ request()->is("admin/dashboard/products*")? "active" : "" }}">
                         <i class="fas fa-shopping-bag"></i>
                         <p>
-                            Products
+                            {{ __("Products") }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -163,14 +163,14 @@
                             <a href="{{ route("dashboard.products.index") }}"
                                class="nav-link {{ request()->is("admin/dashboard/products")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Show All</p>
+                                <p>{{ __("Show All") }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("dashboard.products.create") }}"
                                class="nav-link {{ request()->is("admin/dashboard/products/create")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
+                                <p>{{ __("Create") }}</p>
                             </a>
                         </li>
                     </ul>
@@ -181,7 +181,7 @@
                     <a href="#" class="nav-link {{ request()->is("admin/dashboard/orders*")? "active" : "" }}">
                         <i class="fas fa-shopping-cart"></i>
                         <p>
-                            Orders
+                            {{ __("Orders") }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -190,7 +190,7 @@
                             <a href="{{ route("dashboard.orders.index") }}"
                                class="nav-link {{ request()->is("admin/dashboard/orders")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Show All</p>
+                                <p>{{ __("Show All") }}</p>
                             </a>
                         </li>
                     </ul>
@@ -201,7 +201,7 @@
                     <a href="#" class="nav-link {{ request()->is("admin/dashboard/users*")? "active" : "" }}">
                         <i class="fas fa-user"></i>
                         <p>
-                            Users
+                            {{ __("Users") }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -210,7 +210,7 @@
                             <a href="{{ route("dashboard.users.index") }}"
                                class="nav-link {{ request()->is("admin/dashboard/users")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Show All</p>
+                                <p>{{ __("Show All") }}</p>
                             </a>
                         </li>
                     </ul>
@@ -221,7 +221,7 @@
                     <a href="#" class="nav-link {{ request()->is("admin/dashboard/admins*")? "active" : "" }}">
                         <i class="fas fa-users"></i>
                         <p>
-                            Admins
+                            {{ __("Admins") }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -230,14 +230,14 @@
                             <a href="{{ route("dashboard.admins.index") }}"
                                class="nav-link {{ request()->is("admin/dashboard/admins")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Show All</p>
+                                <p>{{ __("Show All") }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route("dashboard.admins.create") }}"
                                class="nav-link {{ request()->is("admin/dashboard/admins/create")? "active" : "" }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
+                                <p>{{ __("Create") }}</p>
                             </a>
                         </li>
                     </ul>

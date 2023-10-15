@@ -45,7 +45,7 @@ class ProductsController extends Controller
         $image = $request->file('image');
         $product = Product::create($validate);
         $image && $product->addMedia($image)->toMediaCollection('products');
-        return redirect()->route('dashboard.products.index')->with('success', 'Product has been created.');
+        return redirect()->route('dashboard.products.index')->with('success', __('messages.created_successfully'));
     }
 
     /**
@@ -79,7 +79,7 @@ class ProductsController extends Controller
             $product->clearMediaCollection('products');
             $product->addMedia($image)->toMediaCollection('products');
         }
-        return redirect()->route('dashboard.products.index')->with('success', 'Product has been updated.');
+        return redirect()->route('dashboard.products.index')->with('success', __('messages.updated_successfully'));
     }
 
     /**
@@ -89,7 +89,7 @@ class ProductsController extends Controller
     {
         $product->update(['active' => 0]);
         $product->delete();
-        return back()->with('success', 'Product has been deleted.');
+        return back()->with('success', __('messages.deleted_successfully'));
     }
 
     /**
@@ -98,7 +98,7 @@ class ProductsController extends Controller
     public function activate(Product $product)
     {
         $product->update(['active' => $product->active ? 0 : 1]);
-        return back()->with('success', 'Product status has been updated.');
+        return back()->with('success', __('messages.updated_successfully'));
     }
 
     /**
@@ -108,6 +108,6 @@ class ProductsController extends Controller
     {
         $product = Product::withTrashed()->where('slug', $id)->firstOrFail();
         $product->restore();
-        return back()->with('success', 'Product has been restored.');
+        return back()->with('success', __('messages.restored_successfully'));
     }
 }

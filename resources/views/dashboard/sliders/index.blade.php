@@ -1,9 +1,13 @@
 @extends("layouts.index")
-@section("title", "Sliders")
+@section("title")
+    {{ __("Sliders") }}
+@endsection
 
 @section("breadcrumbs")
     @parent
-    <li class="breadcrumb-item active">Sliders</li>
+    <li class="breadcrumb-item active">
+        {{ __("Sliders") }}
+    </li>
 @endsection
 
 @section("content")
@@ -14,15 +18,27 @@
     @endif
 
     <table class="table table-bordered text-center">
-        <caption class="text-center">List of sliders</caption>
+        <caption class="text-center">
+            {{ __("List of sliders") }}
+        </caption>
         <thead>
         <tr>
             <th>#</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>
+                {{ __("Title") }}
+            </th>
+            <th>
+                {{ __("Description") }}
+            </th>
+            <th>
+                {{ __("Image") }}
+            </th>
+            <th>
+                {{ __("Status") }}
+            </th>
+            <th>
+                {{ __("Actions") }}
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -43,14 +59,20 @@
                                onclick="event.preventDefault(); this.closest('form').submit();"
                             >
                                 @if($slider->active)
-                                    <span class="badge badge-success">Active</span>
+                                    <span class="badge badge-success">
+                                        {{ __("Active") }}
+                                    </span>
                                 @else
-                                    <span class="badge badge-danger">Inactive</span>
+                                    <span class="badge badge-danger">
+                                        {{ __("Inactive") }}
+                                    </span>
                                 @endif
                             </a>
                         </form>
                     @else
-                        <span class="badge badge-danger">Deleted</span>
+                        <span class="badge badge-danger">
+                            {{ __("Deleted") }}
+                        </span>
                     @endif
                 </td>
                 <td>
@@ -93,7 +115,9 @@
             </tr>
         @empty
             <tr>
-                <td colspan="6" class="text-center font-weight-bold">No sliders Found</td>
+                <td colspan="6" class="text-center font-weight-bold">
+                    {{ __("No data") }}
+                </td>
             </tr>
         @endforelse
         </tbody>

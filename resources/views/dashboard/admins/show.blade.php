@@ -1,9 +1,11 @@
 @extends("layouts.index")
-@section("title", "Admin Details")
+@section("title")
+    {{ __("Admin Details") }}
+@endsection
 @section("breadcrumbs")
     @parent
     <li class="breadcrumb-item active">
-        <a href="{{ route("dashboard.admins.index") }}">Admins</a>
+        <a href="{{ route("dashboard.admins.index") }}">{{ __("Admins") }}</a>
     </li>
     <li class="breadcrumb-item active">{{ $admin->username }}</li>
 @endsection
@@ -24,14 +26,14 @@
                 <hr>
                 <div class="row">
                     <div class="col-4">
-                        <h4>Created at</h4>
+                        <h4>{{ __("Created At") }}</h4>
                         <div class="bg-gradient-info py-2 px-3 mt-4">
                             {{ $admin->created_at->diffForHumans() }}
                         </div>
                     </div>
 
                     <div class="col-4">
-                        <h4>Updated at</h4>
+                        <h4>{{ __("Updated At") }}</h4>
                         <div class="bg-gradient-info py-2 px-3 mt-4">
                             {{ $admin->updated_at->diffForHumans() }}
                         </div>
@@ -40,7 +42,7 @@
                 </div>
                 <div class="bg-gradient-{{ $admin->banned ? "danger" : "success" }} py-2 px-3 mt-4">
                     <h2 class="mb-0">
-                        Status: {{ $admin->active ? "Banned" : "Unbanned" }}
+                        {{ __("Status") }}: {{ $admin->active ? __("Banned") : __("Unbanned") }}
                     </h2>
                 </div>
             </div>

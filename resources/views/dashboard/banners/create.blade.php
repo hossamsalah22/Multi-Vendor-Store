@@ -1,11 +1,13 @@
 @extends("layouts.index")
-@section("title", "Create Banner")
+@section("title")
+    {{ __("Create Banner") }}
+@endsection
 @section("breadcrumbs")
     @parent
     <li class="breadcrumb-item active">
-        <a href="{{ route("dashboard.banners.index") }}">Banners</a>
+        <a href="{{ route("dashboard.banners.index") }}">{{ __("Banners") }}</a>
     </li>
-    <li class="breadcrumb-item active">Create</li>
+    <li class="breadcrumb-item active">{{ __("Create") }}</li>
 @endsection
 @section("content")
     <div class="container mt-4">
@@ -15,7 +17,7 @@
                       class="row">
                     @csrf
 
-                    @include("dashboard.banners._form", ['banner' => new \App\Models\Banner(), 'action' => 'Create'])
+                    @include("dashboard.banners._form", ['banner' => new \App\Models\Banner(), 'action' => __('Create')])
                 </form>
             </div>
         </div>

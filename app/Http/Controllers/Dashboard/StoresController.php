@@ -41,7 +41,7 @@ class StoresController extends Controller
         $image = $request->file('image');
         $store = Store::create($validate);
         $image && $store->addMedia($image)->toMediaCollection('stores');
-        return redirect()->route('dashboard.stores.index')->with('success', 'Store created successfully');
+        return redirect()->route('dashboard.stores.index')->with('success', __('messages.created_successfully'));
     }
 
     /**
@@ -73,7 +73,7 @@ class StoresController extends Controller
             $store->clearMediaCollection('stores');
             $store->addMedia($image)->toMediaCollection('stores');
         }
-        return redirect()->route('dashboard.stores.index')->with('success', 'Store updated successfully');
+        return redirect()->route('dashboard.stores.index')->with('success', __('messages.updated_successfully'));
     }
 
     /**
@@ -83,7 +83,7 @@ class StoresController extends Controller
     {
         $store->update(['active' => 0]);
         $store->delete();
-        return back()->with('success', 'Store deleted successfully');
+        return back()->with('success', __('messages.deleted_successfully'));
     }
 
     /**
@@ -92,7 +92,7 @@ class StoresController extends Controller
     public function activate(Store $store)
     {
         $store->update(['active' => $store->active ? 0 : 1]);
-        return back()->with('success', 'Stores Status Updated successfully');
+        return back()->with('success', __('messages.updated_successfully'));
     }
 
     /**
@@ -102,6 +102,6 @@ class StoresController extends Controller
     {
         $store = Store::onlyTrashed()->where('slug', $id)->firstOrFail();
         $store->restore();
-        return back()->with('success', 'Store restored successfully');
+        return back()->with('success', __('messages.restored_successfully'));
     }
 }

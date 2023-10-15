@@ -5,7 +5,7 @@
     'label' => '',
     'options' => [],
     'selected' => null,
-    'placeholder' => __('Select an option'),
+    'placeholder' => 'Select an option',
     'attributes' => [],
     'class' => '',
 ])
@@ -20,7 +20,7 @@
         {!! $attributes !!}
     >
         <option value="" {{ is_null($selected) ? 'selected' : '' }}>
-            {{ $placeholder }}
+            {{ __($placeholder) }}
         </option>
         @foreach($options as $option)
             <option value="{{ $option->id }}" {{ $selected == $option->id ? 'selected' : '' }}>

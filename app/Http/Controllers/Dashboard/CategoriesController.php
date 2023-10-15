@@ -42,7 +42,7 @@ class CategoriesController extends Controller
         $image = $request->file('image');
         $category = Category::create($validate);
         $image && $category->addMedia($image)->toMediaCollection('categories');
-        return redirect()->route('dashboard.categories.index')->with('success', 'Category created successfully');
+        return redirect()->route('dashboard.categories.index')->with('success', __('messages.created_successfully'));
     }
 
     /**
@@ -82,7 +82,7 @@ class CategoriesController extends Controller
             $category->addMedia($image)->toMediaCollection('categories');
         }
 
-        return redirect()->route('dashboard.categories.index')->with('success', 'Category updated successfully');
+        return redirect()->route('dashboard.categories.index')->with('success', __('messages.updated_successfully'));
     }
 
     /**
@@ -92,7 +92,7 @@ class CategoriesController extends Controller
     {
         $category->update(['active' => 0]);
         $category->delete();
-        return back()->with('success', 'Category deleted successfully');
+        return back()->with('success', __('messages.deleted_successfully'));
     }
 
     /**
@@ -101,7 +101,7 @@ class CategoriesController extends Controller
     public function activate(Category $category)
     {
         $category->update(['active' => $category->active ? 0 : 1]);
-        return back()->with('success', 'Category Status Updated successfully');
+        return back()->with('success', __('messages.updated_successfully'));
     }
 
     /**
@@ -111,7 +111,7 @@ class CategoriesController extends Controller
     {
         $category = Category::onlyTrashed()->where('slug', $slug)->firstOrFail();
         $category->restore();
-        return back()->with('success', 'Category Restored successfully');
+        return back()->with('success', __('messages.restored_successfully'));
     }
 
 }

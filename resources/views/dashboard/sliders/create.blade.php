@@ -1,11 +1,18 @@
 @extends("layouts.index")
-@section("title", "Create Slider")
+@section("title")
+    {{ __("Create Slider") }}
+@endsection
+
 @section("breadcrumbs")
     @parent
     <li class="breadcrumb-item active">
-        <a href="{{ route("dashboard.sliders.index") }}">Sliders</a>
+        <a href="{{ route("dashboard.sliders.index") }}">
+            {{ __("Sliders") }}
+        </a>
     </li>
-    <li class="breadcrumb-item active">Create</li>
+    <li class="breadcrumb-item active">
+        {{ __("Create") }}
+    </li>
 @endsection
 @section("content")
     <div class="container mt-4">
@@ -15,7 +22,7 @@
                       class="row">
                     @csrf
 
-                    @include("dashboard.sliders._form", ['slider' => new \App\Models\Slider(), 'action' => 'Create'])
+                    @include("dashboard.sliders._form", ['slider' => new \App\Models\Slider(), 'action' => __('Create')])
                 </form>
             </div>
         </div>

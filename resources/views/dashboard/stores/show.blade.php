@@ -1,9 +1,14 @@
 @extends("layouts.index")
-@section("title", "Store Details")
+@section("title")
+    {{ __("Store Details") }}
+@endsection
+
 @section("breadcrumbs")
     @parent
     <li class="breadcrumb-item active">
-        <a href="{{ route("dashboard.stores.index") }}">Stores</a>
+        <a href="{{ route("dashboard.stores.index") }}">
+            {{ __("Stores") }}
+        </a>
     </li>
     <li class="breadcrumb-item active">{{ $store->name }}</li>
 @endsection
@@ -23,38 +28,44 @@
                 <hr>
                 <div class="bg-gradient-primary py-2 px-3 mt-4">
                     <h2 class="mb-0">
-                        Admins: {{ $store->admins->count() }}
+                        {{ __("Admins") }}: {{ $store->admins->count() }}
                     </h2>
                     @foreach($store->admins as $admin)
-                        <p>Name: {{ $admin->name }}, Username: {{ $admin->username }}</p>
+                        <p>{{ __("Name") }}: {{ $admin->name }}, {{ __("Username") }}: {{ $admin->username }}</p>
                     @endforeach
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-4">
-                        <h4>Created at</h4>
+                        <h4>
+                            {{ __("Created At") }}
+                        </h4>
                         <div class="bg-gradient-info py-2 px-3 mt-4">
                             {{ $store->created_at->diffForHumans() }}
                         </div>
                     </div>
 
                     <div class="col-4">
-                        <h4>Updated at</h4>
+                        <h4>
+                            {{ __("Updated At") }}
+                        </h4>
                         <div class="bg-gradient-info py-2 px-3 mt-4">
                             {{ $store->updated_at->diffForHumans() }}
                         </div>
                     </div>
 
                     <div class="col-4">
-                        <h4>Deleted at</h4>
+                        <h4>
+                            {{ __("Deleted At") }}
+                        </h4>
                         <div class="bg-gradient-danger py-2 px-3 mt-4">
-                            {{ $store->deleted_at ? $store->deleted_at->diffForHumans() : "Null" }}
+                            {{ $store->deleted_at ? $store->deleted_at->diffForHumans() : __("Null") }}
                         </div>
                     </div>
                 </div>
                 <div class="bg-gradient-{{ $store->active ? "success" : "danger" }} py-2 px-3 mt-4">
                     <h2 class="mb-0">
-                        Status: {{ $store->active ? "Active" : "Inactive" }}
+                        {{ __("Status") }}: {{ $store->active ? __("Active") : __("Inactive") }}
                     </h2>
                 </div>
             </div>

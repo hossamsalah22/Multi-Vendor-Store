@@ -1,9 +1,13 @@
 @extends("layouts.index")
-@section("title", "Stores")
+@section("title")
+    {{ __("Stores") }}
+@endsection
 
 @section("breadcrumbs")
     @parent
-    <li class="breadcrumb-item active">Stores</li>
+    <li class="breadcrumb-item active">
+        {{ __("Stores") }}
+    </li>
 @endsection
 
 @section("content")
@@ -14,16 +18,30 @@
     @endif
 
     <table class="table table-bordered text-center">
-        <caption class="text-center">List of stores</caption>
+        <caption class="text-center">
+            {{ __("List of stores") }}
+        </caption>
         <thead>
         <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>NO. Products</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>
+                {{ __("Name") }}
+            </th>
+            <th>
+                {{ __("Description") }}
+            </th>
+            <th>
+                {{ __("Image") }}
+            </th>
+            <th>
+                {{ __("Products Count") }}
+            </th>
+            <th>
+                {{ __("Status") }}
+            </th>
+            <th>
+                {{ __("Actions") }}
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -46,14 +64,20 @@
                                onclick="event.preventDefault(); this.closest('form').submit();"
                             >
                                 @if($store->active)
-                                    <span class="badge badge-success">Active</span>
+                                    <span class="badge badge-success">
+                                        {{ __("Active") }}
+                                    </span>
                                 @else
-                                    <span class="badge badge-danger">Inactive</span>
+                                    <span class="badge badge-danger">
+                                        {{ __("Inactive") }}
+                                    </span>
                                 @endif
                             </a>
                         </form>
                     @else
-                        <span class="badge badge-danger">Deleted</span>
+                        <span class="badge badge-danger">
+                            {{ __("Deleted") }}
+                        </span>
                     @endif
                 </td>
                 <td>
@@ -92,7 +116,9 @@
             </tr>
         @empty
             <tr>
-                <td colspan="7" class="text-center font-weight-bold">No stores Found</td>
+                <td colspan="7" class="text-center font-weight-bold">
+                    {{ __("No data") }}
+                </td>
             </tr>
         @endforelse
         </tbody>

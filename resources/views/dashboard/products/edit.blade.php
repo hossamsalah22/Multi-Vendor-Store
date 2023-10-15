@@ -1,11 +1,18 @@
 @extends("layouts.index")
-@section("title", "Update Product")
+@section("title")
+    {{ __("Update Product") }}
+@endsection
+
 @section("breadcrumbs")
     @parent
     <li class="breadcrumb-item active">
-        <a href="{{ route("dashboard.products.index") }}">Products</a>
+        <a href="{{ route("dashboard.products.index") }}">
+            {{ __("Products") }}
+        </a>
     </li>
-    <li class="breadcrumb-item active">Update</li>
+    <li class="breadcrumb-item active">
+        {{ __("Update") }}
+    </li>
 @endsection
 @section("content")
     <div class="container mt-4">
@@ -15,7 +22,7 @@
                       enctype="multipart/form-data" class="row">
                     @csrf
                     @method("put")
-                    @include("dashboard.products._form", ['action' => 'Update'])
+                    @include("dashboard.products._form", ['action' => __("Update")])
                 </form>
             </div>
         </div>

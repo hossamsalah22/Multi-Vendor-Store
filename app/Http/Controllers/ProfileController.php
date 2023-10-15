@@ -45,7 +45,7 @@ class ProfileController extends Controller
             $request->user()->clearMediaCollection('users');
             $request->user()->addMedia($image)->toMediaCollection('users');
         }
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('status', __('messages.updated_successfully'));
     }
 
     /**

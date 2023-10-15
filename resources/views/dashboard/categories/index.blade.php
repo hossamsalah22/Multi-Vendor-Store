@@ -1,9 +1,13 @@
 @extends("layouts.index")
-@section("title", "Categories")
+@section("title")
+    {{ __("Categories") }}
+@endsection
 
 @section("breadcrumbs")
     @parent
-    <li class="breadcrumb-item active">Categories</li>
+    <li class="breadcrumb-item active">
+        {{ __("Categories") }}
+    </li>
 @endsection
 
 @section("content")
@@ -14,16 +18,30 @@
     @endif
 
     <table class="table table-bordered text-center">
-        <caption class="text-center">List of categories</caption>
+        <caption class="text-center">
+            {{ __("List of categories") }}
+        </caption>
         <thead>
         <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Parent Category</th>
-            <th>NO. Products</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>
+                {{ __("Name") }}
+            </th>
+            <th>
+                {{ __("Image") }}
+            </th>
+            <th>
+                {{ __("Primary Category") }}
+            </th>
+            <th>
+                {{ __("Products Count") }}
+            </th>
+            <th>
+                {{ __("Status") }}
+            </th>
+            <th>
+                {{ __("Actions") }}
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -45,14 +63,20 @@
                                onclick="event.preventDefault(); this.closest('form').submit();"
                             >
                                 @if($category->active)
-                                    <span class="badge badge-success">Active</span>
+                                    <span class="badge badge-success">
+                                        {{ __("Active") }}
+                                    </span>
                                 @else
-                                    <span class="badge badge-danger">Inactive</span>
+                                    <span class="badge badge-danger">
+                                        {{ __("Inactive") }}
+                                    </span>
                                 @endif
                             </a>
                         </form>
                     @else
-                        <span class="badge badge-danger">Deleted</span>
+                        <span class="badge badge-danger">
+                            {{ __("Deleted") }}
+                        </span>
                     @endif
                 </td>
                 <td>
@@ -95,7 +119,9 @@
             </tr>
         @empty
             <tr>
-                <td colspan="6" class="text-center font-weight-bold">No categories Found</td>
+                <td colspan="6" class="text-center font-weight-bold">
+                    {{ __("No data") }}
+                </td>
             </tr>
         @endforelse
         </tbody>

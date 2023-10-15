@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->boolean('banned')->default(0);
             $table->foreignId('store_id')->nullable()->constrained('stores')->nullOnDelete();
             $table->softDeletes();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

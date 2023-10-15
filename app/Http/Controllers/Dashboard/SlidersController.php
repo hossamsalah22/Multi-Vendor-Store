@@ -36,7 +36,7 @@ class SlidersController extends Controller
         $image = $validate['image'];
         $slider = Slider::create($validate);
         $image && $slider->addMedia($image)->toMediaCollection('sliders');
-        return redirect()->route('dashboard.sliders.index')->with('success', 'Slider created successfully');
+        return redirect()->route('dashboard.sliders.index')->with('success', __('messages.created_successfully'));
     }
 
     /**
@@ -67,7 +67,7 @@ class SlidersController extends Controller
             $slider->clearMediaCollection('sliders');
             $slider->addMedia($image)->toMediaCollection('sliders');
         }
-        return redirect()->route('dashboard.sliders.index')->with('success', 'Slider updated successfully');
+        return redirect()->route('dashboard.sliders.index')->with('success', __('messages.updated_successfully'));
     }
 
     /**
@@ -76,7 +76,7 @@ class SlidersController extends Controller
     public function destroy(Slider $slider)
     {
         $slider->delete();
-        return redirect()->route('dashboard.sliders.index')->with('success', 'Slider deleted successfully');
+        return redirect()->route('dashboard.sliders.index')->with('success', __('messages.deleted_successfully'));
     }
 
     /**
@@ -85,7 +85,7 @@ class SlidersController extends Controller
     public function activate(Slider $slider)
     {
         $slider->update(['active' => $slider->active ? 0 : 1]);
-        return back()->with('success', 'Slider status has been updated.');
+        return back()->with('success', __('messages.updated_successfully'));
     }
 
     /**
@@ -95,6 +95,6 @@ class SlidersController extends Controller
     {
         $slider = Slider::onlyTrashed()->where('slug', $id)->firstOrFail();
         $slider->restore();
-        return back()->with('success', 'Slider has been restored.');
+        return back()->with('success', __('messages.restored_successfully'));
     }
 }

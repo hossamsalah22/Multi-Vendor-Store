@@ -5,7 +5,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route("home") }}" class="nav-link">Home</a>
+            <a href="{{ route("home") }}" class="nav-link">{{ __("Home") }}</a>
         </li>
     </ul>
 
@@ -19,8 +19,8 @@
             <div class="navbar-search-block">
                 <form class="form-inline">
                     <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                               aria-label="Search">
+                        <input class="form-control form-control-navbar" type="search" placeholder="{{ __("Search") }}"
+                               aria-label="{{ __("Search") }}">
                         <div class="input-group-append">
                             <button class="btn btn-navbar" type="submit">
                                 <i class="fas fa-search"></i>
@@ -58,7 +58,7 @@
                     <!-- Message End -->
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                <a href="#" class="dropdown-item dropdown-footer">{{ __("See All Messages") }}</a>
             </div>
         </li>
 
@@ -66,6 +66,7 @@
         <li class="nav-item dropdown">
             <x-dashboard.notifications-menu/>
         </li>
+
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
@@ -75,6 +76,44 @@
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                 <i class="fas fa-th-large"></i>
             </a>
+        </li>
+        <!-- Language Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ __("Language") }}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{{ route("change-language", "en") }}"
+                               class="dropdown-item @if(app()->getLocale() == 'en') active @endif">
+                                {{ __("English") }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route("change-language", "es") }}"
+                               class="dropdown-item @if(app()->getLocale() == 'es') active @endif">
+                                {{ __("Spanish") }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route("change-language", "fr") }}"
+                               class="dropdown-item @if(app()->getLocale() == 'fr') active @endif">
+                                {{ __("French") }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route("change-language", "ar") }}"
+                               class="dropdown-item @if(app()->getLocale() == 'ar') active @endif">
+                                {{ __("Arabic") }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         </li>
     </ul>
 </nav>

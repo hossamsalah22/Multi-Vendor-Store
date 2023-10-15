@@ -1,9 +1,13 @@
 @extends("layouts.index")
-@section("title", "Products")
+@section("title")
+    {{ __("Products") }}
+@endsection
 
 @section("breadcrumbs")
     @parent
-    <li class="breadcrumb-item active">Products</li>
+    <li class="breadcrumb-item active">
+        {{ __("Products") }}
+    </li>
 @endsection
 
 @section("content")
@@ -14,17 +18,33 @@
     @endif
 
     <table class="table table-bordered text-center">
-        <caption class="text-center">List of products</caption>
+        <caption class="text-center">
+            {{ __("List of products") }}
+        </caption>
         <thead>
         <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Category</th>
-            <th>Store</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th>
+                {{ __("Name") }}
+            </th>
+            <th>
+                {{ __("Price") }}
+            </th>
+            <th>
+                {{ __("Image") }}
+            </th>
+            <th>
+                {{ __("Category") }}
+            </th>
+            <th>
+                {{ __("Store") }}
+            </th>
+            <th>
+                {{ __("Status") }}
+            </th>
+            <th>
+                {{ __("Actions") }}
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -35,7 +55,7 @@
                 <td> {{ Currency::format($product->price) }}</td>
                 <td><img src="{{ $product->image }}" alt="{{ $product->name }}"
                          style="max-width: 100%; max-height: 50px;"></td>
-                <td>{{ $product?->category?->name ?? "No Category" }}</td>
+                <td>{{ $product?->category?->name }}</td>
                 <td>{{ $product->store->name }}</td>
                 <td>
                     @if($product->deleted_at === null)
@@ -47,14 +67,20 @@
                                onclick="event.preventDefault(); this.closest('form').submit();"
                             >
                                 @if($product->active)
-                                    <span class="badge badge-success">Active</span>
+                                    <span class="badge badge-success">
+                                        {{ __("Active") }}
+                                    </span>
                                 @else
-                                    <span class="badge badge-danger">Inactive</span>
+                                    <span class="badge badge-danger">
+                                        {{ __("Inactive") }}
+                                    </span>
                                 @endif
                             </a>
                         </form>
                     @else
-                        <span class="badge badge-danger">Deleted</span>
+                        <span class="badge badge-danger">
+                            {{ __("Deleted") }}
+                        </span>
                     @endif
                 </td>
                 <td>
@@ -93,7 +119,9 @@
             </tr>
         @empty
             <tr>
-                <td colspan="8" class="text-center font-weight-bold">No products Found</td>
+                <td colspan="8" class="text-center font-weight-bold">
+                    {{ __("No data") }}
+                </td>
             </tr>
         @endforelse
         </tbody>

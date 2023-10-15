@@ -1,9 +1,13 @@
 @extends("layouts.index")
-@section("title", "Users")
+@section("title")
+    {{ __("Users") }}
+@endsection
 
 @section("breadcrumbs")
     @parent
-    <li class="breadcrumb-item active">Users</li>
+    <li class="breadcrumb-item active">
+        {{ __("Users") }}
+    </li>
 @endsection
 
 @section("content")
@@ -14,15 +18,27 @@
     @endif
 
     <table class="table table-bordered text-center">
-        <caption class="text-center">List of users</caption>
+        <caption class="text-center">
+            {{ __("List of users") }}
+        </caption>
         <thead>
         <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Image</th>
-            <th>Banned</th>
-            <th>Actions</th>
+            <th>
+                {{ __("Name") }}
+            </th>
+            <th>
+                {{ __("Email") }}
+            </th>
+            <th>
+                {{ __("Image") }}
+            </th>
+            <th>
+                {{ __("Banned") }}
+            </th>
+            <th>
+                {{ __("Actions") }}
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -42,9 +58,13 @@
                            onclick="event.preventDefault(); this.closest('form').submit();"
                         >
                             @if($user->banned)
-                                <span class="badge badge-danger">Banned</span>
+                                <span class="badge badge-danger">
+                                    {{ __("Banned") }}
+                                </span>
                             @else
-                                <span class="badge badge-success">Unbanned</span>
+                                <span class="badge badge-success">
+                                    {{ __("Unbanned") }}
+                                </span>
                             @endif
                         </a>
                     </form>
@@ -58,7 +78,9 @@
             </tr>
         @empty
             <tr>
-                <td colspan="6" class="text-center font-weight-bold">No users Found</td>
+                <td colspan="6" class="text-center font-weight-bold">
+                    {{ __("No data") }}
+                </td>
             </tr>
         @endforelse
         </tbody>
