@@ -5,7 +5,7 @@
     @endif
 </a>
 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-    <span id="notification-count-dropdown" class="dropdown-header">{{$count}} Notifications</span>
+    <span id="notification-count-dropdown" class="dropdown-header">{{$count}} {{ __("Notifications") }}</span>
     <div class="dropdown-divider"></div>
     <div id="notification-list">
         @foreach($notifications as $notification)
@@ -18,5 +18,5 @@
         @endforeach
     </div>
     <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+    <a href="#" class="dropdown-item dropdown-footer">{{ __("See All Notifications") }}</a>
 </div>

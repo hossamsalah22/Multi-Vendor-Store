@@ -10,9 +10,10 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="breadcrumb-nav">
-                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> Home</a></li>
-                            <li><a href="{{ route('website.products.index') }}">Products</a></li>
-                            <li>Product Details</li>
+                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> {{ __("Home") }}</a>
+                            </li>
+                            <li><a href="{{ route('website.products.index') }}">{{ __("Products") }}</a></li>
+                            <li>{{ __("Product Details") }}</li>
                         </ul>
                     </div>
                 </div>
@@ -59,7 +60,7 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group color-option">
-                                            <label class="title-label" for="size">Choose color</label>
+                                            <label class="title-label" for="size">{{ __("Choose color") }}</label>
                                             <div class="single-checkbox checkbox-style-1">
                                                 <input type="checkbox" id="checkbox-1" checked="">
                                                 <label for="checkbox-1"><span></span></label>
@@ -79,18 +80,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="form-group">
-                                            <label for="color">Battery capacity</label>
-                                            <select class="form-control" id="color">
-                                                <option>5100 mAh</option>
-                                                <option>6200 mAh</option>
-                                                <option>8000 mAh</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group quantity">
-                                            <label for="quantity">Quantity</label>
+                                            <label for="quantity">{{ __("Quantity") }}</label>
                                             <select class="form-control" name="quantity">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -105,18 +96,15 @@
                                     <div class="row align-items-end">
                                         <div class="col-lg-4 col-md-4 col-12">
                                             <div class="button cart-button">
-                                                <button class="btn" type="submit" style="width: 100%;">Add to Cart
+                                                <button class="btn" type="submit"
+                                                        style="width: 100%;">{{ __("Add to Cart") }}
                                                 </button>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-12">
                                             <div class="wish-button">
-                                                <button class="btn"><i class="lni lni-reload"></i> Compare</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4 col-12">
-                                            <div class="wish-button">
-                                                <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
+                                                <button class="btn"><i class="lni lni-reload"></i> {{ __("Compare") }}
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -131,9 +119,9 @@
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="info-body custom-responsive-margin">
-                                <h4>Details</h4>
+                                <h4>{{ __("Details") }}</h4>
                                 <p>{{ $product->description }}</p>
-                                <h4>Features</h4>
+                                <h4>{{ __("Features") }}</h4>
                                 <ul class="features">
                                     <li>Capture 4K30 Video and 12MP Photos</li>
                                     <li>Game-Style Controller with Touchscreen</li>
@@ -145,7 +133,7 @@
                         </div>
                         <div class="col-lg-6 col-12">
                             <div class="info-body">
-                                <h4>Specifications</h4>
+                                <h4>{{ __("Specifications") }}</h4>
                                 <ul class="normal-list">
                                     <li><span>Weight:</span> 35.5oz (1006g)</li>
                                     <li><span>Maximum Speed:</span> 35 mph (15 m/s)</li>
@@ -153,7 +141,7 @@
                                     <li><span>Operating Frequency:</span> 2.4GHz</li>
                                     <li><span>Manufacturer:</span> GoPro, USA</li>
                                 </ul>
-                                <h4>Shipping Options:</h4>
+                                <h4>{{ __("Shipping Options") }}:</h4>
                                 <ul class="normal-list">
                                     <li><span>Courier:</span> 2 - 4 days, $22.50</li>
                                     <li><span>Local Shipping:</span> up to one week, $10.00</li>
@@ -167,10 +155,10 @@
                 <div class="row">
                     <div class="col-lg-4 col-12">
                         <div class="single-block give-review">
-                            <h4>4.5 (Overall)</h4>
+                            <h4>4.5 ({{ __("Overall") }})</h4>
                             <ul>
                                 <li>
-                                    <span>5 stars - 38</span>
+                                    <span>5 {{ __("stars") }} - 38</span>
                                     <i class="lni lni-star-filled"></i>
                                     <i class="lni lni-star-filled"></i>
                                     <i class="lni lni-star-filled"></i>
@@ -178,49 +166,25 @@
                                     <i class="lni lni-star-filled"></i>
                                 </li>
                                 <li>
-                                    <span>4 stars - 10</span>
+                                    <span>4 {{ __("stars") }} - 10</span>
                                     <i class="lni lni-star-filled"></i>
                                     <i class="lni lni-star-filled"></i>
                                     <i class="lni lni-star-filled"></i>
                                     <i class="lni lni-star-filled"></i>
-                                    <i class="lni lni-star"></i>
-                                </li>
-                                <li>
-                                    <span>3 stars - 3</span>
-                                    <i class="lni lni-star-filled"></i>
-                                    <i class="lni lni-star-filled"></i>
-                                    <i class="lni lni-star-filled"></i>
-                                    <i class="lni lni-star"></i>
-                                    <i class="lni lni-star"></i>
-                                </li>
-                                <li>
-                                    <span>2 stars - 1</span>
-                                    <i class="lni lni-star-filled"></i>
-                                    <i class="lni lni-star-filled"></i>
-                                    <i class="lni lni-star"></i>
-                                    <i class="lni lni-star"></i>
-                                    <i class="lni lni-star"></i>
-                                </li>
-                                <li>
-                                    <span>1 star - 0</span>
-                                    <i class="lni lni-star-filled"></i>
-                                    <i class="lni lni-star"></i>
-                                    <i class="lni lni-star"></i>
-                                    <i class="lni lni-star"></i>
                                     <i class="lni lni-star"></i>
                                 </li>
                             </ul>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn review-btn" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
-                                Leave a Review
+                                {{ __("Leave a Review") }}
                             </button>
                         </div>
                     </div>
                     <div class="col-lg-8 col-12">
                         <div class="single-block">
                             <div class="reviews">
-                                <h4 class="title">Latest Reviews</h4>
+                                <h4 class="title">{{ __("Latest Reviews") }}</h4>
                                 <!-- Start Single Review -->
                                 <div class="single-review">
                                     <img src="https://via.placeholder.com/150x150" alt="#">

@@ -9,11 +9,11 @@
 ])
 
 <div class="form-group {{ $class }}">
-    <label for="{{ $name }}">{{ $label }}:</label>
+    <label for="{{ $name }}">{{ __($label) }}:</label>
     <textarea
         name="{{ $name }}"
         id="{{ $name }}"
         class="form-control"
-        placeholder="{{ $label }}"
+        placeholder="{{ __($label) }}"
         {!! $attributes !!}>{{ old($name, $value) }}</textarea>
 </div>

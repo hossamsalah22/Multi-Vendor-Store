@@ -11,7 +11,7 @@
 ])
 
 <div class="form-group {{ $class }}">
-    <label for="{{ $name }}">{{ $label }}:</label>
+    <label for="{{ $name }}">{{ __($label) }}:</label>
     <select
         name="{{ $name }}"
         id="{{ $name }}"
@@ -20,7 +20,7 @@
         {!! $attributes !!}
     >
         <option value="" {{ is_null($selected) ? 'selected' : '' }} disabled>
-            {{ $placeholder }}
+            {{ __($placeholder) }}
         </option>
         @foreach($options as $key => $option)
             <option value="{{ $key }}" {{ $selected == $key ? 'selected' : '' }}>

@@ -9,14 +9,14 @@
 ])
 
 <div class="form-group {{ $class }}">
-    <label for="{{ $name }}">{{ $label }}:</label>
+    <label for="{{ $name }}">{{ __($label) }}:</label>
     <input
         type="{{ $type }}"
         name="{{ $name }}"
         id="{{ $name }}"
         value="{{ old($name, $value) }}"
         class="form-control"
-        placeholder="{{ $placeholder }}"
+        placeholder="{{ __($placeholder) }}"
         {!! $attributes !!}
     >
 </div>

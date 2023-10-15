@@ -5,13 +5,14 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="breadcrumbs-content">
-                            <h1 class="page-title">Products</h1>
+                            <h1 class="page-title">{{ __("Products") }}</h1>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="breadcrumb-nav">
-                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> Home</a></li>
-                            <li>Products</li>
+                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> {{ __("Home") }}</a>
+                            </li>
+                            <li>{{ __("Products") }}</li>
                         </ul>
                     </div>
                 </div>
@@ -27,16 +28,16 @@
                     <div class="product-sidebar">
                         <!-- Start Single Widget -->
                         <div class="single-widget search">
-                            <h3>Search Product</h3>
+                            <h3>{{ __("Search Product") }}</h3>
                             <form action="#">
-                                <input type="text" placeholder="Search Here...">
+                                <input type="text" placeholder="{{ __("Search Here") }}...">
                                 <button type="submit"><i class="lni lni-search-alt"></i></button>
                             </form>
                         </div>
                         <!-- End Single Widget -->
                         <!-- Start Single Widget -->
                         <div class="single-widget">
-                            <h3>All Categories</h3>
+                            <h3>{{ __("All Categories") }}</h3>
                             <ul class="list">
                                 @foreach($categories as $category)
                                     <li>
@@ -55,18 +56,18 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-7 col-md-8 col-12">
                                     <div class="product-sorting">
-                                        <label for="sorting">Sort by:</label>
+                                        <label for="sorting">{{ __("Sort by") }}:</label>
                                         <select class="form-control" id="sorting">
-                                            <option>Popularity</option>
-                                            <option>Low - High Price</option>
-                                            <option>High - Low Price</option>
-                                            <option>Average Rating</option>
-                                            <option>A - Z Order</option>
-                                            <option>Z - A Order</option>
+                                            <option>{{ __("Popularity") }}</option>
+                                            <option>{{ __("Low - High Price") }}</option>
+                                            <option>{{ __("High - Low Price") }}</option>
+                                            <option>{{ __("Average Rating") }}</option>
+                                            <option>{{ __("A - Z Order") }}</option>
+                                            <option>{{ __("Z - A Order") }}</option>
                                         </select>
                                         <h3 class="total-show-product">
-                                            Showing:
-                                            <span>{{ $products->lastItem() }} - {{ \App\Models\Product::count() }} Products</span>
+                                            {{ __("Showing") }}:
+                                            <span>{{ $products->lastItem() }} - {{ \App\Models\Product::count() }} {{ __("Products") }}</span>
                                         </h3>
 
                                     </div>

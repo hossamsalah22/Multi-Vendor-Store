@@ -1,11 +1,6 @@
 <?php
 
-use App\Http\Controllers\Dashboard\CategoriesController;
-use App\Http\Controllers\Dashboard\ProductsController;
-use App\Http\Controllers\Dashboard\StoresController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\ChangeLanguageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +13,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('change-language/{locale}', ChangeLanguageController::class)
+    ->name('change-language');
+
 
 // Website Routes
 require __DIR__ . '/website.php';
 // Dashboard Routes
 require __DIR__ . '/dashboard.php';
+
+
+
 // Auth Routes
 //require __DIR__ . '/auth.php';

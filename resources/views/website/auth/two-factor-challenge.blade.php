@@ -6,13 +6,14 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="breadcrumbs-content">
-                            <h1 class="page-title">2FA Challenge</h1>
+                            <h1 class="page-title">{{ __("Two-Factor Authentication Challenge") }}</h1>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="breadcrumb-nav">
-                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> Home</a></li>
-                            <li>2FA Challenge</li>
+                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> {{ __("Home") }}</a>
+                            </li>
+                            <li>{{ __("Two-Factor Authentication Challenge") }}</li>
                         </ul>
                     </div>
                 </div>
@@ -30,15 +31,15 @@
                         @csrf
                         <div class="card-body">
                             <div class="title">
-                                <h3>2FA Challenge Code</h3>
-                                <p>Please enter the code below</p>
+                                <h3>{{ __("Two-Factor Authentication Challenge Code") }}</h3>
+                                <p>{{ __("Please enter the code below") }}</p>
                                 @error('code')
                                 <div class="alert alert-danger" role="alert">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
-                            <x-form.input name="code" class="input-group" label="2fa Code" autofocus/>
+                            <x-form.input name="code" class="input-group" label="Code" autofocus/>
                             <x-form.input name="recovery_code" class="input-group" label="Recovery Code"/>
                             <x-form.submit-button value="{{ __('Submit') }}"/>
                         </div>

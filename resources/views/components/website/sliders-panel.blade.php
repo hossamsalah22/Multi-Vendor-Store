@@ -7,9 +7,9 @@
             <div class="content">
                 <h2>{{ $slider->title }}</h2>
                 <p>{{ $slider->description }}</p>
-                <h3><span>Now Only </span> {{ Currency::format($slider->price) }}</h3>
+                <h3><span>{{ __("Now Only") }} </span> {{ Currency::format($slider->price) }}</h3>
                 <div class="button">
-                    <a href="{{ route('website.products.index') }}" class="btn">Shop Now</a>
+                    <a href="{{ route('website.products.index') }}" class="btn">{{ __("Shop Now") }}</a>
                 </div>
             </div>
         </div>

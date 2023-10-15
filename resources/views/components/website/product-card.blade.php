@@ -3,14 +3,13 @@
     <div class="product-image">
         <img src="{{ $product->image }}" alt="{{ $product->name }}" height="100%">
         @if($product->new)
-            <span class="new-tag">New</span>
+            <span class="new-tag">{{ __("New") }}</span>
         @endif
         @if($product->discount)
             <span class="sale-tag">{{ $product->discount }}%</span>
         @endif
         <div class="button">
-            <a href="#" class="btn"><i class="lni lni-cart"></i> Add to
-                Cart</a>
+            <a href="#" class="btn"><i class="lni lni-cart"></i> {{ __("Add to Cart") }}</a>
         </div>
     </div>
     <div class="product-info">
@@ -29,11 +28,11 @@
                         @endif
                     </li>
                 @endfor
-                <li><span>{{ $product->rating }} Review(s)</span></li>
+                <li><span>{{ $product->rating }} {{__("Review(s)")}}</span></li>
             </ul>
         @else
             <ul class="review">
-                <li><span>No Reviews</span></li>
+                <li><span>{{ __("No Reviews") }}</span></li>
             </ul>
         @endif
         <div class="price">

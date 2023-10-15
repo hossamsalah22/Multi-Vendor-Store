@@ -5,13 +5,13 @@
     'label' => '',
     'options' => [],
     'selected' => null,
-    'placeholder' => 'Select an option',
+    'placeholder' => __('Select an option'),
     'attributes' => [],
     'class' => '',
 ])
 
 <div class="form-group {{ $class }}">
-    <label for="{{ $name }}">{{ $label }}:</label>
+    <label for="{{ $name }}">{{ __($label) }}:</label>
     <select
         name="{{ $name }}"
         id="{{ $name }}"

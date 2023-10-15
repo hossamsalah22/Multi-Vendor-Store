@@ -6,14 +6,15 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="breadcrumbs-content">
-                            <h1 class="page-title">Cart</h1>
+                            <h1 class="page-title">{{ __("Cart") }}</h1>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="breadcrumb-nav">
-                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> Home</a></li>
-                            <li><a href="{{ route('website.products.index') }}">Shop</a></li>
-                            <li>Cart</li>
+                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> {{ __("Home") }}</a>
+                            </li>
+                            <li><a href="{{ route('website.products.index') }}">{{ __("Shop") }}</a></li>
+                            <li>{{ __("Cart") }}</li>
                         </ul>
                     </div>
                 </div>
@@ -32,19 +33,19 @@
 
                         </div>
                         <div class="col-lg-4 col-md-3 col-12">
-                            <p>Product Name</p>
+                            <p>{{ __("Product Name") }}</p>
                         </div>
                         <div class="col-lg-2 col-md-2 col-12">
-                            <p>Quantity</p>
+                            <p>{{ __("Quantity") }}</p>
                         </div>
                         <div class="col-lg-2 col-md-2 col-12">
-                            <p>Subtotal</p>
+                            <p>{{ __("Subtotal") }}</p>
                         </div>
                         <div class="col-lg-2 col-md-2 col-12">
-                            <p>Discount</p>
+                            <p>{{ __("Discount") }}</p>
                         </div>
                         <div class="col-lg-1 col-md-2 col-12">
-                            <p>Remove</p>
+                            <p>{{ __("Remove") }}</p>
                         </div>
                     </div>
                 </div>
@@ -106,18 +107,20 @@
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="right">
                                     <ul>
-                                        <li>Cart
-                                            Subtotal: <span>{{ Currency::format($cart->total()) }}</span>
+                                        <li>{{ __("Cart Subtotal") }}:
+                                            <span>{{ Currency::format($cart->total()) }}</span>
                                         </li>
-                                        <li>Shipping: <span>Free</span></li>
-                                        <li>You Save: <span>{{ Currency::format(0) }}</span></li>
-                                        <li class="last">You Pay: <span>{{ Currency::format($cart->total()) }}</span>
+                                        <li>{{ __("Shipping") }}: <span>Free</span></li>
+                                        <li>{{ __("You Save") }}: <span>{{ Currency::format(0) }}</span></li>
+                                        <li class="last">{{ __("You Pay") }}:
+                                            <span>{{ Currency::format($cart->total()) }}</span>
                                         </li>
                                     </ul>
                                     <div class="button">
-                                        <a href="{{ route('website.checkout.create') }}" class="btn">Checkout</a>
-                                        <a href="{{ route('website.products.index') }}" class="btn btn-alt">Continue
-                                            shopping</a>
+                                        <a href="{{ route('website.checkout.create') }}"
+                                           class="btn">{{ __("Checkout") }}</a>
+                                        <a href="{{ route('website.products.index') }}"
+                                           class="btn btn-alt">{{ __("Continue Shopping") }}</a>
                                     </div>
                                 </div>
                             </div>

@@ -6,13 +6,14 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="breadcrumbs-content">
-                            <h1 class="page-title">Confirm Password</h1>
+                            <h1 class="page-title">{{ __("Confirm Password") }}</h1>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="breadcrumb-nav">
-                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> Home</a></li>
-                            <li>Confirm Password</li>
+                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> {{ __("Home") }}</a>
+                            </li>
+                            <li>{{ __("Confirm Password") }}</li>
                         </ul>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
                                           autocomplete="current-password"/>
                         </div>
                         @error('password')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        <p class="text-red-500 text-xs mt-2">{{ __($message) }}</p>
                         @enderror
                         <div class="flex justify-end mt-4">
                             <x-form.submit-button value="{{ __('Confirm') }}"/>

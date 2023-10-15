@@ -5,15 +5,14 @@
             <div class="product-image">
                 <img src="{{ $product->image }}" alt="#">
                 @if($product->new)
-                    <span class="new-tag">New</span>
+                    <span class="new-tag">{{ __("New") }}</span>
                 @endif
                 @if($product->discount)
                     <span class="sale-tag">{{ $product->discount }}%</span>
                 @endif
                 <div class="button">
                     <a href="product-details.html" class="btn"><i
-                            class="lni lni-cart"></i> Add to
-                        Cart</a>
+                            class="lni lni-cart"></i> {{ __("Add To Cart") }}</a>
                 </div>
             </div>
         </div>
@@ -34,11 +33,11 @@
                                 @endif
                             </li>
                         @endfor
-                        <li><span>{{ $product->rating }} Review(s)</span></li>
+                        <li><span>{{ $product->rating }} {{ __("Review(s)") }}</span></li>
                     </ul>
                 @else
                     <ul class="review">
-                        <li><span>No Reviews</span></li>
+                        <li><span>{{ __("No Reviews") }}</span></li>
                     </ul>
                 @endif
                 <div class="price">

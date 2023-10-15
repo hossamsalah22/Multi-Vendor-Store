@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8"/>
@@ -43,26 +43,36 @@
                         <ul class="menu-top-link">
                             <li>
                                 <div class="select-position">
-                                    <select id="select4">
-                                        <option value="0" selected>$ USD</option>
-                                        <option value="1">€ EURO</option>
-                                        <option value="2">$ CAD</option>
-                                        <option value="3">₹ INR</option>
-                                        <option value="4">¥ CNY</option>
-                                        <option value="5">৳ BDT</option>
-                                    </select>
+                                    <form action="{{ route('website.currency.store') }}" method="post">
+                                        @csrf
+                                        <select name="currency_code" onchange="this.form.submit()">
+                                            <option value="EGP" @selected('EGP' == session('currency_code'))>
+                                                {{__('EGP')}}
+                                            </option>
+                                            <option value="USD" @selected('USD' == session('currency_code'))>
+                                                {{__('USD')}}
+                                            </option>
+                                            <option value="EUR" @selected('EUR' == session('currency_code'))>
+                                                {{__('EUR')}}
+                                            </option>
+                                            <option value="ILS" @selected('GBP' == session('currency_code'))>
+                                                {{__("GBP")}}
+                                            </option>
+                                        </select>
+                                    </form>
                                 </div>
                             </li>
                             <li>
                                 <div class="select-position">
-                                    <select id="select5">
-                                        <option value="0" selected>English</option>
-                                        <option value="1">Español</option>
-                                        <option value="2">Filipino</option>
-                                        <option value="3">Français</option>
-                                        <option value="4">العربية</option>
-                                        <option value="5">हिन्दी</option>
-                                        <option value="6">বাংলা</option>
+                                    <select name="locale" id="language-select">
+                                        <option
+                                            value="en" @selected(app()->getLocale() == 'en')>{{ __("English") }}</option>
+                                        <option
+                                            value="es" @selected(app()->getLocale() == 'es')>{{ __("Spanish") }}</option>
+                                        <option
+                                            value="fr" @selected(app()->getLocale() == 'fr')>{{ __("French") }}</option>
+                                        <option
+                                            value="ar" @selected(app()->getLocale() == 'ar')>{{ __("Arabic") }}</option>
                                     </select>
                                 </div>
                             </li>
@@ -72,9 +82,9 @@
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="top-middle">
                         <ul class="useful-links">
-                            <li><a href="{{ route('website.home') }}">Home</a></li>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="{{ route('website.home') }}">{{ __('Home') }}</a></li>
+                            <li><a href="about-us.html">{{ __('About Us') }}</a></li>
+                            <li><a href="contact.html">{{ __('Contact Us') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -89,9 +99,10 @@
                                            data-bs-toggle="dropdown" href="#"
                                            aria-expanded="false">{{ auth()->user('user')->name }}</a>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                                            <li><a class="dropdown-item" href="#">{{ __('Profile') }}</a></li>
                                             <li>
-                                                <a href="{{ route('website.two-factor.index') }}" class="dropdown-item">2FA</a>
+                                                <a href="{{ route('website.two-factor.index') }}"
+                                                   class="dropdown-item">{{ __('Two Factor Authentication') }}</a>
                                             </li>
                                             <li>
                                                 <hr class="dropdown-divider">
@@ -100,7 +111,7 @@
                                             <li>
                                                 <a class="dropdown-item" href="javascript:void(0)"
                                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
-                                                >Logout</a>
+                                                >{{ __('Logout') }}</a>
                                                 <form action="{{ route('logout') }}" method="post" id="logout-form">
                                                     @csrf
                                                 </form>
@@ -113,10 +124,10 @@
                         @guest
                             <ul class="user-login">
                                 <li>
-                                    <a href="{{ route('login') }}">Sign In</a>
+                                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('register') }}">Register</a>
+                                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             </ul>
                         @endguest
@@ -133,7 +144,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-3 col-md-3 col-7">
                     <!-- Start Header Logo -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{ route('website.home') }}">
                         <img src="{{ asset('assets/images/logo/logo.svg') }}" alt="Logo">
                     </a>
                     <!-- End Header Logo -->
@@ -143,20 +154,8 @@
                     <div class="main-menu-search">
                         <!-- navbar search start -->
                         <div class="navbar-search search-style-5">
-                            <div class="search-select">
-                                <div class="select-position">
-                                    <select id="select1">
-                                        <option selected>All</option>
-                                        <option value="1">option 01</option>
-                                        <option value="2">option 02</option>
-                                        <option value="3">option 03</option>
-                                        <option value="4">option 04</option>
-                                        <option value="5">option 05</option>
-                                    </select>
-                                </div>
-                            </div>
                             <div class="search-input">
-                                <input type="text" placeholder="Search">
+                                <input type="text" placeholder="{{ __("Search") }}">
                             </div>
                             <div class="search-btn">
                                 <button><i class="lni lni-search-alt"></i></button>
@@ -170,7 +169,7 @@
                     <div class="middle-right-area">
                         <div class="nav-hotline">
                             <i class="lni lni-phone"></i>
-                            <h3>Hotline:
+                            <h3>{{ __("Hotline") }}:
                                 <span>(+100) 123 456 7890</span>
                             </h3>
                         </div>
@@ -197,7 +196,7 @@
                 <div class="nav-inner">
                     <!-- Start Mega Category Menu -->
                     <div class="mega-category-menu">
-                        <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
+                        <span class="cat-button"><i class="lni lni-menu"></i>{{ __("All Categories") }}</span>
                         <ul class="sub-category">
                             @foreach($categories as $category)
                                 @if($category->parent->name == "Main Category" && $category->children->count() > 0)
@@ -229,47 +228,26 @@
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ms-auto">
                                 <li class="nav-item">
-                                    <a href="{{ route("website.home") }}" class="active" aria-label="Toggle navigation">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                       data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
-                                       aria-expanded="false" aria-label="Toggle navigation">Pages</a>
-                                    <ul class="sub-menu collapse" id="submenu-1-2">
-                                        <li class="nav-item"><a href="about-us.html">About Us</a></li>
-                                        <li class="nav-item"><a href="faq.html">Faq</a></li>
-                                        <li class="nav-item"><a href="login.html">Login</a></li>
-                                        <li class="nav-item"><a href="register.html">Register</a></li>
-                                        <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
-                                        <li class="nav-item"><a href="404.html">404 Error</a></li>
-                                    </ul>
+                                    <a href="{{ route("website.home") }}" class="active"
+                                       aria-label="Toggle navigation">{{ __("Home") }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                        data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
-                                       aria-expanded="false" aria-label="Toggle navigation">Shop</a>
+                                       aria-expanded="false" aria-label="Toggle navigation">{{ __("Shop") }}</a>
                                     <ul class="sub-menu collapse" id="submenu-1-3">
-                                        <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>
-                                        <li class="nav-item"><a href="product-list.html">Shop List</a></li>
-                                        <li class="nav-item"><a href="product-details.html">shop Single</a></li>
-                                        <li class="nav-item"><a href="cart.html">Cart</a></li>
-                                        <li class="nav-item"><a href="checkout.html">Checkout</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                       data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
-                                       aria-expanded="false" aria-label="Toggle navigation">Blog</a>
-                                    <ul class="sub-menu collapse" id="submenu-1-4">
-                                        <li class="nav-item"><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a>
+                                        <li class="nav-item"><a
+                                                href="{{ route('website.products.index') }}">{{ __("Products") }}</a>
                                         </li>
-                                        <li class="nav-item"><a href="blog-single.html">Blog Single</a></li>
-                                        <li class="nav-item"><a href="blog-single-sidebar.html">Blog Single
-                                                Sibebar</a></li>
+                                        <li class="nav-item"><a
+                                                href="{{ route("website.cart.index") }}">{{ __("Cart") }}</a></li>
+                                        <li class="nav-item"><a
+                                                href="{{ route("website.checkout.create") }}">{{ __("Checkout") }}</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="contact.html" aria-label="Toggle navigation">Contact Us</a>
+                                    <a href="contact.html" aria-label="Toggle navigation">{{ __("Contact Us") }}</a>
                                 </li>
                             </ul>
                         </div> <!-- navbar collapse -->
@@ -280,19 +258,16 @@
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- Start Nav Social -->
                 <div class="nav-social">
-                    <h5 class="title">Follow Us:</h5>
+                    <h5 class="title">{{ __("Follow Us") }}:</h5>
                     <ul>
                         <li>
-                            <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
+                            <a href="https://www.facebook.com/hossamsalah22"><i class="lni lni-facebook-filled"></i></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a>
+                            <a href="https://www.twitter.com/hossamsalah02"><i class="lni lni-twitter-original"></i></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)"><i class="lni lni-instagram"></i></a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"><i class="lni lni-skype"></i></a>
+                            <a href="https://www.instagram.com/hossamsalah22"><i class="lni lni-instagram"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -319,7 +294,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-12">
                         <div class="footer-logo">
-                            <a href="index.html">
+                            <a href="{{ route('website.home') }}">
                                 <img src="{{ asset('assets/images/logo/white-logo.svg') }}" alt="#">
                             </a>
                         </div>
@@ -327,14 +302,14 @@
                     <div class="col-lg-9 col-md-8 col-12">
                         <div class="footer-newsletter">
                             <h4 class="title">
-                                Subscribe to our Newsletter
-                                <span>Get all the latest information, Sales and Offers.</span>
+                                {{ __("Subscribe to our Newsletter") }}
+                                <span>{{ __("Get all the latest information, Sales and Offers.") }}</span>
                             </h4>
                             <div class="newsletter-form-head">
                                 <form action="#" method="get" target="_blank" class="newsletter-form">
-                                    <input name="EMAIL" placeholder="Email address here..." type="email">
+                                    <input name="email" placeholder="{{ __("Email address here") }}..." type="email">
                                     <div class="button">
-                                        <button class="btn">Subscribe<span class="dir-part"></span></button>
+                                        <button class="btn">{{ __("Subscribe") }}<span class="dir-part"></span></button>
                                     </div>
                                 </form>
                             </div>
@@ -350,14 +325,15 @@
         <div class="container">
             <div class="bottom-inner">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer f-contact">
-                            <h3>Get In Touch With Us</h3>
-                            <p class="phone">Phone: +1 (900) 33 169 7720</p>
+                            <h3>{{ __("Get In Touch With Us") }}</h3>
+                            <p class="phone">{{ __("Phone") }}: +1 (900) 33 169 7720</p>
                             <ul>
-                                <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
-                                <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
+                                <li><span>{{ __("Monday-Friday:") }} </span> 9.00 {{ __("am") }} - 8.00 {{ __("pm") }}
+                                </li>
+                                <li><span>{{ __("Saturday:") }} </span> 10.00 {{ __("am") }} - 6.00 {{ __("pm") }}</li>
                             </ul>
                             <p class="mail">
                                 <a href="mailto:support@shopgrids.com">support@shopgrids.com</a>
@@ -365,53 +341,39 @@
                         </div>
                         <!-- End Single Widget -->
                     </div>
-                    <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer our-app">
-                            <h3>Our Mobile App</h3>
+                            <h3>{{ __("Our Mobile App") }}</h3>
                             <ul class="app-btn">
                                 <li>
                                     <a href="javascript:void(0)">
                                         <i class="lni lni-apple"></i>
-                                        <span class="small-title">Download on the</span>
-                                        <span class="big-title">App Store</span>
+                                        <span class="small-title">{{ __("Download on the") }}</span>
+                                        <span class="big-title">{{ __("App Store") }}</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)">
                                         <i class="lni lni-play-store"></i>
-                                        <span class="small-title">Download on the</span>
-                                        <span class="big-title">Google Play</span>
+                                        <span class="small-title">{{ __("Download on the") }}</span>
+                                        <span class="big-title">{{ __("Google Play") }}</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
                     </div>
-                    <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer f-link">
-                            <h3>Information</h3>
+                            <h3>{{ __("Information") }}</h3>
                             <ul>
-                                <li><a href="javascript:void(0)">About Us</a></li>
-                                <li><a href="javascript:void(0)">Contact Us</a></li>
-                                <li><a href="javascript:void(0)">Downloads</a></li>
-                                <li><a href="javascript:void(0)">Sitemap</a></li>
-                                <li><a href="javascript:void(0)">FAQs Page</a></li>
-                            </ul>
-                        </div>
-                        <!-- End Single Widget -->
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer f-link">
-                            <h3>Shop Departments</h3>
-                            <ul>
-                                <li><a href="javascript:void(0)">Computers & Accessories</a></li>
-                                <li><a href="javascript:void(0)">Smartphones & Tablets</a></li>
-                                <li><a href="javascript:void(0)">TV, Video & Audio</a></li>
-                                <li><a href="javascript:void(0)">Cameras, Photo & Video</a></li>
-                                <li><a href="javascript:void(0)">Headphones</a></li>
+                                <li><a href="javascript:void(0)">{{ __("About Us") }}</a></li>
+                                <li><a href="javascript:void(0)">{{ __("Contact Us") }}</a></li>
+                                <li><a href="javascript:void(0)">{{ __("Downloads") }}</a></li>
+                                <li><a href="javascript:void(0)">{{ __("Sitemap") }}</a></li>
+                                <li><a href="javascript:void(0)">{{ __("FAQs") }}</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -428,25 +390,31 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 col-12">
                         <div class="payment-gateway">
-                            <span>We Accept:</span>
+                            <span>{{ __("We Accept") }}:</span>
                             <img src="{{ asset('assets/images/footer/credit-cards-footer.png') }}" alt="#">
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">
                         <div class="copyright">
-                            <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow"
-                                                           target="_blank">GrayGrids</a></p>
+                            <p>{{ __("Designed and Developed by") }}<a href="https://www.github.com/hossamsalah22"
+                                                                       rel="nofollow"
+                                                                       target="_blank">{{ __("Hossam Salah") }}</a></p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">
-                        <ul class="socila">
+                        <ul class="social">
                             <li>
-                                <span>Follow Us On:</span>
+                                <span>{{ __("Follow Us") }}:</span>
                             </li>
-                            <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="lni lni-instagram"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="lni lni-google"></i></a></li>
+                            <li><a href="https://www.facebook.com/hossamsalah22" target="_blank"><i
+                                        class="lni lni-facebook-filled"></i></a>
+                            </li>
+                            <li><a href="https://www.twitter.com/hossamsalah02" target="_blank"><i
+                                        class="lni lni-twitter-original"></i></a>
+                            </li>
+                            <li><a href="https://www.instagram.com/hossamsalah22" target="_blank"><i
+                                        class="lni lni-instagram"></i></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -472,6 +440,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+<script>
+    document.getElementById('language-select').addEventListener('change', function () {
+        let selectedOption = this.options[this.selectedIndex];
+        if (selectedOption.value) {
+            window.location.href = "{{ route('change-language', '') }}/" + selectedOption.value;
+        }
+    });
+</script>
 @stack('scripts')
 </body>
 

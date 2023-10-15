@@ -4,6 +4,7 @@
 use App\Http\Controllers\Website\Auth\TwoFactorAuthController;
 use App\Http\Controllers\Website\CartController;
 use App\Http\Controllers\Website\CheckoutController;
+use App\Http\Controllers\Website\CurrencyConverterController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -17,4 +18,5 @@ Route::group(['as' => 'website.'], function () {
     Route::get('auth/2fa', [TwoFactorAuthController::class, 'index'])
         ->middleware('auth:web')
         ->name('two-factor.index');
+    Route::post('currency', [CurrencyConverterController::class, 'store'])->name('currency.store');
 });

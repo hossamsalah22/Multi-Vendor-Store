@@ -6,13 +6,14 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="breadcrumbs-content">
-                            <h1 class="page-title">Login</h1>
+                            <h1 class="page-title">{{ __('Login') }}</h1>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="breadcrumb-nav">
-                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> Home</a></li>
-                            <li>Login</li>
+                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> {{__('Home')}}</a>
+                            </li>
+                            <li>{{ __('Login') }}</li>
                         </ul>
                     </div>
                 </div>
@@ -30,8 +31,8 @@
                         @csrf
                         <div class="card-body">
                             <div class="title">
-                                <h3>Login Now</h3>
-                                <p>You can login using your social media account or email address.</p>
+                                <h3>{{ __('Login Now') }}</h3>
+                                <p>{{ __("You can login using your social media account or email address.") }}</p>
                             </div>
                             <div class="social-login">
                                 <div class="row">
@@ -50,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="alt-option">
-                                <span>Or</span>
+                                <span>{{ __("OR") }}</span>
                             </div>
                             <x-form.input name="{{ config('fortify.username') }}" class="input-group" label="Email"
                                           id="reg-email" autofocus/>
@@ -70,15 +71,16 @@
                                 <div class="form-check">
                                     <input type="checkbox" name="remember" value="1" class="form-check-input width-auto"
                                            id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                                    <label class="form-check-label" for="exampleCheck1">{{ __("Remember Me") }}</label>
                                 </div>
-                                <a class="lost-pass" href="{{ route('password.request') }}">Forgot password?</a>
+                                <a class="lost-pass"
+                                   href="{{ route('password.request') }}">{{ __("Forgot Password?") }}</a>
                             </div>
                             <div class="button">
-                                <button class="btn" type="submit">Login</button>
+                                <button class="btn" type="submit">{{ __('Login') }}</button>
                             </div>
-                            <p class="outer-link">Don't have an account? <a href="{{ route('register') }}">Register
-                                    here </a>
+                            <p class="outer-link">{{ __("Don't have an account?") }} <a
+                                    href="{{ route('register') }}">{{ __("Register Here") }}</a>
                             </p>
                         </div>
                     </form>

@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -97,6 +97,19 @@ return [
     */
 
     'fallback_locale' => 'en',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Currency Configuration
+    |--------------------------------------------------------------------------
+    |
+    | The application currency determines the default currency that will be used
+    | by the currency converter service provider.You are free to set this value
+    | to any of the currency codes which will be supported by the application.
+    |
+    */
+
+    'currency_code' => 'EGP',
 
     /*
     |--------------------------------------------------------------------------

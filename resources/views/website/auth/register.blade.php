@@ -6,13 +6,14 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="breadcrumbs-content">
-                            <h1 class="page-title">Register</h1>
+                            <h1 class="page-title">{{ __("Register") }}</h1>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="breadcrumb-nav">
-                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> Home</a></li>
-                            <li>Register</li>
+                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> {{ __("Home") }}</a>
+                            </li>
+                            <li>{{ __("Register") }}</li>
                         </ul>
                     </div>
                 </div>
@@ -26,35 +27,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
-                    <form class="card login-form" action="{{ route('login') }}" method="post">
+                    <form class="card login-form" action="{{ route('register') }}" method="post"
+                          enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="title">
-                                <h3>Login Now</h3>
-                                <p>You can login using your social media account or email address.</p>
+                                <h3 class="text-center">{{ __("Register Now") }}</h3>
                             </div>
-                            <div class="social-login">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-12"><a class="btn facebook-btn"
-                                                                             href="javascript:void(0)"><i
-                                                class="lni lni-facebook-filled"></i> Facebook
-                                            login</a></div>
-                                    <div class="col-lg-4 col-md-4 col-12"><a class="btn twitter-btn"
-                                                                             href="javascript:void(0)"><i
-                                                class="lni lni-twitter-original"></i> Twitter
-                                            login</a></div>
-                                    <div class="col-lg-4 col-md-4 col-12"><a class="btn google-btn"
-                                                                             href="javascript:void(0)"><i
-                                                class="lni lni-google"></i> Google login</a>
-                                    </div>
-                                </div>
+                            <x-form.input name="name" class="input-group" label="Name"
+                                          id="reg-name" autofocus/>
+                            @error('name')
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
                             </div>
-                            <div class="alt-option">
-                                <span>Or</span>
+                            @enderror
+                            <x-form.input name="username" class="input-group" label="User Name"
+                                          id="reg-username"/>
+                            @error('phone_number')
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
                             </div>
-                            <x-form.input name="{{ config('fortify.username') }}" class="input-group" label="Email"
-                                          id="reg-email" autofocus/>
-                            @error(config('fortify.username'))
+                            @enderror
+                            <x-form.input name="email" class="input-group" label="Email"
+                                          id="reg-email"/>
+                            @error('email')
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                            <x-form.input name="phone_number" class="input-group" label="Phone Number"
+                                          id="reg-phone_number"/>
+                            @error('phone_number')
                             <div class="alert alert-danger" role="alert">
                                 {{ $message }}
                             </div>
@@ -66,19 +69,21 @@
                                 {{ $message }}
                             </div>
                             @enderror
-                            <div class="d-flex flex-wrap justify-content-between bottom-content">
-                                <div class="form-check">
-                                    <input type="checkbox" name="remember" value="1" class="form-check-input width-auto"
-                                           id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                                </div>
-                                <a class="lost-pass" href="{{ route('password.request') }}">Forgot password?</a>
+                            <x-form.input name="password_confirmation" class="input-group" label="Confirm Password"
+                                          id="reg-pass"
+                                          type="password"/>
+                            <x-form.image-input name="image" class="input-group" label="Image"
+                                                id="reg-image"/>
+                            @error('image')
+                            <div class="alert alert-danger" role="alert">
+                                {{ $message }}
                             </div>
+                            @enderror
                             <div class="button">
-                                <button class="btn" type="submit">Login</button>
+                                <button class="btn" type="submit">{{ __("Register") }}</button>
                             </div>
-                            <p class="outer-link">Don't have an account? <a href="{{ route('register') }}">Register
-                                    here </a>
+                            <p class="outer-link">{{__("Already have an account?")}} <a
+                                    href="{{ route('login') }}">{{__("Login Now")}}</a>
                             </p>
                         </div>
                     </form>

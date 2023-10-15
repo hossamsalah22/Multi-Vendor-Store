@@ -36,10 +36,10 @@
             <div class="container">
                 <div class="error-content">
                     <h1>404</h1>
-                    <h2>Oops! Page Not Found!</h2>
-                    <p>The page you are looking for does not exist. It might have been moved or deleted.</p>
+                    <h2>{{ __("Oops! Page Not Found!") }}</h2>
+                    <p>{{ __("The page you are looking for does not exist. It might have been moved or deleted.") }}</p>
                     <div class="button">
-                        <a href="javascript:history.back()" class="btn">Go Back</a>
+                        <a href="javascript:history.back()" class="btn">{{ __("Go Back") }}</a>
                     </div>
                 </div>
             </div>

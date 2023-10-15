@@ -31,7 +31,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'phone_number' => ['required', 'phone_number', 'unique:' . User::class],
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-            'username' => ['required|string|max:255|unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
         ])->validate();
 
         $image = $input['image'];

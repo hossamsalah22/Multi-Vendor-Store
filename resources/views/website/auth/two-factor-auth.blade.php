@@ -6,13 +6,14 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="breadcrumbs-content">
-                            <h1 class="page-title">Two-Factor Authentication</h1>
+                            <h1 class="page-title">{{ __("Two-Factor Authentication") }}</h1>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="breadcrumb-nav">
-                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> Home</a></li>
-                            <li>Two-Factor Authentication</li>
+                            <li><a href="{{ route('website.home') }}"><i class="lni lni-home"></i> {{ __("Home") }}</a>
+                            </li>
+                            <li>{{ __("Two-Factor Authentication") }}</li>
                         </ul>
                     </div>
                 </div>
@@ -32,20 +33,20 @@
                         @csrf
                         <div class="card-body">
                             <div class="title">
-                                <h3>Two-Factor Auth</h3>
+                                <h3>{{ __("Two-Factor Authentication") }}</h3>
                             </div>
                             @if(session('status') == 'two-factor-authentication-enabled')
                                 <div class="alert alert-success">
-                                    Two factor authentication has been enabled.
+                                    {{ __("Two factor authentication has been enabled.") }}
                                 </div>
                             @elseif(session('status') == 'two-factor-authentication-disabled')
                                 <div class="alert alert-danger">
-                                    Two factor authentication has been disabled.
+                                    {{ __("Two factor authentication has been disabled.") }}
                                 </div>
                             @endif
                             <div class="button">
                                 @if(!$user->two_factor_secret)
-                                    <button class="btn" type="submit">Enable</button>
+                                    <button class="btn" type="submit">{{ __("Enable") }}</button>
                                 @else
                                     @method('delete')
                                     {{ __('You have enabled two factor authentication.') }}

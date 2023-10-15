@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\CurrencyConverter;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Validator;
@@ -18,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
         }
+
+        $this->app->bind('currency_converter', function () {
+            return new CurrencyConverter(config('services.currency_converter.api_key'));
+        });
     }
 
     /**
@@ -26,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         JsonResource::withoutWrapping();
+        
         //
         Validator::extend('phone_number', function ($attribute, $value) {
             return preg_match('/^01[0125][0-9]{8}$/', $value);

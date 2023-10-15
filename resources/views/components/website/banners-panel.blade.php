@@ -6,7 +6,7 @@
                 <h2>{{ $banner->title }}</h2>
                 <p>{{ $banner->description }}</p>
                 <div class="button">
-                    <a href="{{ route('website.products.index') }}" class="btn">View Details</a>
+                    <a href="{{ route('website.products.index') }}" class="btn">{{ __('View Details') }}</a>
                 </div>
             </div>
         </div>

@@ -8,11 +8,11 @@
 ])
 
 <div class="form-group {{ $class }}">
-    <label for="{{ $name }}">{{ $label }}:</label>
+    <label for="{{ $name }}">{{ __($label) }}:</label>
     <div class="input-group">
         <div class="custom-file">
             <input type="file" name="{{ $name }}" id="{{ $name }}" class="custom-file-input" accept="image/*">
-            <label class="custom-file-label" for="{{ $name }}">Choose file</label>
+            <label class="custom-file-label" for="{{ $name }}">{{ __('Choose file') }}</label>
         </div>
     </div>
     @if($value)
