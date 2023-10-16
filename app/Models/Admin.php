@@ -53,6 +53,11 @@ class Admin extends User implements HasMedia
         return 'username';
     }
 
+    public function isSuperAdmin(): bool
+    {
+        return $this->is_super_admin;
+    }
+
 
     ############################# Start Relations #############################
     public function store()

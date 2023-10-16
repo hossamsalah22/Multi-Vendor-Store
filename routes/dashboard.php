@@ -5,13 +5,13 @@ use App\Http\Controllers\Dashboard\BannerController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\OrdersController;
 use App\Http\Controllers\Dashboard\ProductsController;
+use App\Http\Controllers\Dashboard\RolesController;
 use App\Http\Controllers\Dashboard\SlidersController;
 use App\Http\Controllers\Dashboard\StoresController;
 use App\Http\Controllers\Dashboard\UsersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Fortify;
 
 Route::get('admin/home', function () {
     return view('dashboard');
@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin/dashboard', 'as' => 'dashboard.', 'middleware' 
     Route::put('admins/{admin}/ban', [AdminsController::class, 'ban'])->name('admins.ban');
     Route::put('admins/{admin}/restore', [AdminsController::class, 'restore'])->name('admins.restore');
     Route::resource('admins', AdminsController::class);
+    Route::resource('roles', RolesController::class);
 });
 
 

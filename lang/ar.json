@@ -262,7 +262,16 @@
     "Update Store": "تحديث المتجر",
     "List of stores": "قائمة المتاجر",
     "Store Details": "تفاصيل المتجر",
-    "List of users": "قائمة المستخدمين"
+    "List of users": "قائمة المستخدمين",
+    "Roles": "الأدوار",
+    "Role": "وظيفة",
+    "Enter Role Name": "أدخل اسم الوظيفة",
+    "List of roles": "قائمة الوظائف",
+    "Permissions": "أذونات",
+    "Allow": "السماح",
+    "Deny": "رفض",
+    "Role Details": "تفاصيل الوظيفة",
+    "Permission": "الإذن"
 }
 
 

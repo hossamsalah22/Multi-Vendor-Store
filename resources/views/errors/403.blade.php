@@ -5,7 +5,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <title>
-        {{ __("errors.not_found") }}
+        {{ __("errors.forbidden") }}
     </title>
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -37,9 +37,9 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="error-content">
-                    <h1>404</h1>
-                    <h2>{{ __("errors.not_found") }}</h2>
-                    <p>{{ __("errors.page_not_found") }}</p>
+                    <h1>403</h1>
+                    <h2>{{ __("errors.forbidden_action") }}</h2>
+                    <p>{{ __("errors.role") }}</p>
                     <div class="button">
                         <a href="javascript:history.back()" class="btn">{{ __("errors.go_back") }}</a>
                     </div>
