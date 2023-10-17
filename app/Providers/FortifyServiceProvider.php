@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\Admin\AuthenticateAdmin;
+use App\Actions\Fortify\Admin\ResetAdminPassword;
+use App\Actions\Fortify\Admin\UpdateAdminPassword;
 use App\Actions\Fortify\Admin\UpdateAdminProfileInformation;
 use App\Actions\Fortify\User\CreateNewUser;
 use App\Actions\Fortify\User\ResetUserPassword;
@@ -31,7 +33,7 @@ class FortifyServiceProvider extends ServiceProvider
             Config::set('fortify.guard', 'admin');
             Config::set('fortify.passwords', 'admins');
             Config::set('fortify.prefix', 'admin');
-            Config::set('fortify.features', array_diff(Config::get('fortify.features'), [Features::registration(), Features::resetPasswords(), Features::emailVerification(), Features::updateProfileInformation(), Features::updatePasswords(), Features::twoFactorAuthentication()]));
+            Config::set('fortify.features', array_diff(Config::get('fortify.features'), [Features::registration(), Features::twoFactorAuthentication()]));
         }
 
         $this->app->instance(LoginResponse::class, new class implements LoginResponse {
@@ -72,6 +74,8 @@ class FortifyServiceProvider extends ServiceProvider
         if (Config::get('fortify.guard') === 'admin') {
             Fortify::authenticateUsing([new AuthenticateAdmin, 'authenticate']);
             Fortify::updateUserProfileInformationUsing(UpdateAdminProfileInformation::class);
+            Fortify::updateUserPasswordsUsing(UpdateAdminPassword::class);
+            Fortify::resetUserPasswordsUsing(ResetAdminPassword::class);
             Fortify::viewPrefix('auth.');
         } else {
             Fortify::viewPrefix('website.auth.');
