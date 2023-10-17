@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
@@ -51,6 +52,15 @@ class FortifyServiceProvider extends ServiceProvider
                 return redirect()->intended(route('website.home'));
             }
         });
+
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
+            public function toResponse($request): \Illuminate\Http\RedirectResponse
+            {
+                if (\config('fortify.guard') === 'admin')
+                    return redirect('/admin/login');
+                return redirect(RouteServiceProvider::HOME);
+            }
+        });
     }
 
 
@@ -59,7 +69,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());

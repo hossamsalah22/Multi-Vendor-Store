@@ -2,6 +2,7 @@
 return [
     [
         "title" => "Sliders",
+        "name" => "sliders",
         "route" => "admin/dashboard/sliders*",
         "main_icon" => "fas fa-image",
         "show" => [
@@ -15,6 +16,7 @@ return [
     ],
     [
         "title" => "Banners",
+        "name" => "banners",
         "route" => "admin/dashboard/banners*",
         "main_icon" => "fas fa-image",
         "show" => [
@@ -28,6 +30,7 @@ return [
     ],
     [
         "title" => "Stores",
+        "name" => "stores",
         "route" => "admin/dashboard/stores*",
         "main_icon" => "fas fa-store",
         "show" => [
@@ -41,6 +44,7 @@ return [
     ],
     [
         "title" => "Categories",
+        "name" => "categories",
         "route" => "admin/dashboard/categories*",
         "main_icon" => "fas fa-list",
         "show" => [
@@ -54,6 +58,7 @@ return [
     ],
     [
         "title" => "Products",
+        "name" => "products",
         "route" => "admin/dashboard/products*",
         "main_icon" => "fas fa-box",
         "show" => [
@@ -67,6 +72,7 @@ return [
     ],
     [
         "title" => "Orders",
+        "name" => "orders",
         "route" => "admin/dashboard/orders*",
         "main_icon" => "fas fa-shopping-cart",
         "show" => [
@@ -77,6 +83,7 @@ return [
     ],
     [
         "title" => "Users",
+        "name" => "users",
         "route" => "admin/dashboard/users*",
         "main_icon" => "fas fa-users",
         "show" => [
@@ -87,6 +94,7 @@ return [
     ],
     [
         "title" => "Admins",
+        "name" => "admins",
         "route" => "admin/dashboard/admins*",
         "main_icon" => "fas fa-user-shield",
         "show" => [

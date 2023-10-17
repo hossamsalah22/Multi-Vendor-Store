@@ -14,7 +14,7 @@ class AdminsController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth:admin']);
+        $this->middleware(['auth:admin', 'role:super_admin'])->except(['index', 'show']);
     }
 
     /**
@@ -22,7 +22,10 @@ class AdminsController extends Controller
      */
     public function index()
     {
-        $admins = Admin::withTrashed()->where('id', '!=', 1)->paginate(10);
+        $admins = Admin::withTrashed()
+            ->where('id', '!=', 1)
+            ->where('id', '!=', auth()->user()->id)
+            ->paginate(10);
         return view('dashboard.admins.index', compact('admins'));
     }
 

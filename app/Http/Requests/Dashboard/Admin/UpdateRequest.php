@@ -17,7 +17,6 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => ['sometimes', 'required', 'string', 'max:255'],
-            'username' => ['sometimes', 'required', 'string', 'unique:admins,username,' . $this->admin->id, 'max:255'],
             'email' => ['sometimes', 'required', 'string', 'email', 'unique:admins,email,' . $this->admin->id, 'max:255'],
             'phone_number' => ['sometimes', 'required', 'string', 'unique:admins,phone_number,' . $this->admin->id, 'max:255'],
             'store_id' => ['nullable', 'exists:stores,id'],

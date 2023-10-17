@@ -63,7 +63,7 @@ class Admin extends User implements HasMedia, MustVerifyEmail
     {
         return $this->hasRole('super-admin');
     }
-
+    
 
     ############################# Start Relations #############################
     public function store()

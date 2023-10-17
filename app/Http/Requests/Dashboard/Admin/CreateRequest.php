@@ -17,7 +17,6 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'unique:admins,username', 'max:255'],
             'email' => ['required', 'string', 'email', 'unique:admins,email', 'max:255'],
             'phone_number' => ['required', 'string', 'phone_number', 'unique:admins,phone_number', 'max:255'],
             'store_id' => ['nullable', 'exists:stores,id'],
