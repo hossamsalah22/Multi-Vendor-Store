@@ -3,25 +3,31 @@
 namespace App\Models;
 
 use App\Observers\AdminObserver;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasRoles;
 
-class Admin extends User implements HasMedia
+class Admin extends User implements HasMedia, MustVerifyEmail
 {
-    use HasFactory, Notifiable, InteractsWithMedia, SoftDeletes, HasApiTokens;
+    use HasFactory
+        , Notifiable
+        , InteractsWithMedia
+        , SoftDeletes
+        , HasApiTokens
+        , HasRoles
+        , Sluggable;
 
     protected $fillable = [
         'name',
         'email',
-        'username',
         'phone_number',
-        'is_super_admin',
         'banned',
         'store_id',
         'password'
@@ -29,7 +35,7 @@ class Admin extends User implements HasMedia
 
     protected $hidden = [
         'password',
-        'is_super_admin',
+        'remember_token',
     ];
 
     protected $with = [
@@ -50,12 +56,12 @@ class Admin extends User implements HasMedia
 
     public function getRouteKeyName()
     {
-        return 'username';
+        return 'slug';
     }
 
     public function isSuperAdmin(): bool
     {
-        return $this->is_super_admin;
+        return $this->hasRole('super-admin');
     }
 
 
@@ -66,4 +72,13 @@ class Admin extends User implements HasMedia
     }
 
     ############################# End Relations #############################
+    public function sluggable(): array
+    {
+        // TODO: Implement sluggable() method.
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 }

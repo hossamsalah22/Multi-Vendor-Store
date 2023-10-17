@@ -40,7 +40,6 @@ Route::group(['prefix' => 'admin/dashboard', 'as' => 'dashboard.', 'middleware' 
     Route::put('admins/{admin}/ban', [AdminsController::class, 'ban'])->name('admins.ban');
     Route::put('admins/{admin}/restore', [AdminsController::class, 'restore'])->name('admins.restore');
     Route::resource('admins', AdminsController::class);
-    Route::resource('roles', RolesController::class);
 });
 
 

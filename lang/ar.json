@@ -15,6 +15,7 @@
     "Email": "عنوان البريد الإلكتروني",
     "Password": "كلمه السر",
     "Confirm Password": "تأكيد كلمة المرور",
+    "Forgot Password": "هل نسيت كلمة المرور",
     "Phone Number": "رقم الهاتف",
     "Image": "صورة",
     "User Name": "اسم المستخدم",
@@ -271,7 +272,8 @@
     "Allow": "السماح",
     "Deny": "رفض",
     "Role Details": "تفاصيل الوظيفة",
-    "Permission": "الإذن"
+    "Permission": "الإذن",
+    "Please Enter your Email": "الرجاء إدخال بريدك الإلكتروني"
 }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Fortify;
+namespace App\Actions\Fortify\Admin;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class AuthenticateAdmin
         $password = $request->post('password');
         $admin = Admin::where('email', $username)
             ->orWhere('phone_number', $username)
-            ->orWhere('username', $username)->first();
+            ->first();
         if ($admin && Hash::check($password, $admin->password))
             return $admin;
 

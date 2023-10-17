@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Actions\Fortify;
+namespace App\Actions\Fortify\User;
 
+use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
     /**
      * Validate and update the user's password.
      *
-     * @param  array<string, string>  $input
+     * @param array<string, string> $input
      */
     public function update(User $user, array $input): void
     {

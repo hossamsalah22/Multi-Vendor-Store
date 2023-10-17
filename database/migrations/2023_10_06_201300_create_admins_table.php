@@ -14,10 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string("username")->unique();
+            $table->string("slug")->unique();
             $table->string('password');
             $table->string('phone_number')->unique();
-            $table->boolean('is_super_admin')->default(0);
             $table->boolean('banned')->default(0);
             $table->foreignId('store_id')->nullable()->constrained('stores')->nullOnDelete();
             $table->softDeletes();
