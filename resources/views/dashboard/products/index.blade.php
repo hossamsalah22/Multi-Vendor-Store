@@ -59,24 +59,36 @@
                 <td>{{ $product->store->name }}</td>
                 <td>
                     @if($product->deleted_at === null)
-                        <form action="{{ route("dashboard.products.activate", $product) }}" method="POST">
-                            @csrf
-                            @method("PUT")
-                            <a href="{{ route("dashboard.products.activate", $product) }}"
-                               class="btn"
-                               onclick="event.preventDefault(); this.closest('form').submit();"
-                            >
-                                @if($product->active)
-                                    <span class="badge badge-success">
+                        @can('products.activate')
+                            <form action="{{ route("dashboard.products.activate", $product) }}" method="POST">
+                                @csrf
+                                @method("PUT")
+                                <a href="{{ route("dashboard.products.activate", $product) }}"
+                                   class="btn"
+                                   onclick="event.preventDefault(); this.closest('form').submit();"
+                                >
+                                    @if($product->active)
+                                        <span class="badge badge-success">
                                         {{ __("Active") }}
                                     </span>
-                                @else
-                                    <span class="badge badge-danger">
+                                    @else
+                                        <span class="badge badge-danger">
                                         {{ __("Inactive") }}
                                     </span>
-                                @endif
-                            </a>
-                        </form>
+                                    @endif
+                                </a>
+                            </form>
+                        @else
+                            @if($product->active)
+                                <span class="badge badge-success">
+                                        {{ __("Active") }}
+                                    </span>
+                            @else
+                                <span class="badge badge-danger">
+                                        {{ __("Inactive") }}
+                                    </span>
+                            @endif
+                        @endcan
                     @else
                         <span class="badge badge-danger">
                             {{ __("Deleted") }}
@@ -84,36 +96,46 @@
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route("dashboard.products.show", $product) }}"
-                       class="btn btn-sm btn-outline-info">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                    @if($product->deleted_at === null)
-                        <a href="{{ route("dashboard.products.edit", $product) }}"
+                    @can('products.show')
+                        <a href="{{ route("dashboard.products.show", $product) }}"
                            class="btn btn-sm btn-outline-info">
-                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-eye"></i>
                         </a>
-                        <a href="#"
-                           class="btn btn-sm btn-outline-danger"
-                           onclick="event.preventDefault(); document.getElementById('form-delete-{{ $product->id }}').submit();"
-                        ><i class="fas fa-trash"></i></a>
-                        {{--    Delete Form     --}}
-                        <form action="{{ route("dashboard.products.destroy", $product) }}" method="POST" class="hidden"
-                              id="form-delete-{{ $product->id }}">
-                            @csrf
-                            @method("DELETE")
-                        </form>
+                    @endcan
+                    @if($product->deleted_at === null)
+                        @can('products.update')
+                            <a href="{{ route("dashboard.products.edit", $product) }}"
+                               class="btn btn-sm btn-outline-info">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        @endcan
+                        @can('products.delete')
+                            <a href="#"
+                               class="btn btn-sm btn-outline-danger"
+                               onclick="event.preventDefault(); document.getElementById('form-delete-{{ $product->id }}').submit();"
+                            ><i class="fas fa-trash"></i></a>
+                            {{--    Delete Form     --}}
+                            <form action="{{ route("dashboard.products.destroy", $product) }}" method="POST"
+                                  class="hidden"
+                                  id="form-delete-{{ $product->id }}">
+                                @csrf
+                                @method("DELETE")
+                            </form>
+                        @endcan
                     @else
-                        <a href="#"
-                           class="btn btn-sm btn-outline-success"
-                           onclick="event.preventDefault(); document.getElementById('form-restore-{{ $product->id }}').submit();"
-                        ><i class="fas fa-trash-restore"></i></a>
-                        {{--    Delete Form     --}}
-                        <form action="{{ route("dashboard.products.restore", $product) }}" method="POST" class="hidden"
-                              id="form-restore-{{ $product->id }}">
-                            @csrf
-                            @method("PUT")
-                        </form>
+                        @can('products.restore')
+                            <a href="#"
+                               class="btn btn-sm btn-outline-success"
+                               onclick="event.preventDefault(); document.getElementById('form-restore-{{ $product->id }}').submit();"
+                            ><i class="fas fa-trash-restore"></i></a>
+                            {{--    Delete Form     --}}
+                            <form action="{{ route("dashboard.products.restore", $product) }}" method="POST"
+                                  class="hidden"
+                                  id="form-restore-{{ $product->id }}">
+                                @csrf
+                                @method("PUT")
+                            </form>
+                        @endcan
                     @endif
                 </td>
             </tr>

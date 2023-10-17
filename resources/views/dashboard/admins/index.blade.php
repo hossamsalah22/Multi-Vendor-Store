@@ -42,55 +42,71 @@
                 <td><img src="{{ $admin->image }}" alt="{{ $admin->username }}"
                          style="max-width: 100%; max-height: 50px;"></td>
                 <td>
-                    <form action="{{ route("dashboard.admins.ban", $admin) }}" method="POST">
-                        @csrf
-                        @method("PUT")
-                        <a href="{{ route("dashboard.admins.ban", $admin) }}"
-                           class="btn"
-                           onclick="event.preventDefault(); this.closest('form').submit();"
-                        >
-                            @if($admin->banned)
-                                <span class="badge badge-danger">{{ __("Banned") }}</span>
-                            @else
-                                <span class="badge badge-success">{{ __("Unbanned") }}</span>
-                            @endif
-                        </a>
-                    </form>
-                </td>
-                <td>
-                    <a href="{{ route("dashboard.admins.show", $admin) }}"
-                       class="btn btn-sm btn-outline-info">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                    @if($admin->deleted_at === null)
-                        <a href="{{ route("dashboard.admins.edit", $admin) }}"
-                           class="btn btn-sm btn-outline-info">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a href="#"
-                           class="btn btn-sm btn-outline-danger"
-                           onclick="event.preventDefault(); document.getElementById('form-delete-{{ $admin->id }}').submit();"
-                        ><i class="fas fa-trash-alt"></i></a>
-                        {{--    Delete Form     --}}
-                        <form action="{{ route("dashboard.admins.destroy", $admin) }}" method="POST"
-                              class="hidden"
-                              id="form-delete-{{ $admin->id }}">
-                            @csrf
-                            @method("DELETE")
-                        </form>
-
-                    @else
-                        <a href="{{ route("dashboard.admins.restore", $admin) }}"
-                           class="btn btn-sm btn-outline-success"
-                           onclick="event.preventDefault(); document.getElementById('form-restore-{{ $admin->id }}').submit();"
-                        ><i class="fas fa-trash-restore"></i></a>
-                        {{--    Restore Form     --}}
-                        <form action="{{ route("dashboard.admins.restore", $admin) }}" method="POST"
-                              class="hidden"
-                              id="form-restore-{{ $admin->id }}">
+                    @can('admins.ban')
+                        <form action="{{ route("dashboard.admins.ban", $admin) }}" method="POST">
                             @csrf
                             @method("PUT")
+                            <a href="{{ route("dashboard.admins.ban", $admin) }}"
+                               class="btn"
+                               onclick="event.preventDefault(); this.closest('form').submit();"
+                            >
+                                @if($admin->banned)
+                                    <span class="badge badge-danger">{{ __("Banned") }}</span>
+                                @else
+                                    <span class="badge badge-success">{{ __("Unbanned") }}</span>
+                                @endif
+                            </a>
                         </form>
+                    @else
+                        @if($admin->banned)
+                            <span class="badge badge-danger">{{ __("Banned") }}</span>
+                        @else
+                            <span class="badge badge-success">{{ __("Unbanned") }}</span>
+                        @endif
+                    @endcan
+                </td>
+                <td>
+                    @can('admins.show')
+                        <a href="{{ route("dashboard.admins.show", $admin) }}"
+                           class="btn btn-sm btn-outline-info">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                    @endcan
+                    @if($admin->deleted_at === null)
+                        @can('admins.update')
+                            <a href="{{ route("dashboard.admins.edit", $admin) }}"
+                               class="btn btn-sm btn-outline-info">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        @endcan
+                        @can('admins.delete')
+                            <a href="#"
+                               class="btn btn-sm btn-outline-danger"
+                               onclick="event.preventDefault(); document.getElementById('form-delete-{{ $admin->id }}').submit();"
+                            ><i class="fas fa-trash-alt"></i></a>
+                            {{--    Delete Form     --}}
+                            <form action="{{ route("dashboard.admins.destroy", $admin) }}" method="POST"
+                                  class="hidden"
+                                  id="form-delete-{{ $admin->id }}">
+                                @csrf
+                                @method("DELETE")
+                            </form>
+                        @endcan
+                    @else
+                        {{--    Restore Button     --}}
+                        @can('admins.restore')
+                            <a href="{{ route("dashboard.admins.restore", $admin) }}"
+                               class="btn btn-sm btn-outline-success"
+                               onclick="event.preventDefault(); document.getElementById('form-restore-{{ $admin->id }}').submit();"
+                            ><i class="fas fa-trash-restore"></i></a>
+                            {{--    Restore Form     --}}
+                            <form action="{{ route("dashboard.admins.restore", $admin) }}" method="POST"
+                                  class="hidden"
+                                  id="form-restore-{{ $admin->id }}">
+                                @csrf
+                                @method("PUT")
+                            </form>
+                        @endcan
                     @endif
 
                 </td>

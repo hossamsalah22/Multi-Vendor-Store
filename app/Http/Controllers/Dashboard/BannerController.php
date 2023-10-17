@@ -13,6 +13,13 @@ class BannerController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:admin']);
+        $this->middleware('permission:banners.index')->only('index');
+        $this->middleware('permission:banners.show')->only('show');
+        $this->middleware('permission:banners.create')->only(['create', 'store']);
+        $this->middleware('permission:banners.update')->only(['edit', 'update']);
+        $this->middleware('permission:banners.delete')->only('destroy');
+        $this->middleware('permission:banners.activate')->only('activate');
+        $this->middleware('permission:banners.restore')->only('restore');
     }
 
     /**

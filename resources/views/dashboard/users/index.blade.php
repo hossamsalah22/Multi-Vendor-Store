@@ -50,30 +50,44 @@
                 <td><img src="{{ $user->image }}" alt="{{ $user->name }}"
                          style="max-width: 100%; max-height: 50px;"></td>
                 <td>
-                    <form action="{{ route("dashboard.users.ban", $user) }}" method="POST">
-                        @csrf
-                        @method("PUT")
-                        <a href="{{ route("dashboard.users.ban", $user) }}"
-                           class="btn"
-                           onclick="event.preventDefault(); this.closest('form').submit();"
-                        >
-                            @if($user->banned)
-                                <span class="badge badge-danger">
+                    @can('users.ban')
+                        <form action="{{ route("dashboard.users.ban", $user) }}" method="POST">
+                            @csrf
+                            @method("PUT")
+                            <a href="{{ route("dashboard.users.ban", $user) }}"
+                               class="btn"
+                               onclick="event.preventDefault(); this.closest('form').submit();"
+                            >
+                                @if($user->banned)
+                                    <span class="badge badge-danger">
                                     {{ __("Banned") }}
                                 </span>
-                            @else
-                                <span class="badge badge-success">
+                                @else
+                                    <span class="badge badge-success">
                                     {{ __("Unbanned") }}
                                 </span>
-                            @endif
-                        </a>
-                    </form>
+                                @endif
+                            </a>
+                        </form>
+                    @else
+                        @if($user->banned)
+                            <span class="badge badge-danger">
+                                    {{ __("Banned") }}
+                                </span>
+                        @else
+                            <span class="badge badge-success">
+                                    {{ __("Unbanned") }}
+                                </span>
+                        @endif
+                    @endcan
                 </td>
                 <td>
-                    <a href="{{ route("dashboard.users.show", $user) }}"
-                       class="btn btn-sm btn-outline-info">
-                        <i class="fas fa-eye"></i>
-                    </a>
+                    @can('users.show')
+                        <a href="{{ route("dashboard.users.show", $user) }}"
+                           class="btn btn-sm btn-outline-info">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                    @endcan
                 </td>
             </tr>
         @empty

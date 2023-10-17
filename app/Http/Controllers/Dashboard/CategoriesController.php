@@ -13,6 +13,13 @@ class CategoriesController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:admin']);
+        $this->middleware('permission:categories.index')->only('index');
+        $this->middleware('permission:categories.show')->only('show');
+        $this->middleware('permission:categories.create')->only(['create', 'store']);
+        $this->middleware('permission:categories.update')->only(['edit', 'update']);
+        $this->middleware('permission:categories.delete')->only('destroy');
+        $this->middleware('permission:categories.activate')->only('activate');
+        $this->middleware('permission:categories.restore')->only('restore');
     }
 
     /**

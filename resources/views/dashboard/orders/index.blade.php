@@ -56,10 +56,12 @@
                         <span class="badge badge-success">{{ $order->status }}</span>
                     @endif</td>
                 <td>
-                    <a href="{{ route("dashboard.orders.show", $order) }}"
-                       class="btn btn-sm btn-outline-info">
-                        <i class="fas fa-eye"></i>
-                    </a>
+                    @can('orders.show')
+                        <a href="{{ route("dashboard.orders.show", $order) }}"
+                           class="btn btn-sm btn-outline-info">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                    @endcan
                 </td>
             </tr>
         @empty

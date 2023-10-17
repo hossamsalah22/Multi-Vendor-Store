@@ -45,58 +45,74 @@
                          style="max-width: 100%; max-height: 50px;"></td>
                 <td>
                     @if($banner->deleted_at === null)
-                        <form action="{{ route("dashboard.banners.activate", $banner) }}" method="POST">
-                            @csrf
-                            @method("PUT")
-                            <a href="{{ route("dashboard.banners.activate", $banner) }}"
-                               class="btn"
-                               onclick="event.preventDefault(); this.closest('form').submit();"
-                            >
-                                @if($banner->active)
-                                    <span class="badge badge-success">{{ __("Active") }}</span>
-                                @else
-                                    <span class="badge badge-danger">{{ __("Inactive") }}</span>
-                                @endif
-                            </a>
-                        </form>
+                        @can('banners.activate')
+                            <form action="{{ route("dashboard.banners.activate", $banner) }}" method="POST">
+                                @csrf
+                                @method("PUT")
+                                <a href="{{ route("dashboard.banners.activate", $banner) }}"
+                                   class="btn"
+                                   onclick="event.preventDefault(); this.closest('form').submit();"
+                                >
+                                    @if($banner->active)
+                                        <span class="badge badge-success">{{ __("Active") }}</span>
+                                    @else
+                                        <span class="badge badge-danger">{{ __("Inactive") }}</span>
+                                    @endif
+                                </a>
+                            </form>
+                        @else
+                            @if($banner->active)
+                                <span class="badge badge-success">{{ __("Active") }}</span>
+                            @else
+                                <span class="badge badge-danger">{{ __("Inactive") }}</span>
+                            @endif
+                        @endcan
                     @else
                         <span class="badge badge-danger">{{ __("Deleted") }}</span>
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route("dashboard.banners.show", $banner) }}"
-                       class="btn btn-sm btn-outline-info">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                    @if($banner->deleted_at === null)
-                        <a href="{{ route("dashboard.banners.edit", $banner) }}"
+                    @can('banners.show')
+                        <a href="{{ route("dashboard.banners.show", $banner) }}"
                            class="btn btn-sm btn-outline-info">
-                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-eye"></i>
                         </a>
-                        <a href="#"
-                           class="btn btn-sm btn-outline-danger"
-                           onclick="event.preventDefault(); document.getElementById('form-delete-{{ $banner->id }}').submit();"
-                        ><i class="fas fa-trash-alt"></i></a>
-                        {{--    Delete Form     --}}
-                        <form action="{{ route("dashboard.banners.destroy", $banner) }}" method="POST"
-                              class="hidden"
-                              id="form-delete-{{ $banner->id }}">
-                            @csrf
-                            @method("DELETE")
-                        </form>
-
+                    @endcan
+                    @if($banner->deleted_at === null)
+                        @can('banners.update')
+                            <a href="{{ route("dashboard.banners.edit", $banner) }}"
+                               class="btn btn-sm btn-outline-info">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        @endcan
+                        @can('banners.delete')
+                            <a href="#"
+                               class="btn btn-sm btn-outline-danger"
+                               onclick="event.preventDefault(); document.getElementById('form-delete-{{ $banner->id }}').submit();"
+                            ><i class="fas fa-trash-alt"></i></a>
+                            {{--    Delete Form     --}}
+                            <form action="{{ route("dashboard.banners.destroy", $banner) }}" method="POST"
+                                  class="hidden"
+                                  id="form-delete-{{ $banner->id }}">
+                                @csrf
+                                @method("DELETE")
+                            </form>
+                        @endcan
                     @else
-                        <a href="{{ route("dashboard.banners.restore", $banner) }}"
-                           class="btn btn-sm btn-outline-success"
-                           onclick="event.preventDefault(); document.getElementById('form-restore-{{ $banner->id }}').submit();"
-                        ><i class="fas fa-trash-restore"></i></a>
-                        {{--    Restore Form     --}}
-                        <form action="{{ route("dashboard.banners.restore", $banner) }}" method="POST"
-                              class="hidden"
-                              id="form-restore-{{ $banner->id }}">
-                            @csrf
-                            @method("PUT")
-                        </form>
+                        {{--    Restore Button     --}}
+                        @can('banners.restore')
+                            <a href="{{ route("dashboard.banners.restore", $banner) }}"
+                               class="btn btn-sm btn-outline-success"
+                               onclick="event.preventDefault(); document.getElementById('form-restore-{{ $banner->id }}').submit();"
+                            ><i class="fas fa-trash-restore"></i></a>
+                            {{--    Restore Form     --}}
+                            <form action="{{ route("dashboard.banners.restore", $banner) }}" method="POST"
+                                  class="hidden"
+                                  id="form-restore-{{ $banner->id }}">
+                                @csrf
+                                @method("PUT")
+                            </form>
+                        @endcan
                     @endif
 
                 </td>

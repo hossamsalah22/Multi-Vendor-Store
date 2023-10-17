@@ -38,7 +38,8 @@ Route::group(['prefix' => 'admin/dashboard', 'as' => 'dashboard.', 'middleware' 
         'products' => ProductsController::class,
         'sliders' => SlidersController::class,
         'banners' => BannerController::class,
-        'admins' => AdminsController::class
+        'admins' => AdminsController::class,
+        'roles' => RolesController::class,
     ]);
     Route::resource('orders', OrdersController::class)->only(['index', 'show', 'destroy']);
     Route::resource('users', UsersController::class)->only(['index', 'show']);

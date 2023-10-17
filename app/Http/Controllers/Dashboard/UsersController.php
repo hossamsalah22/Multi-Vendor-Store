@@ -11,7 +11,10 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['auth:admin']);
+        $this->middleware('permission:users.index')->only('index');
+        $this->middleware('permission:users.show')->only('show');
+        $this->middleware('permission:users.ban')->only('ban');
     }
 
     /**

@@ -11,6 +11,9 @@ class OrdersController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:admin']);
+        $this->middleware('permission:orders.index')->only('index');
+        $this->middleware('permission:orders.show')->only('show');
+        $this->middleware('permission:orders.delete')->only('destroy');
     }
 
     /**

@@ -10,6 +10,18 @@ use Illuminate\Http\Request;
 
 class SlidersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:admin']);
+        $this->middleware('permission:sliders.index')->only('index');
+        $this->middleware('permission:sliders.show')->only('show');
+        $this->middleware('permission:sliders.create')->only(['create', 'store']);
+        $this->middleware('permission:sliders.update')->only(['edit', 'update']);
+        $this->middleware('permission:sliders.delete')->only('destroy');
+        $this->middleware('permission:sliders.activate')->only('activate');
+        $this->middleware('permission:sliders.restore')->only('restore');
+    }
+
     /**
      * Display a listing of the resource.
      */

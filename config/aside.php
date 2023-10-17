@@ -105,5 +105,19 @@ return [
             'route' => 'dashboard.admins.create',
             'active' => 'admin/dashboard/admins/create',
         ],
+    ],
+    [
+        "title" => "Roles",
+        "name" => "roles",
+        "route" => "admin/dashboard/roles*",
+        "main_icon" => "fas fa-user-shield",
+        "show" => [
+            'route' => 'dashboard.roles.index',
+            'active' => 'admin/dashboard/roles',
+        ],
+        "create" => [
+            'route' => 'dashboard.roles.create',
+            'active' => 'admin/dashboard/roles/create',
+        ],
     ]
 ];

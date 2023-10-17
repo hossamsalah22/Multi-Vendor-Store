@@ -55,24 +55,36 @@
                 <td>{{ $category->products_count }}</td>
                 <td>
                     @if($category->deleted_at === null)
-                        <form action="{{ route("dashboard.categories.activate", $category) }}" method="POST">
-                            @csrf
-                            @method("PUT")
-                            <a href="{{ route("dashboard.categories.activate", $category) }}"
-                               class="btn"
-                               onclick="event.preventDefault(); this.closest('form').submit();"
-                            >
-                                @if($category->active)
-                                    <span class="badge badge-success">
+                        @can('categories.activate')
+                            <form action="{{ route("dashboard.categories.activate", $category) }}" method="POST">
+                                @csrf
+                                @method("PUT")
+                                <a href="{{ route("dashboard.categories.activate", $category) }}"
+                                   class="btn"
+                                   onclick="event.preventDefault(); this.closest('form').submit();"
+                                >
+                                    @if($category->active)
+                                        <span class="badge badge-success">
                                         {{ __("Active") }}
                                     </span>
-                                @else
-                                    <span class="badge badge-danger">
+                                    @else
+                                        <span class="badge badge-danger">
                                         {{ __("Inactive") }}
                                     </span>
-                                @endif
-                            </a>
-                        </form>
+                                    @endif
+                                </a>
+                            </form>
+                        @else
+                            @if($category->active)
+                                <span class="badge badge-success">
+                                    {{ __("Active") }}
+                                </span>
+                            @else
+                                <span class="badge badge-danger">
+                                    {{ __("Inactive") }}
+                                </span>
+                            @endif
+                        @endcan
                     @else
                         <span class="badge badge-danger">
                             {{ __("Deleted") }}
@@ -80,39 +92,47 @@
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route("dashboard.categories.show", $category) }}"
-                       class="btn btn-sm btn-outline-info">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                    @if($category->deleted_at === null)
-                        <a href="{{ route("dashboard.categories.edit", $category) }}"
+                    @can('categories.show')
+                        <a href="{{ route("dashboard.categories.show", $category) }}"
                            class="btn btn-sm btn-outline-info">
-                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-eye"></i>
                         </a>
-                        <a href="#"
-                           class="btn btn-sm btn-outline-danger"
-                           onclick="event.preventDefault(); document.getElementById('form-delete-{{ $category->id }}').submit();"
-                        ><i class="fas fa-trash-alt"></i></a>
-                        {{--    Delete Form     --}}
-                        <form action="{{ route("dashboard.categories.destroy", $category) }}" method="POST"
-                              class="hidden"
-                              id="form-delete-{{ $category->id }}">
-                            @csrf
-                            @method("DELETE")
-                        </form>
-
+                    @endcan
+                    @if($category->deleted_at === null)
+                        @can('categories.update')
+                            <a href="{{ route("dashboard.categories.edit", $category) }}"
+                               class="btn btn-sm btn-outline-info">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        @endcan
+                        @can('categories.delete')
+                            <a href="#"
+                               class="btn btn-sm btn-outline-danger"
+                               onclick="event.preventDefault(); document.getElementById('form-delete-{{ $category->id }}').submit();"
+                            ><i class="fas fa-trash-alt"></i></a>
+                            {{--    Delete Form     --}}
+                            <form action="{{ route("dashboard.categories.destroy", $category) }}" method="POST"
+                                  class="hidden"
+                                  id="form-delete-{{ $category->id }}">
+                                @csrf
+                                @method("DELETE")
+                            </form>
+                        @endcan
                     @else
-                        <a href="{{ route("dashboard.categories.restore", $category) }}"
-                           class="btn btn-sm btn-outline-success"
-                           onclick="event.preventDefault(); document.getElementById('form-restore-{{ $category->id }}').submit();"
-                        ><i class="fas fa-trash-restore"></i></a>
-                        {{--    Restore Form     --}}
-                        <form action="{{ route("dashboard.categories.restore", $category) }}" method="POST"
-                              class="hidden"
-                              id="form-restore-{{ $category->id }}">
-                            @csrf
-                            @method("PUT")
-                        </form>
+                        {{--    Restore Button     --}}
+                        @can('categories.restore')
+                            <a href="{{ route("dashboard.categories.restore", $category) }}"
+                               class="btn btn-sm btn-outline-success"
+                               onclick="event.preventDefault(); document.getElementById('form-restore-{{ $category->id }}').submit();"
+                            ><i class="fas fa-trash-restore"></i></a>
+                            {{--    Restore Form     --}}
+                            <form action="{{ route("dashboard.categories.restore", $category) }}" method="POST"
+                                  class="hidden"
+                                  id="form-restore-{{ $category->id }}">
+                                @csrf
+                                @method("PUT")
+                            </form>
+                        @endcan
                     @endif
 
                 </td>
