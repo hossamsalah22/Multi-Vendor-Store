@@ -5,7 +5,7 @@
                 <h1 class="m-0">@yield("title")</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
+                <ol class="breadcrumb float-sm-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }}">
                     @section("breadcrumbs")
                         <li class="breadcrumb-item"><a
                                 href="{{ route("dashboard.dashboard") }}">{{ __("Dashboard") }}</a></li>

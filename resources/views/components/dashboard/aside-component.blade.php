@@ -8,7 +8,7 @@
                         <i class="{{ $item['main_icon'] }}"></i>
                         <p>
                             {{ __($item['title']) }}
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -42,7 +42,7 @@
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                     Simple Link
-                    <span class="right badge badge-danger">New</span>
+                    <span class="{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} badge badge-danger">New</span>
                 </p>
             </a>
         </li>

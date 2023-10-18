@@ -16,6 +16,6 @@
             <i class="{{ $icon }}"></i>
         </div>
         <a href={{ $route }} class="small-box-footer">{{ __("More info") }} <i
-                class="fas fa-arrow-circle-right"></i></a>
+                class="fas fa-arrow-circle-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }}"></i></a>
     </div>
 </div>

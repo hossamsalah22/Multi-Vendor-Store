@@ -4,7 +4,7 @@
         <span id="notification-count" class="badge badge-warning navbar-badge">{{$count}}</span>
     @endif
 </a>
-<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+<div class="dropdown-menu dropdown-menu-lg dropdown-menu-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }}">
     <span id="notification-count-dropdown" class="dropdown-header">{{$count}} {{ __("Notifications") }}</span>
     <div class="dropdown-divider"></div>
     <div id="notification-list">
@@ -13,7 +13,7 @@
                class="dropdown-item {{ $notification->read() ? "" : "text-bold" }}">
                 <i class="{{$notification->read() ? "fas fa-envelope-open" : $notification->data['icon'] }} mr-2"></i> {{$notification->data['body']}}
                 <span
-                    class="float-right text-muted text-sm">{{$notification->created_at->shortAbsoluteDiffForHumans()}}</span>
+                    class="float-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-muted text-sm">{{$notification->created_at->shortAbsoluteDiffForHumans()}}</span>
             </a>
         @endforeach
     </div>

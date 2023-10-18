@@ -9,7 +9,7 @@
         </li>
     </ul>
 
-    <!-- Right navbar links -->
+    <!--Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
         <li class="nav-item">
@@ -40,7 +40,8 @@
                 <i class="far fa-comments"></i>
                 <span class="badge badge-danger navbar-badge">100</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <div
+                class="dropdown-menu dropdown-menu-lg dropdown-menu-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }}">
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
@@ -49,7 +50,9 @@
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 Brad Diesel
-                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                <span
+                                    class="float-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }} text-sm text-danger"><i
+                                        class="fas fa-star"></i></span>
                             </h3>
                             <p class="text-sm">Call me whenever you can...</p>
                             <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
@@ -84,7 +87,8 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ __("Language") }}
                 </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
+                <div class="dropdown-menu dropdown-menu-{{ app()->getLocale() == 'ar' ? 'left' : 'right' }}"
+                     aria-labelledby="languageDropdown">
                     <ul class="list-unstyled">
                         <li>
                             <a href="{{ route("change-language", "en") }}"

@@ -220,6 +220,7 @@ return [
         "postal_code" => "الرمز البريدي",
         "username" => "اسم المستخدم",
         "title" => "العنوان",
+        "current_password" => "كلمة السر الحالية"
     ],
 
 ];
