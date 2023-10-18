@@ -28,6 +28,13 @@ class Banner extends Model implements HasMedia
 
     protected $appends = ['image'];
 
+    public static function booted()
+    {
+        static::created(function ($banner) {
+            $banner->addMediaFromRequest('image')->toMediaCollection('banners');
+        });
+    }
+
     public function getImageAttribute()
     {
         return $this->getFirstMediaUrl('banners');
@@ -40,7 +47,6 @@ class Banner extends Model implements HasMedia
 
     public function sluggable(): array
     {
-        // TODO: Implement sluggable() method.
         return [
             'slug' => [
                 'source' => 'title'

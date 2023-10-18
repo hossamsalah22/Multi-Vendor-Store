@@ -45,9 +45,7 @@ class SlidersController extends Controller
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $image = $validate['image'];
         $slider = Slider::create($validate);
-        $image && $slider->addMedia($image)->toMediaCollection('sliders');
         return redirect()->route('dashboard.sliders.index')->with('success', __('messages.created_successfully'));
     }
 

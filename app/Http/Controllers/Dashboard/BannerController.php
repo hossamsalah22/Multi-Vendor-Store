@@ -45,9 +45,7 @@ class BannerController extends Controller
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $image = $request->file('image');
         $banner = Banner::create($validate);
-        $banner->addMedia($image)->toMediaCollection('banners');
         return redirect()->route('dashboard.banners.index')->with('success', __('messages.created_successfully'));
     }
 

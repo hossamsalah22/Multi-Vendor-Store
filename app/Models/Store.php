@@ -17,6 +17,13 @@ class Store extends Model implements HasMedia
     protected $with = ['media'];
     protected $appends = ['image'];
 
+    public static function booted(): void
+    {
+        static::created(function ($store) {
+            $store->addMediaFromRequest('image')->toMediaCollection('stores');
+        });
+    }
+
     ############################# Start Attributes #############################
 
     public function getImageAttribute(): string

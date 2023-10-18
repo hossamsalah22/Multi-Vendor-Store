@@ -18,6 +18,13 @@ class Category extends Model implements HasMedia
     protected $with = ['media'];
     protected $appends = ['image'];
 
+    public static function booted(): void
+    {
+        static::created(function ($category) {
+            $category->addMediaFromRequest('image')->toMediaCollection('categories');
+        });
+    }
+
     ############################# Start Attributes #############################
 
     public function getImageAttribute()

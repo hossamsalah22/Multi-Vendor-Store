@@ -53,10 +53,8 @@ class AdminsController extends Controller
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $image = $request->file('image');
         $admin = Admin::create($validate);
         $admin->assignRole($request->role_id);
-        $image && $admin->addMedia($image)->toMediaCollection('admins');
         return redirect()->route('dashboard.admins.index')->with('success', __('messages.created_successfully'));
     }
 

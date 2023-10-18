@@ -29,6 +29,13 @@ class Slider extends Model implements HasMedia
 
     protected $appends = ['image'];
 
+    public static function booted(): void
+    {
+        static::created(function ($slider) {
+            $slider->addMediaFromRequest('image')->toMediaCollection('sliders');
+        });
+    }
+
     public function getImageAttribute()
     {
         return $this->getFirstMediaUrl('sliders');

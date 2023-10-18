@@ -18,6 +18,13 @@ class Product extends Model implements HasMedia
     protected $with = ['media'];
     protected $appends = ['image'];
 
+    public static function booted(): void
+    {
+        static::created(function ($product) {
+            $product->addMediaFromRequest('image')->toMediaCollection('products');
+        });
+    }
+
     ############################# Start Attributes #############################
 
     public function getImageAttribute(): string

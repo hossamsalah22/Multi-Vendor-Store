@@ -46,9 +46,7 @@ class CategoriesController extends Controller
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $image = $request->file('image');
         $category = Category::create($validate);
-        $image && $category->addMedia($image)->toMediaCollection('categories');
         return redirect()->route('dashboard.categories.index')->with('success', __('messages.created_successfully'));
     }
 

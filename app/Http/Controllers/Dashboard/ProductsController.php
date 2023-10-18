@@ -50,9 +50,7 @@ class ProductsController extends Controller
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $image = $request->file('image');
         $product = Product::create($validate);
-        $image && $product->addMedia($image)->toMediaCollection('products');
         return redirect()->route('dashboard.products.index')->with('success', __('messages.created_successfully'));
     }
 

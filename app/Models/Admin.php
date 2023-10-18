@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -46,7 +47,12 @@ class Admin extends User implements HasMedia, MustVerifyEmail
 
     public static function booted()
     {
-        static::observe(AdminObserver::class);
+        static::creating(function ($admin) {
+            $admin->password = Hash::make('password');
+        });
+        static::created(function ($admin) {
+            $admin->addMediaFromRequest('image')->toMediaCollection('admins');
+        });
     }
 
     public function getImageAttribute(): string
@@ -63,7 +69,7 @@ class Admin extends User implements HasMedia, MustVerifyEmail
     {
         return $this->hasRole('super-admin');
     }
-    
+
 
     ############################# Start Relations #############################
     public function store()

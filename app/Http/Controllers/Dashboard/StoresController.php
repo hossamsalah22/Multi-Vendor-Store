@@ -45,9 +45,7 @@ class StoresController extends Controller
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $image = $request->file('image');
         $store = Store::create($validate);
-        $image && $store->addMedia($image)->toMediaCollection('stores');
         return redirect()->route('dashboard.stores.index')->with('success', __('messages.created_successfully'));
     }
 
