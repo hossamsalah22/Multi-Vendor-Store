@@ -11,11 +11,6 @@
 @endsection
 
 @section("content")
-    @if(session()->has("success"))
-        <div class="alert alert-success mb-4">
-            {{ session()->get("success") }}
-        </div>
-    @endif
 
     <table class="table table-bordered text-center">
         <caption class="text-center">
@@ -56,24 +51,25 @@
                 <td>
                     @if($store->deleted_at === null)
                         @can('stores.activate')
-                            <form action="{{ route("dashboard.stores.activate", $store) }}" method="POST">
-                                @csrf
-                                @method("PUT")
-                                <a href="{{ route("dashboard.stores.activate", $store) }}"
-                                   class="btn"
-                                   onclick="event.preventDefault(); this.closest('form').submit();"
-                                >
-                                    @if($store->active)
-                                        <span class="badge badge-success">
+                            <a href="{{ route("dashboard.stores.activate", $store) }}"
+                               class="btn"
+                               onclick="confirmAction({{$store->id}}, 'activate', {{ $store->active ? "'Deactivate'" : "'Activate'"  }})"
+                            >
+                                @if($store->active)
+                                    <span class="badge badge-success">
                                         {{ __("Active") }}
                                     </span>
-                                    @else
-                                        <span class="badge badge-danger">
+                                @else
+                                    <span class="badge badge-danger">
                                         {{ __("Inactive") }}
                                     </span>
-                                    @endif
-                                </a>
-                            </form>
+                                @endif
+                            </a>
+                            <x-form.form-input
+                                :model="$store"
+                                method="PUT"
+                                action="activate"
+                                name="stores"/>
                         @else
                             @if($store->active)
                                 <span class="badge badge-success">
@@ -109,28 +105,21 @@
                             {{--    Delete Button    --}}
                             <a href="#"
                                class="btn btn-sm btn-outline-danger"
-                               onclick="event.preventDefault(); document.getElementById('form-delete-{{ $store->id }}').submit();"
+                               onclick="confirmAction({{$store->id}}, 'destroy', 'Delete')"
                             ><i class="fas fa-trash"></i></a>
                             {{--    Delete Form     --}}
-                            <form action="{{ route("dashboard.stores.destroy", $store) }}" method="POST" class="hidden"
-                                  id="form-delete-{{ $store->id }}">
-                                @csrf
-                                @method("DELETE")
-                            </form>
+                            <x-form.form-input :model="$store" method="DELETE" action="destroy" name="stores"/>
                         @endcan
                     @else
                         {{--    Restore Button    --}}
                         @can('stores.restore')
                             <a href="{{ route("dashboard.stores.restore", $store) }}"
                                class="btn btn-sm btn-outline-success"
-                               onclick="event.preventDefault(); document.getElementById('form-restore-{{ $store->id }}').submit();">
+                               onclick="confirmAction({{$store->id}}, 'restore', 'Restore')">
                                 <i class="fas fa-trash-restore"></i>
                             </a>
-                            <form action="{{ route("dashboard.stores.restore", $store) }}" method="POST" class="hidden"
-                                  id="form-restore-{{ $store->id }}">
-                                @csrf
-                                @method("PUT")
-                            </form>
+                            {{--    Restore Form     --}}
+                            <x-form.form-input :model="$store" method="PUT" action="restore" name="stores"/>
                         @endcan
                     @endif
                 </td>

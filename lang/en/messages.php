@@ -32,5 +32,4 @@ return [
     'you_are_not_authorized_to_this_order' => 'You Are Not Authorized To This Order',
     'you_are_not_authorized_to_this_order_action' => 'You Are Not Authorized To This Order Action',
     'you_are_not_authorized_to_this_order_page' => 'You Are Not Authorized To This Order Page',
-
 ];

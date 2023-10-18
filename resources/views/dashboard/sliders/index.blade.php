@@ -11,11 +11,6 @@
 @endsection
 
 @section("content")
-    @if(session()->has("success"))
-        <div class="alert alert-success mb-4">
-            {{ session()->get("success") }}
-        </div>
-    @endif
 
     <table class="table table-bordered text-center">
         <caption class="text-center">
@@ -52,24 +47,25 @@
                 <td>
                     @if($slider->deleted_at === null)
                         @can('sliders.activate')
-                            <form action="{{ route("dashboard.sliders.activate", $slider) }}" method="POST">
-                                @csrf
-                                @method("PUT")
-                                <a href="{{ route("dashboard.sliders.activate", $slider) }}"
-                                   class="btn"
-                                   onclick="event.preventDefault(); this.closest('form').submit();"
-                                >
-                                    @if($slider->active)
-                                        <span class="badge badge-success">
+                            <a href="{{ route("dashboard.sliders.activate", $slider) }}"
+                               class="btn"
+                               onclick="confirmAction({{$slider->id}}, 'activate', {{ $slider->active ? "'Deactivate'" : "'Activate'"  }})"
+                            >
+                                @if($slider->active)
+                                    <span class="badge badge-success">
                                         {{ __("Active") }}
                                     </span>
-                                    @else
-                                        <span class="badge badge-danger">
+                                @else
+                                    <span class="badge badge-danger">
                                         {{ __("Inactive") }}
                                     </span>
-                                    @endif
-                                </a>
-                            </form>
+                                @endif
+                            </a>
+                            <x-form.form-input
+                                :model="$slider"
+                                method="PUT"
+                                action="activate"
+                                name="sliders"/>
                         @else
                             @if($slider->active)
                                 <span class="badge badge-success">
@@ -104,29 +100,19 @@
                         @can('sliders.delete')
                             <a href="#"
                                class="btn btn-sm btn-outline-danger"
-                               onclick="event.preventDefault(); document.getElementById('form-delete-{{ $slider->id }}').submit();"
+                               onclick="confirmAction({{$slider->id}}, 'destroy', 'Delete')"
                             ><i class="fas fa-trash-alt"></i></a>
                             {{--    Delete Form     --}}
-                            <form action="{{ route("dashboard.sliders.destroy", $slider) }}" method="POST"
-                                  class="hidden"
-                                  id="form-delete-{{ $slider->id }}">
-                                @csrf
-                                @method("DELETE")
-                            </form>
+                            <x-form.form-input :model="$slider" method="DELETE" action="destroy" name="sliders"/>
                         @endcan
                     @else
                         @can('sliders.restore')
                             <a href="{{ route("dashboard.sliders.restore", $slider) }}"
                                class="btn btn-sm btn-outline-success"
-                               onclick="event.preventDefault(); document.getElementById('form-restore-{{ $slider->id }}').submit();"
+                               onclick="confirmAction({{$slider->id}}, 'restore', 'Restore')"
                             ><i class="fas fa-trash-restore"></i></a>
                             {{--    Restore Form     --}}
-                            <form action="{{ route("dashboard.sliders.restore", $slider) }}" method="POST"
-                                  class="hidden"
-                                  id="form-restore-{{ $slider->id }}">
-                                @csrf
-                                @method("PUT")
-                            </form>
+                            <x-form.form-input :model="$slider" method="PUT" action="restore" name="sliders"/>
                         @endcan
                     @endif
 

@@ -11,11 +11,6 @@
 @endsection
 
 @section("content")
-    @if(session()->has("success"))
-        <div class="alert alert-success mb-4">
-            {{ session()->get("success") }}
-        </div>
-    @endif
 
     <table class="table table-bordered text-center">
         <caption class="text-center">
@@ -56,24 +51,21 @@
                 <td>
                     @if($category->deleted_at === null)
                         @can('categories.activate')
-                            <form action="{{ route("dashboard.categories.activate", $category) }}" method="POST">
-                                @csrf
-                                @method("PUT")
-                                <a href="{{ route("dashboard.categories.activate", $category) }}"
-                                   class="btn"
-                                   onclick="event.preventDefault(); this.closest('form').submit();"
-                                >
-                                    @if($category->active)
-                                        <span class="badge badge-success">
+                            <a href="{{ route("dashboard.categories.activate", $category) }}"
+                               class="btn"
+                               onclick="confirmAction({{$category->id}}, 'activate', {{ $category->active ? "'Deactivate'" : "'Activate'"  }})"
+                            >
+                                @if($category->active)
+                                    <span class="badge badge-success">
                                         {{ __("Active") }}
                                     </span>
-                                    @else
-                                        <span class="badge badge-danger">
+                                @else
+                                    <span class="badge badge-danger">
                                         {{ __("Inactive") }}
                                     </span>
-                                    @endif
-                                </a>
-                            </form>
+                                @endif
+                            </a>
+                            <x-form.form-input :model="$category" method="PUT" action="activate" name="categories"/>
                         @else
                             @if($category->active)
                                 <span class="badge badge-success">
@@ -108,30 +100,20 @@
                         @can('categories.delete')
                             <a href="#"
                                class="btn btn-sm btn-outline-danger"
-                               onclick="event.preventDefault(); document.getElementById('form-delete-{{ $category->id }}').submit();"
+                               onclick="confirmAction({{$category->id}}, 'destroy', 'Delete')"
                             ><i class="fas fa-trash-alt"></i></a>
                             {{--    Delete Form     --}}
-                            <form action="{{ route("dashboard.categories.destroy", $category) }}" method="POST"
-                                  class="hidden"
-                                  id="form-delete-{{ $category->id }}">
-                                @csrf
-                                @method("DELETE")
-                            </form>
+                            <x-form.form-input :model="$category" method="DELETE" action="destroy" name="categories"/>
                         @endcan
                     @else
                         {{--    Restore Button     --}}
                         @can('categories.restore')
                             <a href="{{ route("dashboard.categories.restore", $category) }}"
                                class="btn btn-sm btn-outline-success"
-                               onclick="event.preventDefault(); document.getElementById('form-restore-{{ $category->id }}').submit();"
+                               onclick="confirmAction({{$category->id}}, 'restore', 'Restore')"
                             ><i class="fas fa-trash-restore"></i></a>
                             {{--    Restore Form     --}}
-                            <form action="{{ route("dashboard.categories.restore", $category) }}" method="POST"
-                                  class="hidden"
-                                  id="form-restore-{{ $category->id }}">
-                                @csrf
-                                @method("PUT")
-                            </form>
+                            <x-form.form-input :model="$category" method="PUT" action="restore" name="categories"/>
                         @endcan
                     @endif
 

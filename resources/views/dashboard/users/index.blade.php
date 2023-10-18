@@ -11,11 +11,6 @@
 @endsection
 
 @section("content")
-    @if(session()->has("success"))
-        <div class="alert alert-success mb-4">
-            {{ session()->get("success") }}
-        </div>
-    @endif
 
     <table class="table table-bordered text-center">
         <caption class="text-center">
@@ -51,24 +46,25 @@
                          style="max-width: 100%; max-height: 50px;"></td>
                 <td>
                     @can('users.ban')
-                        <form action="{{ route("dashboard.users.ban", $user) }}" method="POST">
-                            @csrf
-                            @method("PUT")
-                            <a href="{{ route("dashboard.users.ban", $user) }}"
-                               class="btn"
-                               onclick="event.preventDefault(); this.closest('form').submit();"
-                            >
-                                @if($user->banned)
-                                    <span class="badge badge-danger">
+                        <a href="{{ route("dashboard.users.ban", $user) }}"
+                           class="btn"
+                           onclick="confirmAction({{$user->id}}, 'ban', {{ $user->banned ? "'Unban'" : "'Ban'" }})"
+                        >
+                            @if($user->banned)
+                                <span class="badge badge-danger">
                                     {{ __("Banned") }}
                                 </span>
-                                @else
-                                    <span class="badge badge-success">
+                            @else
+                                <span class="badge badge-success">
                                     {{ __("Unbanned") }}
                                 </span>
-                                @endif
-                            </a>
-                        </form>
+                            @endif
+                        </a>
+                        <x-form.form-input
+                            :model="$user"
+                            method="PUT"
+                            action="ban"
+                            name="users"/>
                     @else
                         @if($user->banned)
                             <span class="badge badge-danger">

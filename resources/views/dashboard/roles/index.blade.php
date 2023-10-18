@@ -11,11 +11,6 @@
 @endsection
 
 @section("content")
-    @if(session()->has("success"))
-        <div class="alert alert-success mb-4">
-            {{ session()->get("success") }}
-        </div>
-    @endif
 
     <table class="table table-bordered text-center">
         <caption class="text-center">
@@ -60,15 +55,14 @@
                         {{--    Delete Button    --}}
                         <a href="#"
                            class="btn btn-sm btn-outline-danger"
-                           onclick="event.preventDefault(); document.getElementById('form-delete-{{ $role->id }}').submit();"
+                           onclick="confirmAction({{ $role->id }}, 'destroy', 'Delete')"
                         ><i class="fas fa-trash-alt"></i></a>
                         {{--    Delete Form     --}}
-                        <form action="{{ route("dashboard.roles.destroy", $role) }}" method="POST"
-                              class="hidden"
-                              id="form-delete-{{ $role->id }}">
-                            @csrf
-                            @method("DELETE")
-                        </form>
+                        <x-form.form-input
+                            :model="$role"
+                            method="DELETE"
+                            action="destroy"
+                            name="roles"/>
                     @endcan
                 </td>
             </tr>

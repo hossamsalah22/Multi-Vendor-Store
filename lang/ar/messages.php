@@ -21,5 +21,4 @@ return [
     'you_are_not_authorized_to_this_order' => 'غير مصرح لك بالدخول لهذا الطلب',
     'you_are_not_authorized_to_this_order_action' => 'غير مصرح لك بالقيام بهذه العملية على هذا الطلب',
     'you_are_not_authorized_to_this_order_page' => 'غير مصرح لك بالدخول لهذه الصفحة من هذا الطلب',
-
 ];

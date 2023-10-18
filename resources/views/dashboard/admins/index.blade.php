@@ -11,11 +11,6 @@
 @endsection
 
 @section("content")
-    @if(session()->has("success"))
-        <div class="alert alert-success mb-4">
-            {{ session()->get("success") }}
-        </div>
-    @endif
 
     <table class="table table-bordered text-center">
         <caption class="text-center">
@@ -43,20 +38,18 @@
                          style="max-width: 100%; max-height: 50px;"></td>
                 <td>
                     @can('admins.ban')
-                        <form action="{{ route("dashboard.admins.ban", $admin) }}" method="POST">
-                            @csrf
-                            @method("PUT")
-                            <a href="{{ route("dashboard.admins.ban", $admin) }}"
-                               class="btn"
-                               onclick="event.preventDefault(); this.closest('form').submit();"
-                            >
-                                @if($admin->banned)
-                                    <span class="badge badge-danger">{{ __("Banned") }}</span>
-                                @else
-                                    <span class="badge badge-success">{{ __("Unbanned") }}</span>
-                                @endif
-                            </a>
-                        </form>
+                        <a href="{{ route("dashboard.admins.ban", $admin) }}"
+                           class="btn"
+                           onclick="confirmAction({{$admin->id}}, 'ban', {{ $admin->banned ? "'Unban'" : "'Ban'" }})"
+                        >
+                            @if($admin->banned)
+                                <span class="badge badge-danger">{{ __("Banned") }}</span>
+                            @else
+                                <span class="badge badge-success">{{ __("Unbanned") }}</span>
+                            @endif
+                        </a>
+                        <x-form.form-input :model="$admin" method="PUT" action="ban" name="admins"/>
+
                     @else
                         @if($admin->banned)
                             <span class="badge badge-danger">{{ __("Banned") }}</span>
@@ -82,30 +75,20 @@
                         @can('admins.delete')
                             <a href="#"
                                class="btn btn-sm btn-outline-danger"
-                               onclick="event.preventDefault(); document.getElementById('form-delete-{{ $admin->id }}').submit();"
+                               onclick="confirmAction({{$admin->id}}, 'destroy', 'Delete')"
                             ><i class="fas fa-trash-alt"></i></a>
                             {{--    Delete Form     --}}
-                            <form action="{{ route("dashboard.admins.destroy", $admin) }}" method="POST"
-                                  class="hidden"
-                                  id="form-delete-{{ $admin->id }}">
-                                @csrf
-                                @method("DELETE")
-                            </form>
+                            <x-form.form-input :model="$admin" method="DELETE" action="destroy" name="admins"/>
                         @endcan
                     @else
                         {{--    Restore Button     --}}
                         @can('admins.restore')
                             <a href="{{ route("dashboard.admins.restore", $admin) }}"
                                class="btn btn-sm btn-outline-success"
-                               onclick="event.preventDefault(); document.getElementById('form-restore-{{ $admin->id }}').submit();"
+                               onclick="confirmAction({{$admin->id}}, 'restore', 'Restore')"
                             ><i class="fas fa-trash-restore"></i></a>
                             {{--    Restore Form     --}}
-                            <form action="{{ route("dashboard.admins.restore", $admin) }}" method="POST"
-                                  class="hidden"
-                                  id="form-restore-{{ $admin->id }}">
-                                @csrf
-                                @method("PUT")
-                            </form>
+                            <x-form.form-input :model="$admin" method="PUT" action="restore" name="admins"/>
                         @endcan
                     @endif
 

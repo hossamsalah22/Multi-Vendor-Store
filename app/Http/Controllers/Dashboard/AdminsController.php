@@ -109,7 +109,7 @@ class AdminsController extends Controller
      */
     public function restore($id)
     {
-        Admin::onlyTrashed()->where('username', $id)->restore();
+        Admin::onlyTrashed()->where('slug', $id)->restore();
         return back()->with('success', __('messages.restored_successfully'));
     }
 
