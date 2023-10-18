@@ -173,7 +173,9 @@ return [
         /*
          * Package Service Providers...
          */
-
+        PermissionServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -185,8 +187,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\CartServiceProvider::class,
-        PermissionServiceProvider::class,
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
     ])->toArray(),
 
@@ -205,6 +205,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Currency' => App\Helpers\Currency::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
 
 ];
