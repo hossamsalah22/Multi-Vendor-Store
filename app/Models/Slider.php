@@ -32,7 +32,8 @@ class Slider extends Model implements HasMedia
     public static function booted(): void
     {
         static::created(function ($slider) {
-            $slider->addMediaFromRequest('image')->toMediaCollection('sliders');
+            if (request()->hasFile('image'))
+                $slider->addMediaFromRequest('image')->toMediaCollection('sliders');
         });
     }
 

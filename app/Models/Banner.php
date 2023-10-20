@@ -31,7 +31,8 @@ class Banner extends Model implements HasMedia
     public static function booted()
     {
         static::created(function ($banner) {
-            $banner->addMediaFromRequest('image')->toMediaCollection('banners');
+            if (request()->hasFile('image'))
+                $banner->addMediaFromRequest('image')->toMediaCollection('banners');
         });
     }
 

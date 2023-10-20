@@ -21,7 +21,8 @@ class Product extends Model implements HasMedia
     public static function booted(): void
     {
         static::created(function ($product) {
-            $product->addMediaFromRequest('image')->toMediaCollection('products');
+            if (request()->hasFile('image'))
+                $product->addMediaFromRequest('image')->toMediaCollection('products');
         });
     }
 

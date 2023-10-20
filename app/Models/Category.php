@@ -21,7 +21,8 @@ class Category extends Model implements HasMedia
     public static function booted(): void
     {
         static::created(function ($category) {
-            $category->addMediaFromRequest('image')->toMediaCollection('categories');
+            if (request()->hasFile('image'))
+                $category->addMediaFromRequest('image')->toMediaCollection('categories');
         });
     }
 

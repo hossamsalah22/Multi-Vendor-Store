@@ -24,6 +24,6 @@ class CurrencyConverter
                 'apiKey' => $this->api_key,
             ])
             ->json();
-        return $response[$q]['val'] * $amount;
+        return $response[$q] * $amount;
     }
 }

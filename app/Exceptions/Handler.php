@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -26,23 +27,21 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
+        });
+
+        // render error SQLSTATE[23000] in queryException
+        $this->renderable(function (QueryException $e, $request) {
+            if ($e->getCode() == 23000) {
+                if (str_contains($e->getMessage(), 'foreign key constraint fails'))
+                    $message = 'Cannot Delete Data With Children';
+            }
+            if ($request->expectsJson())
+                return response()->json(['error' => $message], 422);
+
+            return redirect()->back()->withInput()->with('error', $message);
+
         });
     }
 
-    protected function unauthenticated($request, AuthenticationException $exception)
-    {
-        $response = '';
-        if ($request->expectsJson()) {
-            $response = response()->json(['error' => 'Unauthenticated.'], 401);
-        }
-        if ($request->is('admin') || $request->is('admin/*')) {
-            $response = redirect()->guest('/admin/login');
-        }
-        if ($request->is('user') || $request->is('/')) {
-            $response = redirect()->guest('/login');
-        }
-        return $response;
-    }
-    
+
 }

@@ -51,7 +51,8 @@ class Admin extends User implements HasMedia, MustVerifyEmail
             $admin->password = Hash::make('password');
         });
         static::created(function ($admin) {
-            $admin->addMediaFromRequest('image')->toMediaCollection('admins');
+            if (request()->hasFile('image'))
+                $admin->addMediaFromRequest('image')->toMediaCollection('admins');
         });
     }
 

@@ -20,7 +20,8 @@ class Store extends Model implements HasMedia
     public static function booted(): void
     {
         static::created(function ($store) {
-            $store->addMediaFromRequest('image')->toMediaCollection('stores');
+            if (request()->hasFile('image'))
+                $store->addMediaFromRequest('image')->toMediaCollection('stores');
         });
     }
 

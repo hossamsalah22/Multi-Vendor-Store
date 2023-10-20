@@ -36,9 +36,10 @@
             </ul>
         @endif
         <div class="price">
-            <span>{{ Currency::format($product->price) }}</span>
+            <span>{{ Currency::format($product->price, config('app.currency_code')) }}</span>
             @if($product->compare_price)
-                <span class="discount-price">{{ Currency::format($product->compare_price) }}</span>
+                <span
+                    class="discount-price">{{ Currency::format($product->compare_price, config('app.currency_code')) }}</span>
             @endif
         </div>
     </div>

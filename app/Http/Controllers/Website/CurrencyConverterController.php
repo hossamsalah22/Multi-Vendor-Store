@@ -20,7 +20,7 @@ class CurrencyConverterController extends Controller
         $baseCurrencyCode = config('app.currency_code');
         $cacheKey = "currency_rate_" . $currencyCode;
         $rate = Cache::get($cacheKey, 0);
-        if (!$rate) {
+        if ($rate) {
             $converter = app('currency_converter');
             $rate = $converter->convert($baseCurrencyCode, $currencyCode);
             Cache::put($cacheKey, $rate, now()->addHours(24));
