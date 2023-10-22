@@ -63,7 +63,7 @@
                             </a>
                             <x-form.form-input
                                 :model="$slider"
-                                method="PUT"
+
                                 action="activate"
                                 name="sliders"/>
                         @else
@@ -112,7 +112,7 @@
                                onclick="confirmAction({{$slider->id}}, 'restore', 'Restore')"
                             ><i class="fas fa-trash-restore"></i></a>
                             {{--    Restore Form     --}}
-                            <x-form.form-input :model="$slider" method="PUT" action="restore" name="sliders"/>
+                            <x-form.form-input :model="$slider" action="restore" name="sliders"/>
                         @endcan
                     @endif
 

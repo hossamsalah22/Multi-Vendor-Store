@@ -62,7 +62,6 @@
                         </a>
                         <x-form.form-input
                             :model="$user"
-                            method="PUT"
                             action="ban"
                             name="users"/>
                     @else

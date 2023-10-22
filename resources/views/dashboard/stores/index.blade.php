@@ -67,7 +67,7 @@
                             </a>
                             <x-form.form-input
                                 :model="$store"
-                                method="PUT"
+
                                 action="activate"
                                 name="stores"/>
                         @else
@@ -119,7 +119,7 @@
                                 <i class="fas fa-trash-restore"></i>
                             </a>
                             {{--    Restore Form     --}}
-                            <x-form.form-input :model="$store" method="PUT" action="restore" name="stores"/>
+                            <x-form.form-input :model="$store" action="restore" name="stores"/>
                         @endcan
                     @endif
                 </td>

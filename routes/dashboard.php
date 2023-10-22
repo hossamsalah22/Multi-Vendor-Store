@@ -18,16 +18,17 @@ Route::get('admin/home', function () {
 })->middleware(['auth:admin'])->name('home');
 
 Route::customResources([
-    ['categories', CategoriesController::class, 'category'],
-    ['stores', StoresController::class, 'store'],
-    ['products', ProductsController::class, 'product'],
-    ['sliders', SlidersController::class, 'slider'],
-    ['banners', BannerController::class, 'banner'],
-    ['roles', RolesController::class, 'role'],
-    ['orders', OrdersController::class, 'order'],
-    ['admins', AdminsController::class, 'admin'],
-    ['users', UsersController::class, 'user'],
-]);
+    ['categories', CategoriesController::class, ['activate', 'restore']],
+    ['stores', StoresController::class, ['activate', 'restore']],
+    ['products', ProductsController::class, ['activate', 'restore']],
+    ['sliders', SlidersController::class, ['activate', 'restore']],
+    ['banners', BannerController::class, ['activate', 'restore']],
+    ['roles', RolesController::class, ['activate', 'restore']],
+    ['orders', OrdersController::class, ['activate', 'restore']],
+    ['admins', AdminsController::class, ['ban', 'restore']],
+    ['users', UsersController::class, ['ban', 'restore'], ['create', 'store', 'edit', 'update']],
+], 'admin/dashboard', 'dashboard.', 'auth:admin');
+
 
 Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('dashboard.dashboard')->middleware('auth:admin');
 

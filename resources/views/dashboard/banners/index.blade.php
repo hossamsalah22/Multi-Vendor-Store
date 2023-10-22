@@ -51,7 +51,7 @@
                                     <span class="badge badge-danger">{{ __("Inactive") }}</span>
                                 @endif
                             </a>
-                            <x-form.form-input :model="$banner" method="PUT" action="activate" name="banners"/>
+                            <x-form.form-input :model="$banner" action="activate" name="banners"/>
                         @else
                             @if($banner->active)
                                 <span class="badge badge-success">{{ __("Active") }}</span>
@@ -93,7 +93,7 @@
                                onclick="confirmAction({{$banner->id}}, 'restore', 'Restore')"
                             ><i class="fas fa-trash-restore"></i></a>
                             {{--    Restore Form     --}}
-                            <x-form.form-input :model="$banner" method="PUT" action="restore" name="banners"/>
+                            <x-form.form-input :model="$banner" action="restore" name="banners"/>
                         @endcan
                     @endif
 

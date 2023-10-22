@@ -65,7 +65,7 @@
                                     </span>
                                 @endif
                             </a>
-                            <x-form.form-input :model="$category" method="PUT" action="activate" name="categories"/>
+                            <x-form.form-input :model="$category" action="activate" name="categories"/>
                         @else
                             @if($category->active)
                                 <span class="badge badge-success">
@@ -113,7 +113,7 @@
                                onclick="confirmAction({{$category->id}}, 'restore', 'Restore')"
                             ><i class="fas fa-trash-restore"></i></a>
                             {{--    Restore Form     --}}
-                            <x-form.form-input :model="$category" method="PUT" action="restore" name="categories"/>
+                            <x-form.form-input :model="$category" action="restore" name="categories"/>
                         @endcan
                     @endif
 

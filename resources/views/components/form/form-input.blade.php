@@ -1,6 +1,6 @@
 @props([
     "model",
-    "method",
+    "method" => null,
     "action",
     "name"
     ])

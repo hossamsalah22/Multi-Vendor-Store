@@ -48,7 +48,7 @@
                                 <span class="badge badge-success">{{ __("Unbanned") }}</span>
                             @endif
                         </a>
-                        <x-form.form-input :model="$admin" method="PUT" action="ban" name="admins"/>
+                        <x-form.form-input :model="$admin" action="ban" name="admins"/>
 
                     @else
                         @if($admin->banned)
@@ -88,7 +88,7 @@
                                onclick="confirmAction({{$admin->id}}, 'restore', 'Restore')"
                             ><i class="fas fa-trash-restore"></i></a>
                             {{--    Restore Form     --}}
-                            <x-form.form-input :model="$admin" method="PUT" action="restore" name="admins"/>
+                            <x-form.form-input :model="$admin" action="restore" name="admins"/>
                         @endcan
                     @endif
 

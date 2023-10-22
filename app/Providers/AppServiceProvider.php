@@ -8,6 +8,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,17 +41,29 @@ class AppServiceProvider extends ServiceProvider
 
         Paginator::useBootstrapFive();
 
-        Route::macro('customResources', function (array $resources) {
-            Route::group(['prefix' => 'admin/dashboard', 'as' => 'dashboard.', 'middleware' => ['auth:admin']], function () use ($resources) {
+        Route::macro('customResources', function (array $resources, $prefix, $as, $middleware) {
+            Route::group(['prefix' => $prefix, 'as' => $as, 'middleware' => $middleware], function () use ($resources) {
                 foreach ($resources as $resource) {
-                    [$uri, $controller, $model] = $resource;
-                    Route::put($uri . '/{' . $model . '}/activate', [$controller, 'activate'])->name($uri . '.activate');
-                    Route::put($uri . '/{' . $model . '}/restore', [$controller, 'restore'])->name($uri . '.restore');
-                    Route::put($uri . '/{' . $model . '}/ban', [$controller, 'ban'])->name($uri . '.ban');
-                    Route::resource($uri, $controller);
+                    [$uri, $controller] = $resource;
+                    $model = Str::singular($uri);
+
+                    $include = $resource[2] ?? [];
+                    $exclude = $resource[3] ?? [];
+
+                    $defaultActions = ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'];
+                    $routeToInclude = array_diff($defaultActions, $exclude);
+
+                    foreach ($include as $additionalRoute) {
+                        Route::post($uri . '/{' . $model . '}/' . $additionalRoute,
+                            [$controller, $additionalRoute])->name($uri . '.' . $additionalRoute);
+                    }
+
+                    Route::resource($uri, $controller)->only($routeToInclude);
                 }
             });
         });
+
+
     }
 
 
