@@ -2,24 +2,16 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\MainController;
 use App\Http\Requests\Dashboard\Category\CreateRequest;
 use App\Http\Requests\Dashboard\Category\UpdateRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class CategoriesController extends MainController
 {
     public function __construct()
     {
-        $this->middleware(['auth:admin']);
-        $this->middleware('permission:categories.index')->only('index');
-        $this->middleware('permission:categories.show')->only('show');
-        $this->middleware('permission:categories.create')->only(['create', 'store']);
-        $this->middleware('permission:categories.update')->only(['edit', 'update']);
-        $this->middleware('permission:categories.delete')->only('destroy');
-        $this->middleware('permission:categories.activate')->only('activate');
-        $this->middleware('permission:categories.restore')->only('restore');
+        parent::__construct('categories');
     }
 
     /**

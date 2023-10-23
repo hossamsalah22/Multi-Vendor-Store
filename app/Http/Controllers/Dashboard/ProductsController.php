@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\MainController;
 use App\Http\Requests\Dashboard\Product\CreateRequest;
 use App\Http\Requests\Dashboard\Product\UpdateRequest;
 use App\Models\Category;
@@ -10,19 +10,11 @@ use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class ProductsController extends MainController
 {
     public function __construct()
     {
-        $this->middleware(['auth:admin']);
-
-        $this->middleware('permission:products.index')->only('index');
-        $this->middleware('permission:products.show')->only('show');
-        $this->middleware('permission:products.create')->only(['create', 'store']);
-        $this->middleware('permission:products.update')->only(['edit', 'update']);
-        $this->middleware('permission:products.delete')->only('destroy');
-        $this->middleware('permission:products.activate')->only('activate');
-        $this->middleware('permission:products.restore')->only('restore');
+        parent::__construct('products');
     }
 
     /**

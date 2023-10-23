@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\MainController;
 use App\Models\Order;
-use Illuminate\Http\Request;
 
-class OrdersController extends Controller
+class OrdersController extends MainController
 {
     public function __construct()
     {
-        $this->middleware(['auth:admin']);
-        $this->middleware('permission:orders.index')->only('index');
-        $this->middleware('permission:orders.show')->only('show');
-        $this->middleware('permission:orders.delete')->only('destroy');
+        parent::__construct('orders');
     }
 
     /**

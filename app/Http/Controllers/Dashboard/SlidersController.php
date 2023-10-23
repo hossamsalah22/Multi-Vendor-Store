@@ -2,24 +2,16 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\MainController;
 use App\Http\Requests\Dashboard\Slider\CreateRequest;
 use App\Http\Requests\Dashboard\Slider\UpdateRequest;
 use App\Models\Slider;
-use Illuminate\Http\Request;
 
-class SlidersController extends Controller
+class SlidersController extends MainController
 {
     public function __construct()
     {
-        $this->middleware(['auth:admin']);
-        $this->middleware('permission:sliders.index')->only('index');
-        $this->middleware('permission:sliders.show')->only('show');
-        $this->middleware('permission:sliders.create')->only(['create', 'store']);
-        $this->middleware('permission:sliders.update')->only(['edit', 'update']);
-        $this->middleware('permission:sliders.delete')->only('destroy');
-        $this->middleware('permission:sliders.activate')->only('activate');
-        $this->middleware('permission:sliders.restore')->only('restore');
+        parent::__construct('sliders');
     }
 
     /**

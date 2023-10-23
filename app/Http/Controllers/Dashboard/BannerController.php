@@ -2,24 +2,16 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\MainController;
 use App\Http\Requests\Dashboard\Banner\CreateRequest;
 use App\Http\Requests\Dashboard\Banner\UpdateRequest;
 use App\Models\Banner;
-use Illuminate\Http\Request;
 
-class BannerController extends Controller
+class BannerController extends MainController
 {
     public function __construct()
     {
-        $this->middleware(['auth:admin']);
-        $this->middleware('permission:banners.index')->only('index');
-        $this->middleware('permission:banners.show')->only('show');
-        $this->middleware('permission:banners.create')->only(['create', 'store']);
-        $this->middleware('permission:banners.update')->only(['edit', 'update']);
-        $this->middleware('permission:banners.delete')->only('destroy');
-        $this->middleware('permission:banners.activate')->only('activate');
-        $this->middleware('permission:banners.restore')->only('restore');
+        parent::__construct('banners');
     }
 
     /**

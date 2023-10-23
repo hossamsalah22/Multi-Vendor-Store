@@ -7,7 +7,6 @@ use App\Http\Requests\Dashboard\Admin\CreateRequest;
 use App\Http\Requests\Dashboard\Admin\UpdateRequest;
 use App\Models\Admin;
 use App\Models\Store;
-use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
 class AdminsController extends Controller
@@ -15,14 +14,8 @@ class AdminsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
-        $this->middleware('permission:admins.index')->only(['index']);
-        $this->middleware('permission:admins.create')->only(['create', 'store']);
-        $this->middleware('permission:admins.show')->only(['show']);
-        $this->middleware('permission:admins.update')->only(['edit', 'update']);
-        $this->middleware('permission:admins.delete')->only(['destroy']);
-        $this->middleware('permission:admins.ban')->only(['ban']);
-        $this->middleware('permission:admins.restore')->only(['restore']);
+        $this->middleware(['auth:admin', 'role:super_admin'])->except('index');
+        $this->middleware('permission:admins.index')->only('index');
     }
 
     /**

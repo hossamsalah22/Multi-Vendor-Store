@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\MainController;
 use App\Models\User;
-use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class UsersController extends MainController
 {
 
     public function __construct()
     {
-        $this->middleware(['auth:admin']);
-        $this->middleware('permission:users.index')->only('index');
-        $this->middleware('permission:users.show')->only('show');
-        $this->middleware('permission:users.ban')->only('ban');
+        parent::__construct('users');
     }
 
     /**
