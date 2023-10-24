@@ -24,7 +24,6 @@ class SocialLoginController extends Controller
     {
         try {
             $provider_user = Socialite::driver($provider)->user();
-            dd($provider_user);
             $user = User::where([
                 'provider' => $provider,
                 'provider_id' => $provider_user->getId(),
