@@ -22,28 +22,31 @@ class SocialLoginController extends Controller
 
     public function callback($provider)
     {
-        $provider_user = Socialite::driver($provider)->user();
-//        dd($provider_user);
-
-        $user = User::where([
-            'provider' => $provider,
-            'provider_id' => $provider_user->getId(),
-        ])->first();
-        if (!$user) {
-            $user = User::create([
-                'name' => $provider_user->getName(),
-                'email' => $provider_user->getEmail(),
-                'password' => Hash::make($provider_user->getId()),
+        try {
+            $provider_user = Socialite::driver($provider)->user();
+            dd($provider_user);
+            $user = User::where([
                 'provider' => $provider,
                 'provider_id' => $provider_user->getId(),
-                'provider_token' => $provider_user->token,
-            ]);
-            $user->addMediaFromUrl("https://picsum.photos/200/300")->toMediaCollection('users');
-            $user->markEmailAsVerified();
+            ])->first();
+            if (!$user) {
+                $user = User::create([
+                    'name' => $provider_user->getName(),
+                    'email' => $provider_user->getEmail(),
+                    'password' => Hash::make($provider_user->getId()),
+                    'provider' => $provider,
+                    'provider_id' => $provider_user->getId(),
+                    'provider_token' => $provider_user->token,
+                ]);
+                $user->addMediaFromUrl("https://picsum.photos/200/300")->toMediaCollection('users');
+                $user->markEmailAsVerified();
+            }
+
+            Auth::login($user, true);
+
+            return redirect()->route('website.home');
+        } catch (\Throwable $th) {
+            return redirect()->route('website.login');
         }
-
-        Auth::login($user, true);
-
-        return redirect()->route('website.home');
     }
 }
