@@ -14,11 +14,14 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone_number')->unique();
-            $table->string("username")->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone_number')->nullable()->unique();
+            $table->string("username")->nullable()->unique();
             $table->string('password');
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
+            $table->longText('provider_token')->nullable();
             $table->boolean('banned')->default(0);
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

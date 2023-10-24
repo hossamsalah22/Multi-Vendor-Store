@@ -34,13 +34,15 @@ class Handler extends ExceptionHandler
             if ($e->getCode() == 23000) {
                 if (str_contains($e->getMessage(), 'foreign key constraint fails'))
                     $message = 'Cannot Delete Data With Children';
-            }
-            if ($request->expectsJson())
-                return response()->json(['error' => $message], 422);
+                if ($request->expectsJson())
+                    return response()->json(['error' => $message], 422);
 
-            return redirect()->back()->withInput()->with('error', $message);
+                return redirect()->back()->withInput()->with('error', $message);
+            }
+
 
         });
+        
     }
 
 

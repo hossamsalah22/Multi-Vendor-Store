@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\ChangeLanguageController;
 use App\Http\Controllers\Website\Auth\TwoFactorAuthController;
 use App\Http\Controllers\Website\CartController;
@@ -34,3 +35,6 @@ Route::group(['as' => 'website.'], function () {
         ->name('two-factor.index');
     Route::post('currency', [CurrencyConverterController::class, 'store'])->name('currency.store');
 });
+
+Route::get('auth/{provider}/redirect', [SocialLogincontroller::class, 'redirect'])->name('social.login');
+Route::get('auth/{provider}/callback', [SocialLogincontroller::class, 'callback'])->name('social.callback');

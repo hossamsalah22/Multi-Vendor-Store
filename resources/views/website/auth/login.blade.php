@@ -45,7 +45,7 @@
                                                 class="lni lni-twitter-original"></i> Twitter
                                             login</a></div>
                                     <div class="col-lg-4 col-md-4 col-12"><a class="btn google-btn"
-                                                                             href="javascript:void(0)"><i
+                                                                             href="{{ route('social.login', 'google') }}"><i
                                                 class="lni lni-google"></i> Google login</a>
                                     </div>
                                 </div>

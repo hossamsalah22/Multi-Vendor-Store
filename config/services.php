@@ -33,5 +33,10 @@ return [
     'currency_converter' => [
         'api_key' => env('CURRENCY_CONVERTER_API_KEY'),
     ],
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),         // Your Google Client ID
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'), // Your Google Client Secret
+        'redirect' => env('GOOGLE_REDIRECT'),           // Your Google Redirect URL
+    ],
 
 ];

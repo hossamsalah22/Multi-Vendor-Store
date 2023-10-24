@@ -14,7 +14,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia, TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia, TwoFactorAuthenticatable, Sluggable;
 
     protected $with = ['media'];
     protected $appends = ['image'];
@@ -29,8 +29,10 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'email',
         'phone_number',
         'password',
-        'username',
         'banned',
+        'provider',
+        'provider_id',
+        'provider_token',
     ];
 
     /**
@@ -44,6 +46,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'two_factor_secret',
         'two_factor_recovery_codes',
         'two_factor_confirmed_at',
+        'provider_id',
+        'provider_token',
     ];
 
     /**
@@ -54,6 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'provider_token' => 'encrypted',
         'banned' => 'boolean',
     ];
 
@@ -79,4 +84,13 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     }
 
 
+    public function sluggable(): array
+    {
+        // TODO: Implement sluggable() method.
+        return [
+            'username' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 }
