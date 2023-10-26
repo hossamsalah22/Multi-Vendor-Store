@@ -16,6 +16,7 @@ class Order extends Model
         'payment_method',
         'user_id',
         'store_id',
+        'total'
     ];
 
     protected static function booted()

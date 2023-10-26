@@ -12,7 +12,11 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        \App\Models\Category::factory(5)->create();
+        foreach (config('categories') as $key => $category) {
+            \App\Models\Category::create([
+                'name' => $key,
+                'description' => $category,
+            ]);
+        }
     }
 }

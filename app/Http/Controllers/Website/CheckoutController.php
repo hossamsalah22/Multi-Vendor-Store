@@ -48,6 +48,7 @@ class CheckoutController extends Controller
         try {
             // Create the order...
             foreach ($stores as $store_id => $products) {
+                $total_price = 0;
                 $order = Order::create([
                     'user_id' => auth('web')?->user()?->id ?? null,
                     'store_id' => $store_id,
@@ -62,14 +63,16 @@ class CheckoutController extends Controller
                         'quantity' => $item->quantity,
                         'price' => $item->product->price,
                     ]);
+                    $total_price += $item->product->price * $item->quantity;
                 }
                 // Create the order addresses...
                 foreach ($request->post('addr') as $type => $address) {
                     $address['type'] = $type;
                     $order->addresses()->create($address);
                 }
+                $total_price = $total_price + $order->shipping_price - $order->discount;
+                $order->update(['total' => $total_price]);
             }
-//            event('order.created', $order);
             event(new OrderCreated($order));
         } catch (Throwable $th) {
             DB::rollBack();
