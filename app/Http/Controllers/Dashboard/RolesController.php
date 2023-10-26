@@ -29,7 +29,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $permissions = config('permissions');
+        $permissions = require database_path('initial_data/permissions.php');
         return view('dashboard.roles.create', compact('permissions'));
     }
 
@@ -60,7 +60,7 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        $permissions = config('permissions');
+        $permissions = require database_path('initial_data/permissions.php');
         return view('dashboard.roles.edit', compact('role', 'permissions'));
     }
 

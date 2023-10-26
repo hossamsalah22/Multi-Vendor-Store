@@ -15,7 +15,8 @@ class RoleAndPermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (config('permissions') as $key => $permission) {
+        $permissions = require database_path('initial_data/permissions.php');
+        foreach ($permissions as $key => $permission) {
             Permission::create([
                 'name' => $key,
                 'guard_name' => 'admin',

@@ -12,7 +12,9 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (config('categories') as $key => $category) {
+        $categories = require database_path('initial_data/categories.php');
+
+        foreach ($categories as $key => $category) {
             \App\Models\Category::create([
                 'name' => $key,
                 'description' => $category,
