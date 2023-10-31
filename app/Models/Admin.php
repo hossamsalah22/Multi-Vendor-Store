@@ -31,7 +31,8 @@ class Admin extends User implements HasMedia, MustVerifyEmail
         'phone_number',
         'banned',
         'store_id',
-        'password'
+        'password',
+        'language',
     ];
 
     protected $hidden = [
