@@ -33,6 +33,10 @@ return [
     'currency_converter' => [
         'api_key' => env('CURRENCY_CONVERTER_API_KEY'),
     ],
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+    ],
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),         // Your Google Client ID
         'client_secret' => env('GOOGLE_CLIENT_SECRET'), // Your Google Client Secret

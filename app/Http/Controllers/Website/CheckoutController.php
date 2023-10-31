@@ -70,7 +70,6 @@ class CheckoutController extends Controller
                     $address['type'] = $type;
                     $order->addresses()->create($address);
                 }
-                $total_price = $total_price + $order->shipping_price - $order->discount;
                 $order->update(['total' => $total_price]);
             }
             event(new OrderCreated($order));
@@ -80,7 +79,7 @@ class CheckoutController extends Controller
         }
 
         DB::commit();
-        return redirect()->route('website.home')->with('success', 'Order created successfully.');
+        return redirect()->route('website.payment.create', $order);
     }
 
     /**
