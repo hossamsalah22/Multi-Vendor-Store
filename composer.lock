@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9232a02f93f1a5e61a2ad5cbf816d33c",
+    "content-hash": "1b005fe2f6f0986eb71db2e671db88be",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1743,76 +1743,6 @@
             "time": "2023-07-14T13:56:28+00:00"
         },
         {
-            "name": "laravel/socialite",
-            "version": "v5.9.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/socialite.git",
-                "reference": "49ecc4c907ed88c1254bae991c6b2948945645c2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/49ecc4c907ed88c1254bae991c6b2948945645c2",
-                "reference": "49ecc4c907ed88c1254bae991c6b2948945645c2",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "guzzlehttp/guzzle": "^6.0|^7.0",
-                "illuminate/contracts": "^6.0|^7.0|^8.0|^9.0|^10.0",
-                "illuminate/http": "^6.0|^7.0|^8.0|^9.0|^10.0",
-                "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0",
-                "league/oauth1-client": "^1.10.1",
-                "php": "^7.2|^8.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0|^8.0",
-                "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^8.0|^9.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Laravel\\Socialite\\SocialiteServiceProvider"
-                    ],
-                    "aliases": {
-                        "Socialite": "Laravel\\Socialite\\Facades\\Socialite"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Socialite\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "Laravel wrapper around OAuth 1 & OAuth 2 libraries.",
-            "homepage": "https://laravel.com",
-            "keywords": [
-                "laravel",
-                "oauth"
-            ],
-            "support": {
-                "issues": "https://github.com/laravel/socialite/issues",
-                "source": "https://github.com/laravel/socialite"
-            },
-            "time": "2023-09-07T16:13:53+00:00"
-        },
-        {
             "name": "laravel/tinker",
             "version": "v2.8.2",
             "source": {
@@ -2411,82 +2341,6 @@
             "time": "2023-08-05T12:09:49+00:00"
         },
         {
-            "name": "league/oauth1-client",
-            "version": "v1.10.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/oauth1-client.git",
-                "reference": "d6365b901b5c287dd41f143033315e2f777e1167"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth1-client/zipball/d6365b901b5c287dd41f143033315e2f777e1167",
-                "reference": "d6365b901b5c287dd41f143033315e2f777e1167",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-openssl": "*",
-                "guzzlehttp/guzzle": "^6.0|^7.0",
-                "guzzlehttp/psr7": "^1.7|^2.0",
-                "php": ">=7.1||>=8.0"
-            },
-            "require-dev": {
-                "ext-simplexml": "*",
-                "friendsofphp/php-cs-fixer": "^2.17",
-                "mockery/mockery": "^1.3.3",
-                "phpstan/phpstan": "^0.12.42",
-                "phpunit/phpunit": "^7.5||9.5"
-            },
-            "suggest": {
-                "ext-simplexml": "For decoding XML-based responses."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev",
-                    "dev-develop": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\OAuth1\\Client\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ben Corlett",
-                    "email": "bencorlett@me.com",
-                    "homepage": "http://www.webcomm.com.au",
-                    "role": "Developer"
-                }
-            ],
-            "description": "OAuth 1.0 Client Library",
-            "keywords": [
-                "Authentication",
-                "SSO",
-                "authorization",
-                "bitbucket",
-                "identity",
-                "idp",
-                "oauth",
-                "oauth1",
-                "single sign on",
-                "trello",
-                "tumblr",
-                "twitter"
-            ],
-            "support": {
-                "issues": "https://github.com/thephpleague/oauth1-client/issues",
-                "source": "https://github.com/thephpleague/oauth1-client/tree/v1.10.1"
-            },
-            "time": "2022-04-15T14:02:14+00:00"
-        },
-        {
             "name": "maennchen/zipstream-php",
             "version": "3.1.0",
             "source": {
@@ -2667,6 +2521,126 @@
                 }
             ],
             "time": "2023-06-21T08:46:11+00:00"
+        },
+        {
+            "name": "myfatoorah/laravel-package",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://dev.azure.com/myfatoorahsc/Public-Repo/_git/Laravel-Package",
+                "reference": "4489c5f6fc7b2f985ccdd50482d73e9422e455e8"
+            },
+            "require": {
+                "myfatoorah/library": "~2.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MyFatoorah\\LaravelPackage\\MyFatoorahServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MyFatoorah\\LaravelPackage\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "MyFatoorah Plugin Team",
+                    "email": "plugins@myfatoorah.com"
+                },
+                {
+                    "name": "Nermeen Shoman",
+                    "email": "nshoman@myfatoorah.com",
+                    "role": "Senior Software Engineer"
+                },
+                {
+                    "name": "Rasha Saeed",
+                    "email": "rsaeed@myfatoorah.com",
+                    "role": "Senior Software Engineer"
+                }
+            ],
+            "description": "The official MyFatoorah Payment Gateway for Laravel.",
+            "homepage": "https://myfatoorah.com/",
+            "keywords": [
+                "My Fatoorah",
+                "api",
+                "commerce",
+                "fatoorah",
+                "gateway",
+                "laravel",
+                "myfatoorah",
+                "payment",
+                "shipping"
+            ],
+            "time": "2023-01-29T08:53:31+00:00"
+        },
+        {
+            "name": "myfatoorah/library",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://dev.azure.com/myfatoorahsc/Public-Repo/_git/Library",
+                "reference": "82bc10ec8fdfc41a833b03e3c2c6bab09bfcd4e7"
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=7"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "autoload.php"
+                ],
+                "psr-4": {
+                    "MyFatoorah\\Library\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "MyFatoorah Plugin Team",
+                    "email": "plugins@myfatoorah.com"
+                },
+                {
+                    "name": "Nermeen Shoman",
+                    "email": "nshoman@myfatoorah.com",
+                    "role": "Senior Software Engineer"
+                },
+                {
+                    "name": "Rasha Saeed",
+                    "email": "rsaeed@myfatoorah.com",
+                    "role": "Senior Software Engineer"
+                }
+            ],
+            "description": "MyFatoorah PHP Library",
+            "homepage": "https://myfatoorah.com/",
+            "keywords": [
+                "My Fatoorah",
+                "api",
+                "commerce",
+                "fatoorah",
+                "gateway",
+                "library",
+                "myfatoorah",
+                "payment",
+                "shipping"
+            ],
+            "time": "2023-06-14T12:44:16+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -4939,65 +4913,6 @@
                 }
             ],
             "time": "2023-09-25T07:13:36+00:00"
-        },
-        {
-            "name": "stripe/stripe-php",
-            "version": "v13.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "8971caa149b4689e67c1123d3604e387c79ab543"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/8971caa149b4689e67c1123d3604e387c79ab543",
-                "reference": "8971caa149b4689e67c1123d3604e387c79ab543",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "3.5.0",
-                "phpstan/phpstan": "^1.2",
-                "phpunit/phpunit": "^5.7 || ^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Stripe\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stripe and contributors",
-                    "homepage": "https://github.com/stripe/stripe-php/contributors"
-                }
-            ],
-            "description": "Stripe PHP Library",
-            "homepage": "https://stripe.com/",
-            "keywords": [
-                "api",
-                "payment processing",
-                "stripe"
-            ],
-            "support": {
-                "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v13.1.0"
-            },
-            "time": "2023-10-26T17:36:08+00:00"
         },
         {
             "name": "symfony/console",

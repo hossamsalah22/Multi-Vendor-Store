@@ -17,7 +17,7 @@ return new class extends Migration {
                 ->default('pending');
             $table->enum('payment_status', ['pending', 'paid', 'failed'])
                 ->default('pending');
-            $table->enum('payment_method', ['cod', 'paypal', 'stripe', 'razorpay', 'paystack', 'flutterwave'])
+            $table->enum('payment_method', ['cod', 'paypal', 'stripe', 'razorpay', 'myfatoorah'])
                 ->default('cod');
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('store_id')->constrained('stores');

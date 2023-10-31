@@ -9,7 +9,9 @@ use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Repositories\Cart\CartRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\Intl\Countries;
 use Throwable;
 
@@ -72,14 +74,17 @@ class CheckoutController extends Controller
                 }
                 $order->update(['total' => $total_price]);
             }
+
             event(new OrderCreated($order));
+
+            DB::commit();
+
+            return redirect('/myfatoorah?orderId=' . $order->id);
+
         } catch (Throwable $th) {
             DB::rollBack();
             throw $th;
         }
-
-        DB::commit();
-        return redirect()->route('website.payment.create', $order);
     }
 
     /**

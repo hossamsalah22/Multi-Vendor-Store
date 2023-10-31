@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('method')->nullable();
             $table->enum('status', ['pending', 'failed', 'succeeded', 'cancelled'])->default('pending');
             $table->string('payment_id')->nullable();
-            $table->json('data')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

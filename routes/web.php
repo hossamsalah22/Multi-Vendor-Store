@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\ChangeLanguageController;
+use App\Http\Controllers\MyFatoorahController;
 use App\Http\Controllers\Website\Auth\TwoFactorAuthController;
 use App\Http\Controllers\Website\CartController;
 use App\Http\Controllers\Website\CheckoutController;
 use App\Http\Controllers\Website\CurrencyConverterController;
 use App\Http\Controllers\Website\HomeController;
-use App\Http\Controllers\Website\PaymentController;
 use App\Http\Controllers\Website\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,9 +35,7 @@ Route::group(['as' => 'website.'], function () {
         ->middleware('auth:web')
         ->name('two-factor.index');
     Route::post('currency', [CurrencyConverterController::class, 'store'])->name('currency.store');
-    Route::get('order/{order}/payment', [PaymentController::class, 'create'])->name('payment.create');
-    Route::post('order/{order}/payment/stripe', [PaymentController::class, 'createStripePaymentIntent'])->name('payment.stripe');
-    Route::get('order/{order}/payment/callback', [PaymentController::class, 'confirm'])->name('payment.confirm');
+    Route::get('callback', [MyFatoorahController::class, 'callback'])->name('myfatoorah.callback');
 });
 
 Route::get('auth/{provider}/redirect', [SocialLogincontroller::class, 'redirect'])->name('social.login');
