@@ -6,12 +6,23 @@ use App\Http\Controllers\MainController;
 use App\Http\Requests\Dashboard\Store\CreateRequest;
 use App\Http\Requests\Dashboard\Store\UpdateRequest;
 use App\Models\Store;
+use Illuminate\Support\Arr;
 
 class StoresController extends MainController
 {
     public function __construct()
     {
         parent::__construct('stores');
+    }
+
+    protected function validDate($validate)
+    {
+        $data['name']['en'] = Arr::pull($validate, 'name_en');
+        $data['name']['ar'] = Arr::pull($validate, 'name_ar');
+        $data['description']['en'] = Arr::pull($validate, 'description_en');
+        $data['description']['ar'] = Arr::pull($validate, 'description_ar');
+
+        return $data;
     }
 
     /**
@@ -37,7 +48,7 @@ class StoresController extends MainController
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $store = Store::create($validate);
+        Store::create($this->validDate($validate));
         return redirect()->route('dashboard.stores.index')->with('success', __('messages.created_successfully'));
     }
 
@@ -65,7 +76,7 @@ class StoresController extends MainController
     {
         $validate = $request->validated();
         $image = $request->file('image');
-        $store->update($validate);
+        $store->update($this->validDate($validate));
         if ($image) {
             $store->clearMediaCollection('stores');
             $store->addMedia($image)->toMediaCollection('stores');

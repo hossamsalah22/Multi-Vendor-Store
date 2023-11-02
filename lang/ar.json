@@ -345,7 +345,9 @@
     "Activate Roles": "تفعيل دور",
     "Select all": "اختر الكل",
     "Are you sure?": "هل أنت واثق؟",
-    "You will not be able to revert this!": "لن تتمكن من التراجع عن هذا!"
+    "You will not be able to revert this!": "لن تتمكن من التراجع عن هذا!",
+    "Enter Store Name English": "أدخل اسم المتجر باللغة الإنجليزية",
+    "Enter Store Name Arabic": "أدخل اسم المتجر باللغة العربية"
 }
 
 
