@@ -37,15 +37,9 @@ class CreateRequest extends FormRequest
                 ->whereNull('deleted_at')
             ];
 
-            $data['description_ar'] = ['required', 'max:191', Rule::unique('sliders', 'description->ar')
-                ->where('description->ar', request('description_ar'))
-                ->whereNull('deleted_at')
-            ];
+            $data['description_ar'] = ['required', 'max:191'];
 
-            $data['description_en'] = ['required', 'max:191', Rule::unique('sliders', 'description->en')
-                ->where('description->en', request('description_en'))
-                ->whereNull('deleted_at')
-            ];
+            $data['description_en'] = ['required', 'max:191'];
 
             $data['price'] = ['required', 'numeric'];
         }

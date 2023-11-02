@@ -6,12 +6,22 @@ use App\Http\Controllers\MainController;
 use App\Http\Requests\Dashboard\Banner\CreateRequest;
 use App\Http\Requests\Dashboard\Banner\UpdateRequest;
 use App\Models\Banner;
+use Illuminate\Support\Arr;
 
 class BannerController extends MainController
 {
     public function __construct()
     {
         parent::__construct('banners');
+    }
+
+    public function validData($validate)
+    {
+        $data['title']['en'] = Arr::pull($validate, 'title_en');
+        $data['title']['ar'] = Arr::pull($validate, 'title_ar');
+        $data['description']['en'] = Arr::pull($validate, 'description_en');
+        $data['description']['ar'] = Arr::pull($validate, 'description_ar');
+        return $data;
     }
 
     /**
@@ -37,7 +47,7 @@ class BannerController extends MainController
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $banner = Banner::create($validate);
+        Banner::create($this->validData($validate));
         return redirect()->route('dashboard.banners.index')->with('success', __('messages.created_successfully'));
     }
 
@@ -64,7 +74,7 @@ class BannerController extends MainController
     {
         $validate = $request->validated();
         $image = $request->file('image');
-        $banner->update($validate);
+        $banner->update($this->validData($validate));
         if ($image) {
             $banner->clearMediaCollection('banners');
             $banner->addMedia($image)->toMediaCollection('banners');
