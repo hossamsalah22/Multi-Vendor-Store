@@ -12,9 +12,9 @@ return new class extends Migration {
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('description');
+            $table->json('title');
+            $table->string('slug');
+            $table->json('description');
             $table->float('price');
             $table->boolean('active')->default(1);
             $table->softDeletes();

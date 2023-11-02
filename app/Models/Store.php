@@ -2,20 +2,24 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class Store extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia, Sluggable, SoftDeletes;
+    use HasFactory, InteractsWithMedia, SoftDeletes, HasSlug, HasTranslations;
 
     protected $guarded = ['id'];
     protected $with = ['media'];
     protected $appends = ['image'];
+
+    public $translatable = ['name', 'description'];
 
     public static function booted(): void
     {
@@ -43,15 +47,6 @@ class Store extends Model implements HasMedia
 
     ############################# End Relations #############################
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
-    }
-
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -62,4 +57,11 @@ class Store extends Model implements HasMedia
         return $this->hasMany(Admin::class);
     }
 
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->usingLanguage('en')
+            ->saveSlugsTo('slug');
+    }
 }

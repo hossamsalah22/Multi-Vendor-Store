@@ -180,6 +180,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'description_ar' => 'Description (Arabic)',
+        'description_en' => 'Description (English)',
+        'title_ar' => 'Title (Arabic)',
+        'title_en' => 'Title (English)',
+    ],
 
 ];

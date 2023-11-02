@@ -9,10 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class Banner extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia, Sluggable, SoftDeletes;
+    use HasFactory, InteractsWithMedia, HasSlug, HasTranslations, SoftDeletes;
 
     protected $fillable = [
         'title',
@@ -27,6 +30,8 @@ class Banner extends Model implements HasMedia
     protected $with = ['media'];
 
     protected $appends = ['image'];
+
+    public $translatable = ['title', 'description'];
 
     public static function booted()
     {
@@ -46,17 +51,16 @@ class Banner extends Model implements HasMedia
         return $builder->where('active', 1);
     }
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
-
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->usingLanguage('en')
+            ->saveSlugsTo('slug');
     }
 }

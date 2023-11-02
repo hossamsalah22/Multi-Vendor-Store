@@ -2,17 +2,20 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\HasTranslatableSlug;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class Slider extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes, Sluggable, InteractsWithMedia;
+    use HasFactory, SoftDeletes, InteractsWithMedia, HasTranslations, HasSlug;
 
     protected $fillable = [
         'title',
@@ -22,12 +25,14 @@ class Slider extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'active' => 'boolean'
+        'active' => 'boolean',
     ];
 
     protected $with = ['media'];
 
     protected $appends = ['image'];
+
+    public $translatable = ['title', 'description'];
 
     public static function booted(): void
     {
@@ -47,17 +52,18 @@ class Slider extends Model implements HasMedia
         return $builder->where('active', 1);
     }
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
 
     public function getRouteKeyName()
     {
         return 'slug';
     }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->usingLanguage('en')
+            ->saveSlugsTo('slug');
+    }
+
 }

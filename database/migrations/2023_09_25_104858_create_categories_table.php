@@ -12,9 +12,9 @@ return new class extends Migration {
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->json('name');
             $table->string('slug')->unique();
-            $table->text('description')
+            $table->json('description')
                 ->nullable();
             $table->boolean('active')->default(1);
             $table->foreignId('parent_id')

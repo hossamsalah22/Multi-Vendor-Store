@@ -17,11 +17,17 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->productName,
-            'description' => fake()->sentence(90),
+            'name' => [
+                'en' => $this->faker->productName,
+                'ar' => $this->faker->productName,
+            ],
+            'description' => [
+                'en' => $this->faker->paragraph,
+                'ar' => $this->faker->paragraph,
+            ],
             'price' => fake()->randomFloat(2, 1, 1000),
             'quantity' => fake()->numberBetween(1, 150000),
-            'category_id' => fake()->numberBetween(1, 8),
+            'category_id' => fake()->numberBetween(1, 6),
             'store_id' => fake()->numberBetween(1, 20),
         ];
     }

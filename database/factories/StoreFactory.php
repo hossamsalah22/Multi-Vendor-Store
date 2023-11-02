@@ -18,8 +18,14 @@ class StoreFactory extends Factory
     {
         return [
             // name, description
-            'name' => fake()->company(1, true),
-            'description' => fake()->sentence(50, true),
+            'name' => [
+                'en' => fake()->company(1, true),
+                'ar' => fake()->company(1, true),
+            ],
+            'description' => [
+                'en' => fake()->paragraph(1),
+                'ar' => fake()->paragraph(1),
+            ],
         ];
     }
 }

@@ -9,14 +9,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia, Sluggable, SoftDeletes;
+    use HasFactory, InteractsWithMedia, HasSlug, HasTranslations, SoftDeletes;
 
     protected $guarded = ['id'];
     protected $with = ['media'];
     protected $appends = ['image'];
+
+    public $translatable = ['name', 'description'];
 
     public static function booted(): void
     {
@@ -100,13 +105,12 @@ class Product extends Model implements HasMedia
         return 'slug';
     }
 
-    public function sluggable(): array
+
+    public function getSlugOptions(): SlugOptions
     {
-        // TODO: Implement sluggable() method.
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->usingLanguage('en')
+            ->saveSlugsTo('slug');
     }
 }

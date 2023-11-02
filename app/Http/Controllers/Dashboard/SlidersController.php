@@ -6,12 +6,23 @@ use App\Http\Controllers\MainController;
 use App\Http\Requests\Dashboard\Slider\CreateRequest;
 use App\Http\Requests\Dashboard\Slider\UpdateRequest;
 use App\Models\Slider;
+use Illuminate\Support\Arr;
 
 class SlidersController extends MainController
 {
     public function __construct()
     {
         parent::__construct('sliders');
+    }
+
+    public function validData($validate)
+    {
+        $data['title']['en'] = Arr::pull($validate, 'title_en');
+        $data['title']['ar'] = Arr::pull($validate, 'title_ar');
+        $data['description']['en'] = Arr::pull($validate, 'description_en');
+        $data['description']['ar'] = Arr::pull($validate, 'description_ar');
+        $data['price'] = Arr::pull($validate, 'price');
+        return $data;
     }
 
     /**
@@ -37,7 +48,8 @@ class SlidersController extends MainController
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $slider = Slider::create($validate);
+        $data = $this->validData($validate);
+        Slider::create($data);
         return redirect()->route('dashboard.sliders.index')->with('success', __('messages.created_successfully'));
     }
 
@@ -63,8 +75,9 @@ class SlidersController extends MainController
     public function update(UpdateRequest $request, Slider $slider)
     {
         $validate = $request->validated();
+        $data = $this->validData($validate);
         $image = $request->file('image');
-        $slider->update($validate);
+        $slider->update($data);
         if ($image) {
             $slider->clearMediaCollection('sliders');
             $slider->addMedia($image)->toMediaCollection('sliders');

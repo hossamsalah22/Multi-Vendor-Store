@@ -14,10 +14,16 @@ class CategorySeeder extends Seeder
     {
         $categories = require database_path('initial_data/categories.php');
 
-        foreach ($categories as $key => $category) {
+        foreach ($categories as $category) {
             \App\Models\Category::create([
-                'name' => $key,
-                'description' => $category,
+                'name' => [
+                    'en' => $category['name']['en'],
+                    'ar' => $category['name']['ar'],
+                ],
+                'description' => [
+                    'en' => $category['description']['en'],
+                    'ar' => $category['description']['ar'],
+                ],
             ]);
         }
     }

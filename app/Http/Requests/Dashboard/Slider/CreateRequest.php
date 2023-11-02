@@ -4,6 +4,7 @@ namespace App\Http\Requests\Dashboard\Slider;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
 {
@@ -15,11 +16,40 @@ class CreateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'title' => ['required', 'string', 'unique:sliders'],
-            'description' => ['required', 'string'],
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-            'price' => ['required', 'numeric'],
+        $data = [
+            'title_ar' => 'required|max:191',
+            'title_en' => 'required|max:191',
+            'description_ar' => 'required',
+            'description_en' => 'required',
+            'price' => 'required|numeric',
+            'image' => 'required|image|max:10000',
         ];
+
+        if (request()->method() == 'POST') {
+
+            $data['title_ar'] = ['required', 'max:191', Rule::unique('sliders', 'title->ar')
+                ->where('title->ar', request('title_ar'))
+                ->whereNull('deleted_at')
+            ];
+
+            $data['title_en'] = ['required', 'max:191', Rule::unique('sliders', 'title->en')
+                ->where('title->en', request('title_en'))
+                ->whereNull('deleted_at')
+            ];
+
+            $data['description_ar'] = ['required', 'max:191', Rule::unique('sliders', 'description->ar')
+                ->where('description->ar', request('description_ar'))
+                ->whereNull('deleted_at')
+            ];
+
+            $data['description_en'] = ['required', 'max:191', Rule::unique('sliders', 'description->en')
+                ->where('description->en', request('description_en'))
+                ->whereNull('deleted_at')
+            ];
+
+            $data['price'] = ['required', 'numeric'];
+        }
+
+        return $data;
     }
 }
