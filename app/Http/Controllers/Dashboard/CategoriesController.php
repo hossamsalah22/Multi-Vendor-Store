@@ -6,12 +6,23 @@ use App\Http\Controllers\MainController;
 use App\Http\Requests\Dashboard\Category\CreateRequest;
 use App\Http\Requests\Dashboard\Category\UpdateRequest;
 use App\Models\Category;
+use Illuminate\Support\Arr;
 
 class CategoriesController extends MainController
 {
     public function __construct()
     {
         parent::__construct('categories');
+    }
+
+    protected function validData($validate)
+    {
+        $data['name']['en'] = Arr::pull($validate, 'name_en');
+        $data['name']['ar'] = Arr::pull($validate, 'name_ar');
+        $data['description']['en'] = Arr::pull($validate, 'description_en');
+        $data['description']['ar'] = Arr::pull($validate, 'description_ar');
+        $data['parent_id'] = Arr::pull($validate, 'parent_id');
+        return $data;
     }
 
     /**
@@ -38,7 +49,7 @@ class CategoriesController extends MainController
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $category = Category::create($validate);
+        Category::create($this->validData($validate));
         return redirect()->route('dashboard.categories.index')->with('success', __('messages.created_successfully'));
     }
 
@@ -73,7 +84,7 @@ class CategoriesController extends MainController
     {
         $validate = $request->validated();
         $image = $request->file('image');
-        $category->update($validate);
+        $category->update($this->validData($validate));
         if ($image) {
             $category->clearMediaCollection('categories');
             $category->addMedia($image)->toMediaCollection('categories');

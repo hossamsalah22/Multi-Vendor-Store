@@ -47,7 +47,7 @@ class Category extends Model implements HasMedia
     public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Category::class, 'parent_id')->withDefault([
-            'name' => 'Main Category'
+            'name' => __('Primary Category')
         ]);
     }
 

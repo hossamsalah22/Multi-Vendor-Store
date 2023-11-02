@@ -203,6 +203,8 @@ return [
         'password' => 'كلمة المرور',
         'password_confirmation' => 'تأكيد كلمة المرور',
         'name' => 'الاسم',
+        'name_ar' => 'الاسم بالعربية',
+        'name_en' => 'الاسم بالانجليزية',
         'phone_number' => 'رقم الهاتف',
         'address' => 'العنوان',
         'image' => 'الصورة',

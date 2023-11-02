@@ -185,6 +185,8 @@ return [
         'description_en' => 'Description (English)',
         'title_ar' => 'Title (Arabic)',
         'title_en' => 'Title (English)',
+        'name_ar' => 'Name (Arabic)',
+        'name_en' => 'Name (English)',
     ],
 
 ];
