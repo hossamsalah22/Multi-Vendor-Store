@@ -9,12 +9,28 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class ProductsController extends MainController
 {
     public function __construct()
     {
         parent::__construct('products');
+    }
+
+    protected function validData($validate)
+    {
+        $data['name']['en'] = Arr::pull($validate, 'name_en');
+        $data['name']['ar'] = Arr::pull($validate, 'name_ar');
+        $data['description']['en'] = Arr::pull($validate, 'description_en');
+        $data['description']['ar'] = Arr::pull($validate, 'description_ar');
+        $data['category_id'] = Arr::pull($validate, 'category_id');
+        $data['store_id'] = Arr::pull($validate, 'store_id');
+        $data['price'] = Arr::pull($validate, 'price');
+        $data['compare_price'] = Arr::pull($validate, 'compare_price');
+        $data['quantity'] = Arr::pull($validate, 'quantity');
+
+        return $data;
     }
 
     /**
@@ -42,7 +58,7 @@ class ProductsController extends MainController
     public function store(CreateRequest $request)
     {
         $validate = $request->validated();
-        $product = Product::create($validate);
+        Product::create($this->validData($validate));
         return redirect()->route('dashboard.products.index')->with('success', __('messages.created_successfully'));
     }
 
@@ -72,7 +88,7 @@ class ProductsController extends MainController
     {
         $validate = $request->validated();
         $image = $request->file('image');
-        $product->update($validate);
+        $product->update($this->validData($validate));
         if ($image) {
             $product->clearMediaCollection('products');
             $product->addMedia($image)->toMediaCollection('products');

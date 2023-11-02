@@ -4,6 +4,7 @@ namespace App\Http\Requests\Dashboard\Product;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -14,16 +15,41 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => ['sometimes', 'required', 'string', 'max:255', 'unique:products,name,' . $this->product->id],
-            'image' => ['nullable', 'image', 'max:1024'],
-            'quantity' => ['sometimes', 'required', 'numeric', 'min:0'],
-            'price' => ['sometimes', 'required', 'numeric', 'min:0'],
+        $data = [
+            'name_en' => ['required', 'string', 'max:255'],
+            'name_ar' => ['required', 'string', 'max:255'],
+            'description_en' => ['required', 'string', 'max:5000'],
+            'description_ar' => ['required', 'string', 'max:5000'],
+            'category_id' => ['nullable'],
+            'store_id' => ['required'],
+            'price' => ['required', 'numeric', 'min:0'],
             'compare_price' => ['nullable', 'numeric', 'gt:price'],
-            'description' => ['sometimes', 'required', 'string', 'max:5000'],
-            'category_id' => ['nullable', 'exists:categories,id'],
-            'store_id' => ['sometimes', 'required', 'exists:stores,id'],
+            'quantity' => ['required', 'numeric', 'min:0'],
+            'images' => ['nullable', 'array', 'max:5'],
         ];
+
+        if (request()->method() == 'PUT') {
+            $data['name_en'] = ['required', 'string', 'max:255', Rule::unique('products', 'name->en')
+                ->where('name->en', request('name_en'))
+                ->whereNull('deleted_at')
+                ->ignore($this->product->id)];
+            $data['name_ar'] = ['required', 'string', 'max:255', Rule::unique('products', 'name->ar')
+                ->where('name->ar', request('name_ar'))
+                ->whereNull('deleted_at')
+                ->ignore($this->product->id)];
+            $data['description_en'] = ['required', 'string', 'max:5000'];
+            $data['description_ar'] = ['required', 'string', 'max:5000'];
+            $data['category_id'] = ['nullable', Rule::exists('categories', 'id')
+                ->where('id', request('category_id'))->whereNull('deleted_at')];
+            $data['store_id'] = ['required', Rule::exists('stores', 'id')
+                ->where('id', request('store_id'))->whereNull('deleted_at')];
+            $data['price'] = ['required', 'numeric', 'min:0'];
+            $data['compare_price'] = ['nullable', 'numeric', 'gt:price'];
+            $data['quantity'] = ['required', 'numeric', 'min:0'];
+            $data['images'] = ['nullable', 'array', 'max:5'];
+        }
+
+        return $data;
     }
 
     public function attributes(): array
@@ -31,6 +57,7 @@ class UpdateRequest extends FormRequest
         return [
             'category_id' => 'category',
             'store_id' => 'store',
+            'compare_price' => 'discount price',
         ];
     }
 }

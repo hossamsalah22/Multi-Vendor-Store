@@ -213,6 +213,7 @@ return [
         'title_ar' => 'العنوان بالعربية',
         'title_en' => 'العنوان بالانجليزية',
         'price' => 'السعر',
+        'compare_price' => 'سعر المقارنة',
         'quantity' => 'الكمية',
         'category_id' => 'القسم',
         'product_id' => 'المنتج',
